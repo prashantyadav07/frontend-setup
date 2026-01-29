@@ -1,16 +1,11 @@
-import { useState } from 'react'
+import AppRoutes from '@/routes/AppRoutes';
 
-
-function App() {
-  const [count, setCount] = useState(0)
-
-  return (
-    <div>
-      <h1 class="text-3xl font-bold underline">
-        Hello world!
-      </h1>
-    </div>
-  )
+/**
+ * App Component
+ * 
+ * Root component that wraps the entire application.
+ * Provides routing configuration and global layout structure.
+ */
+export default function App() {
+  return <AppRoutes />;
 }
-
-export default App
