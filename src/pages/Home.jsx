@@ -1,6 +1,6 @@
 import React, { useState, useRef } from 'react';
 import { motion, AnimatePresence, useScroll, useTransform } from 'framer-motion';
-
+import newimage from "../assets/newimage.jpeg";
 // ====== 1. NEW DATA FOR DUAL-IMAGE LAYOUT ======
 // Aap yahan apni images aur details change kar sakte hain
 const stackedSectionsData = [
@@ -120,7 +120,7 @@ const HeroSection = () => {
         {/* 1. BACKGROUND IMAGE */}
         <div className="absolute inset-0 z-0 bg-black">
           <img
-            src="/src/assets/newimage.jpeg"
+            src={newimage}
             alt="Mansion Background"
             className="h-full w-full object-cover"
           />
