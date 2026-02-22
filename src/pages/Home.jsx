@@ -207,7 +207,7 @@ const HeroSection = () => {
               className="text-[clamp(2rem,7vw,5.5rem)] font-serif font-black leading-[1.1] text-white w-full max-w-[90%] mx-auto"
               style={{ fontFamily: "'Georgia', 'Times New Roman', serif" }}
             >
-              The Real Estate Fund<br />Expert Approach
+              The River Green Colony<br />Expert Approach
             </motion.h1>
 
             <motion.div

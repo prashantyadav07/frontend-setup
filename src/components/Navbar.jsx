@@ -98,7 +98,7 @@ export default function Navbar() {
                 className="text-[17px] xl:text-[20px] font-semibold tracking-[0.25em] xl:tracking-[0.3em] uppercase text-black whitespace-nowrap group-hover:text-gray-700 transition-colors"
                 style={{ fontFamily: "'Cormorant Garamond', 'Georgia', serif" }}
               >
-                Real Estate Fund
+                River Green Colony
               </span>
               <span
                 className="text-[8px] xl:text-[9px] tracking-[0.35em] uppercase text-gray-400 font-light"
@@ -163,7 +163,7 @@ export default function Navbar() {
               The
             </span>
             <span className="text-[14px] sm:text-[16px] font-semibold tracking-[0.2em] uppercase text-black whitespace-nowrap" style={{ fontFamily: "'Cormorant Garamond', 'Georgia', serif" }}>
-              Real Estate Fund
+              River Green Colony
             </span>
           </NavLink>
 
@@ -205,7 +205,7 @@ export default function Navbar() {
                   <div className="flex items-center justify-between mb-10">
                     <div className="flex flex-col items-start leading-none gap-[4px]">
                       <span className="text-[8px] tracking-[0.35em] uppercase text-gray-400" style={{ fontFamily: "'Cormorant Garamond', 'Georgia', serif" }}>The</span>
-                      <span className="text-[15px] font-semibold tracking-[0.2em] uppercase text-black" style={{ fontFamily: "'Cormorant Garamond', 'Georgia', serif" }}>Real Estate Fund</span>
+                      <span className="text-[15px] font-semibold tracking-[0.2em] uppercase text-black" style={{ fontFamily: "'Cormorant Garamond', 'Georgia', serif" }}>River Green Colony</span>
                     </div>
                     <button onClick={() => setIsOpen(false)} className="p-2 hover:bg-gray-100 rounded-full transition-colors">
                       <X className="w-6 h-6 text-black" />
