@@ -4,7 +4,9 @@ import PropertySection from '../components/PropertySection';
 import hero1 from "../assets/hero2.jpg";
 import TestimonialSection from '@/components/Testimonials';
 import StackedImagesSection from '../components/StackedImagesSection';
-import Videodesign from '../components/Videodesign';
+import Videodesign from '../components/hero4';
+import Hero5 from '../components/hero5';
+import Footer from '../components/Footer';
 
 // ====== 3. MAIN PAGE COMPONENT ======
 const HeroSection = () => {
@@ -141,6 +143,9 @@ const HeroSection = () => {
 
       <StackedImagesSection />
       <Videodesign />
+      <Hero5 />
+      <Footer />
+
     </main>
   );
 };

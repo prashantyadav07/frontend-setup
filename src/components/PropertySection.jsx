@@ -180,13 +180,6 @@ const PropertySection = () => {
             {/* Immediately follows header, no whitespace */}
             <HorizontalScrollSection />
 
-            {/* ===== FOOTER SECTION ===== */}
-            {/* <div className="h-[50vh] flex items-center justify-center bg-[#1A1A1A] text-white relative z-10">
-                <button className="group flex items-center gap-4 text-xl font-serif tracking-wider hover:text-[#bfa065] transition-colors">
-                    View Full Collection
-                    <ArrowRight className="group-hover:translate-x-2 transition-transform" />
-                </button>
-            </div> */}
 
         </div>
     );
