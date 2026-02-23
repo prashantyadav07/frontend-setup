@@ -50,7 +50,6 @@ const HeroSection = () => {
           {showIntro && (
             <motion.div
               className="fixed inset-0 z-50 flex items-center justify-center pointer-events-none"
-              onAnimationComplete={() => setShowIntro(false)}
             >
               <motion.div
                 initial={{ scale: 1, opacity: 1 }}
@@ -60,6 +59,7 @@ const HeroSection = () => {
                   times: [0, 0.1, 1],
                   ease: [0.65, 0, 0.35, 1]
                 }}
+                onAnimationComplete={() => setShowIntro(false)}
                 className="absolute top-1/2 left-1/2 flex items-center justify-center w-0 h-0"
               >
                 <svg width="10000" height="10000" viewBox="0 0 10000 10000" className="absolute">
