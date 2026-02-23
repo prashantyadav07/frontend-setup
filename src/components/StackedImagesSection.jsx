@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion'; // 1. Import Framer Motion
-
+import hut from '../assets/hut.png';
 const UpdatedHeroSection = () => {
     return (
         <section className="w-full min-h-screen flex items-center justify-center bg-white py-8 sm:py-12 px-4 sm:px-6 md:px-16 overflow-hidden">
@@ -60,7 +60,7 @@ const UpdatedHeroSection = () => {
                 >
                     <div className="w-full max-w-[650px]">
                         <img
-                            src="/src/assets/hut.png"
+                            src={hut}
                             alt="Foundation Property"
                             className="w-full h-auto object-contain scale-105"
                         />
