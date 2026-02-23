@@ -113,11 +113,23 @@
   --sidebar-ring: oklch(0.556 0 0);
 }
 
+/* HW Cigars Font */
+@font-face {
+  font-family: 'HW Cigars';
+  src: url('./assets/hw-cigars-regular.woff2') format('woff2');
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
 @layer base {
   * {
     @apply border-border outline-ring/50;
+    font-family: 'HW Cigars', serif !important;
   }
+
   body {
     @apply bg-background text-foreground;
+    font-family: 'HW Cigars', serif !important;
   }
 }

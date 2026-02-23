@@ -1,231 +1,193 @@
 import React, { useRef } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
-import { MapPin, Bath, Bed, Square, ArrowRight, Compass } from 'lucide-react';
+import { MapPin, ArrowRight, Compass } from 'lucide-react';
 
 const properties = [
     {
         id: 1,
         title: "The Glass Pavilion",
         location: "Beverly Hills, CA",
-        price: "$12,500,000",
-        beds: 5,
-        baths: 6,
-        sqft: "8,500",
+        category: "Private Estate",
+        description: "A seamless fusion of indoor and outdoor living, wrapped in floor-to-ceiling glass.",
         image: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80"
     },
     {
         id: 2,
         title: "Modern Oasis",
         location: "Malibu, CA",
-        price: "$8,900,000",
-        beds: 4,
-        baths: 4,
-        sqft: "6,200",
+        category: "Coastal Retreat",
+        description: "Where Pacific breezes meet architectural excellence — a sanctuary sculpted by the ocean.",
         image: "https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80"
     },
     {
         id: 3,
-        title: "Urban Sanctuary",
-        location: "San Francisco, CA",
-        price: "$5,750,000",
-        beds: 3,
-        baths: 3,
-        sqft: "4,100",
-        image: "https://images.unsplash.com/photo-1600566753190-17f0bb2a6c3e?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80"
+        title: "The Stone Manor",
+        location: "Bel Air, CA",
+        category: "Heritage Residence",
+        description: "Timeless European stone craftsmanship set within manicured grounds.",
+        image: "https://images.unsplash.com/photo-1583608205776-bfd35f0d9f83?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80"
+    },
+    {
+        id: 4,
+        title: "Skyline Penthouse",
+        location: "West Hollywood, CA",
+        category: "Urban Pinnacle",
+        description: "A sky-high canvas of concrete and light, designed for those who prefer their horizon unobstructed.",
+        image: "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80"
+    },
+    {
+        id: 5,
+        title: "The Redwood Villa",
+        location: "Santa Barbara, CA",
+        category: "Nature Sanctuary",
+        description: "Nestled among ancient redwoods, this villa offers a meditative retreat.",
+        image: "https://images.unsplash.com/photo-1564013799919-ab600027ffc6?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80"
     }
 ];
 
 const PropertyCard = ({ prop, idx }) => {
-    const cardRef = useRef(null);
-    const { scrollYProgress } = useScroll({
-        target: cardRef,
-        offset: ["start end", "end start"]
-    });
-
-    const imageY = useTransform(scrollYProgress, [0, 1], ["-10%", "10%"]);
-
     return (
-        <motion.div
-            ref={cardRef}
-            initial={{ y: 80, opacity: 0 }}
-            whileInView={{ y: 0, opacity: 1 }}
-            transition={{ duration: 0.8, delay: idx * 0.15, ease: "easeOut" }}
-            viewport={{ once: true, margin: "-50px" }}
-            className="group cursor-pointer flex flex-col"
+        <div
+            className="group relative bg-white flex-shrink-0 w-[80vw] sm:w-[85vw] md:w-[600px] h-[55vh] sm:h-[65vh] md:h-[70vh] shadow-xl overflow-hidden"
         >
-            <div className="relative aspect-[4/5] overflow-hidden rounded-sm mb-6 shadow-[0_15px_35px_rgba(0,0,0,0.1)]">
-                <motion.img
-                    style={{ y: imageY, scale: 1.15 }}
+            {/* Image Full Height */}
+            <div className="absolute inset-0">
+                <img
                     src={prop.image}
                     alt={prop.title}
-                    className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-125 origin-center"
+                    className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110"
                 />
-                
-                {/* Subtle dark gradient just at the top for price tag contrast, and at bottom for hover effect */}
-                <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-transparent to-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                
-                {/* Clean Inner Border */}
-                <div className="absolute inset-4 border border-white/0 group-hover:border-white/50 transition-colors duration-500 rounded-sm z-10 pointer-events-none" />
-                
-                {/* Premium White Price Tag Overlay */}
-                <div className="absolute top-6 right-6 px-4 py-2 bg-white/95 backdrop-blur-md border border-gray-100 text-[#1A1A1A] text-[13px] font-bold tracking-wider overflow-hidden group/price z-20 shadow-lg">
-                    <motion.div
-                        className="absolute inset-0 bg-[#F4F4F5] transform -translate-x-full group-hover/price:translate-x-0 transition-transform duration-500"
-                    />
-                    <span className="relative z-10">{prop.price}</span>
-                </div>
+                <div className="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors duration-500" />
             </div>
 
-            <div className="space-y-4 px-2">
-                <div className="flex justify-between items-start">
-                    <div>
-                        <h3 className="text-[#1A1A1A] text-3xl font-serif mb-2 group-hover:text-[#A88941] transition-colors duration-300">
-                            {prop.title}
-                        </h3>
-                        <p className="text-gray-500 text-[13px] flex items-center gap-2 tracking-wide font-medium">
-                            <MapPin className="w-3.5 h-3.5 text-[#A88941]" />
-                            {prop.location}
-                        </p>
+            {/* Content Overlay */}
+            <div className="absolute inset-0 p-5 sm:p-8 flex flex-col justify-end text-white">
+                <div className="translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
+                    <div className="flex items-center gap-2 mb-3">
+                        <MapPin className="w-4 h-4 text-[#A88941]" />
+                        <span className="text-[10px] sm:text-xs font-bold tracking-widest uppercase">{prop.location}</span>
                     </div>
+                    <h3 className="text-2xl sm:text-3xl md:text-5xl font-serif mb-2 sm:mb-4">{prop.title}</h3>
+                    <p className="text-sm md:text-base opacity-0 group-hover:opacity-90 transition-opacity duration-500 max-w-md font-light leading-relaxed">
+                        {prop.description}
+                    </p>
                 </div>
 
-                <div className="flex items-center gap-6 py-5 border-y border-gray-200">
-                    <span className="flex items-center gap-2 text-gray-600 text-[12px] uppercase tracking-widest font-semibold">
-                        <Bed className="w-4 h-4 text-[#A88941]" /> {prop.beds}
-                    </span>
-                    <span className="flex items-center gap-2 text-gray-600 text-[12px] uppercase tracking-widest font-semibold">
-                        <Bath className="w-4 h-4 text-[#A88941]" /> {prop.baths}
-                    </span>
-                    <span className="flex items-center gap-2 text-gray-600 text-[12px] uppercase tracking-widest font-semibold">
-                        <Square className="w-4 h-4 text-[#A88941]" /> {prop.sqft} SQFT
-                    </span>
-                </div>
-
-                <div className="flex items-center gap-2 text-[#A88941] text-[11px] font-bold uppercase tracking-[0.25em] group/btn pt-2">
-                    View Complete Details
-                    <motion.div
-                        initial={{ x: 0 }}
-                        whileHover={{ x: 8 }}
-                        transition={{ type: "spring", stiffness: 300 }}
-                    >
-                        <ArrowRight className="w-4 h-4 transition-transform duration-300 text-[#1A1A1A]" />
-                    </motion.div>
+                {/* Number */}
+                <div className="absolute top-5 right-5 sm:top-8 sm:right-8 text-4xl sm:text-6xl font-serif opacity-20 group-hover:opacity-100 transition-opacity duration-500 text-white">
+                    0{idx + 1}
                 </div>
             </div>
-        </motion.div>
+        </div>
+    );
+};
+
+const HorizontalScrollSection = () => {
+    const targetRef = useRef(null);
+
+    const { scrollYProgress } = useScroll({
+        target: targetRef,
+    });
+
+    // Translate x value mapped to scroll progress
+    // "0%" means start position, "-75%" moves the list to the left so the last card is visible
+    const x = useTransform(scrollYProgress, [0, 1], ["0%", "-75%"]);
+
+    return (
+        // Height is 400vh to give enough scroll room (Pinning effect)
+        <section ref={targetRef} className="relative h-[400vh] bg-white">
+            <div className="sticky top-0 h-screen flex items-center overflow-hidden">
+                <motion.div
+                    style={{ x }}
+                    className="flex gap-10 pl-[10vw]" // pl-[10vw] adds initial spacing
+                >
+                    {properties.map((prop, idx) => (
+                        <PropertyCard key={prop.id} prop={prop} idx={idx} />
+                    ))}
+                </motion.div>
+            </div>
+        </section>
     );
 };
 
 const PropertySection = () => {
     return (
-        <div className="relative bg-[#FAFAFA] py-32 overflow-hidden selection:bg-[#A88941] selection:text-white">
-            
-            {/* Extremely Subtle Blueprint Grid Background (Light Mode) */}
-            <div className="absolute inset-0 opacity-[0.03] pointer-events-none">
-                <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
-                    <defs>
-                        <pattern id="grid-pattern-light" width="60" height="60" patternUnits="userSpaceOnUse">
-                            <path d="M 60 0 L 0 0 0 60" fill="none" stroke="#000000" strokeWidth="1" />
-                        </pattern>
-                    </defs>
-                    <rect width="100%" height="100%" fill="url(#grid-pattern-light)" />
-                </svg>
+        <div className="bg-white text-[#1A1A1A]">
+
+            {/* Background Grid - Removed as requested */}
+
+            {/* ===== HERO / HEADER SECTION ===== */}
+            {/* h-screen remove whitespace, Centers content vertically */}
+            <div className="relative h-screen flex flex-col items-center justify-center z-10 bg-white">
+
+                {/* Animated Line */}
+                <motion.div
+                    initial={{ height: 0 }}
+                    animate={{ height: 100 }}
+                    transition={{ duration: 1.5 }}
+                    className="w-[1px] bg-gradient-to-b from-transparent to-[#bfa065] absolute top-0"
+                />
+
+                {/* Compass Icon */}
+                <motion.div
+                    initial={{ scale: 0, opacity: 0 }}
+                    animate={{ scale: 1, opacity: 1 }}
+                    transition={{ delay: 0.5, duration: 0.8 }}
+                    className="mb-8 p-4 border border-gray-200 rounded-full bg-white shadow-sm relative z-20"
+                >
+                    <Compass className="w-6 h-6 text-[#bfa065]" strokeWidth={1} />
+                </motion.div>
+
+                {/* Sub Heading */}
+                <motion.h3
+                    initial={{ y: 20, opacity: 0 }}
+                    animate={{ y: 0, opacity: 1 }}
+                    transition={{ delay: 0.8 }}
+                    className="text-[#bfa065] text-xs font-bold tracking-[0.4em] uppercase mb-6"
+                >
+                    Curated Portfolio
+                </motion.h3>
+
+                {/* Main Heading */}
+                <motion.h1
+                    initial={{ y: 30, opacity: 0 }}
+                    animate={{ y: 0, opacity: 1 }}
+                    transition={{ delay: 1 }}
+                    className="text-3xl sm:text-5xl md:text-7xl font-serif text-center max-w-4xl leading-tight px-4"
+                >
+                    Discover Architectural <br /> Masterpieces
+                </motion.h1>
+
+                {/* Scroll Indicator */}
+                {/* <motion.div 
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ delay: 1.5, duration: 1 }}
+                    className="absolute bottom-10 flex flex-col items-center gap-2 opacity-60"
+                > */}
+                {/* <span className="text-[10px] tracking-widest uppercase">Scroll Down</span>
+                    <div className="w-[1px] h-12 bg-gray-300 overflow-hidden">
+                        <motion.div 
+                            animate={{ y: ["-100%", "100%"] }}
+                            transition={{ repeat: Infinity, duration: 1.5, ease: "linear" }}
+                            className="w-full h-1/2 bg-[#1A1A1A]" 
+                        />
+                    </div>
+                </motion.div> */}
             </div>
 
-            <div className="relative max-w-[1400px] mx-auto px-8 md:px-14 z-10">
-                
-                {/* 1. PROFESSIONAL TRANSITION & HEADER (Light Mode) */}
-                <div className="flex flex-col items-center justify-center mb-28">
-                    
-                    {/* Dotted Line */}
-                    <motion.div
-                        initial={{ height: 0, opacity: 0 }}
-                        whileInView={{ height: 160, opacity: 1 }}
-                        transition={{ duration: 1.5, ease: "easeInOut" }}
-                        viewport={{ once: true }}
-                        className="w-[1px] border-l border-dashed border-gray-300 relative flex justify-center"
-                    >
-                        {/* Looping Light Tail */}
-                        <motion.div 
-                            animate={{ 
-                                top: ["-10%", "100%"], 
-                                opacity: [0, 1, 1, 0] 
-                            }}
-                            transition={{ 
-                                duration: 2.5,
-                                repeat: Infinity,
-                                ease: "easeInOut",
-                                repeatDelay: 1 
-                            }}
-                            className="absolute -left-[1.5px] w-[2px] h-14 bg-gradient-to-b from-transparent via-[#A88941] to-[#A88941] shadow-[0_0_8px_rgba(168,137,65,0.6)] rounded-full"
-                        />
-                    </motion.div>
-                    
-                    {/* Minimal Compass Icon */}
-                    <motion.div
-                        initial={{ scale: 0, opacity: 0 }}
-                        whileInView={{ scale: 1, opacity: 1 }}
-                        transition={{ duration: 1, delay: 0.8, type: "spring" }}
-                        viewport={{ once: true }}
-                        className="mt-1 flex items-center justify-center w-14 h-14 border border-gray-200 rounded-full bg-white shadow-sm relative z-10"
-                    >
-                        {/* Inner Circle */}
-                        <div className="flex items-center justify-center w-9 h-9 border border-gray-100 rounded-full bg-[#FAFAFA]">
-                            <Compass className="w-4 h-4 text-[#A88941]" strokeWidth={1.5} />
-                        </div>
-                    </motion.div>
+            {/* ===== HORIZONTAL SCROLL SECTION ===== */}
+            {/* Immediately follows header, no whitespace */}
+            <HorizontalScrollSection />
 
-                    <motion.h2
-                        initial={{ y: 20, opacity: 0 }}
-                        whileInView={{ y: 0, opacity: 1 }}
-                        transition={{ duration: 0.8, delay: 1.2 }}
-                        viewport={{ once: true }}
-                        className="text-[#A88941] text-[12px] tracking-[0.5em] uppercase font-bold mt-8 text-center"
-                    >
-                        Curated Portfolio
-                    </motion.h2>
-                    <motion.h1
-                        initial={{ y: 20, opacity: 0 }}
-                        whileInView={{ y: 0, opacity: 1 }}
-                        transition={{ duration: 0.8, delay: 1.4 }}
-                        viewport={{ once: true }}
-                        className="text-[#1A1A1A] text-4xl md:text-5xl lg:text-6xl font-serif mt-6 text-center max-w-2xl leading-tight"
-                    >
-                        Discover Architectural Masterpieces
-                    </motion.h1>
-                </div>
+            {/* ===== FOOTER SECTION ===== */}
+            {/* <div className="h-[50vh] flex items-center justify-center bg-[#1A1A1A] text-white relative z-10">
+                <button className="group flex items-center gap-4 text-xl font-serif tracking-wider hover:text-[#bfa065] transition-colors">
+                    View Full Collection
+                    <ArrowRight className="group-hover:translate-x-2 transition-transform" />
+                </button>
+            </div> */}
 
-                {/* 2. PROPERTY CARDS GRID */}
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-12 gap-y-20">
-                    {properties.map((prop, idx) => (
-                        <PropertyCard key={prop.id} prop={prop} idx={idx} />
-                    ))}
-                </div>
-
-                {/* 3. PREMIUM DARK BUTTON ON WHITE THEME */}
-                <div className="mt-32 flex justify-center">
-                    <motion.button
-                        initial={{ opacity: 0, y: 30 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        whileHover="hover"
-                        className="relative px-12 py-6 border border-[#1A1A1A] text-[#1A1A1A] text-[12px] font-bold tracking-[0.3em] uppercase overflow-hidden group bg-transparent"
-                    >
-                        <motion.span 
-                            className="relative z-10 flex items-center gap-3 transition-colors duration-300 group-hover:text-white"
-                        >
-                            Explore All Properties
-                            <ArrowRight className="w-4 h-4" />
-                        </motion.span>
-                        <motion.div 
-                            variants={{ hover: { top: "0%" } }}
-                            initial={{ top: "100%" }}
-                            transition={{ duration: 0.4, ease: "easeInOut" }}
-                            className="absolute left-0 right-0 bottom-0 bg-[#1A1A1A] h-full z-0"
-                        />
-                    </motion.button>
-                </div>
-            </div>
         </div>
     );
 };
