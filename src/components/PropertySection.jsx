@@ -50,7 +50,6 @@ const PropertyCard = ({ prop, idx }) => {
         <div
             className="group relative bg-white flex-shrink-0 w-[80vw] sm:w-[85vw] md:w-[600px] h-[55vh] sm:h-[65vh] md:h-[70vh] shadow-xl overflow-hidden"
         >
-            {/* Image Full Height */}
             <div className="absolute inset-0">
                 <img
                     src={prop.image}
@@ -60,7 +59,6 @@ const PropertyCard = ({ prop, idx }) => {
                 <div className="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors duration-500" />
             </div>
 
-            {/* Content Overlay */}
             <div className="absolute inset-0 p-5 sm:p-8 flex flex-col justify-end text-white">
                 <div className="translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
                     <div className="flex items-center gap-2 mb-3">
@@ -73,7 +71,6 @@ const PropertyCard = ({ prop, idx }) => {
                     </p>
                 </div>
 
-                {/* Number */}
                 <div className="absolute top-5 right-5 sm:top-8 sm:right-8 text-4xl sm:text-6xl font-serif opacity-20 group-hover:opacity-100 transition-opacity duration-500 text-white">
                     0{idx + 1}
                 </div>
@@ -89,17 +86,14 @@ const HorizontalScrollSection = () => {
         target: targetRef,
     });
 
-    // Translate x value mapped to scroll progress
-    // "0%" means start position, "-75%" moves the list to the left so the last card is visible
     const x = useTransform(scrollYProgress, [0, 1], ["0%", "-75%"]);
 
     return (
-        // Height is 400vh to give enough scroll room (Pinning effect)
         <section ref={targetRef} className="relative h-[400vh] bg-white">
             <div className="sticky top-0 h-screen flex items-center overflow-hidden">
                 <motion.div
                     style={{ x }}
-                    className="flex gap-10 pl-[10vw]" // pl-[10vw] adds initial spacing
+                    className="flex gap-10 pl-[10vw]"
                 >
                     {properties.map((prop, idx) => (
                         <PropertyCard key={prop.id} prop={prop} idx={idx} />
@@ -113,14 +107,9 @@ const HorizontalScrollSection = () => {
 const PropertySection = () => {
     return (
         <div className="bg-white text-[#1A1A1A]">
-
-            {/* Background Grid - Removed as requested */}
-
-            {/* ===== HERO / HEADER SECTION ===== */}
-            {/* h-screen remove whitespace, Centers content vertically */}
-            <div className="relative h-screen flex flex-col items-center justify-center z-10 bg-white">
-
-                {/* Animated Line */}
+            {/* HERO SECTION - Height adjusted for Mobile to remove whitespace */}
+            <div className="relative h-[70vh] sm:h-screen flex flex-col items-center justify-center z-10 bg-white">
+                
                 <motion.div
                     initial={{ height: 0 }}
                     animate={{ height: 100 }}
@@ -128,7 +117,6 @@ const PropertySection = () => {
                     className="w-[1px] bg-gradient-to-b from-transparent to-[#bfa065] absolute top-0"
                 />
 
-                {/* Compass Icon */}
                 <motion.div
                     initial={{ scale: 0, opacity: 0 }}
                     animate={{ scale: 1, opacity: 1 }}
@@ -138,7 +126,6 @@ const PropertySection = () => {
                     <Compass className="w-6 h-6 text-[#bfa065]" strokeWidth={1} />
                 </motion.div>
 
-                {/* Sub Heading */}
                 <motion.h3
                     initial={{ y: 20, opacity: 0 }}
                     animate={{ y: 0, opacity: 1 }}
@@ -148,7 +135,6 @@ const PropertySection = () => {
                     Curated Portfolio
                 </motion.h3>
 
-                {/* Main Heading */}
                 <motion.h1
                     initial={{ y: 30, opacity: 0 }}
                     animate={{ y: 0, opacity: 1 }}
@@ -157,30 +143,10 @@ const PropertySection = () => {
                 >
                     Discover Architectural <br /> Masterpieces
                 </motion.h1>
-
-                {/* Scroll Indicator */}
-                {/* <motion.div 
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    transition={{ delay: 1.5, duration: 1 }}
-                    className="absolute bottom-10 flex flex-col items-center gap-2 opacity-60"
-                > */}
-                {/* <span className="text-[10px] tracking-widest uppercase">Scroll Down</span>
-                    <div className="w-[1px] h-12 bg-gray-300 overflow-hidden">
-                        <motion.div 
-                            animate={{ y: ["-100%", "100%"] }}
-                            transition={{ repeat: Infinity, duration: 1.5, ease: "linear" }}
-                            className="w-full h-1/2 bg-[#1A1A1A]" 
-                        />
-                    </div>
-                </motion.div> */}
             </div>
 
-            {/* ===== HORIZONTAL SCROLL SECTION ===== */}
-            {/* Immediately follows header, no whitespace */}
+            {/* HORIZONTAL SCROLL SECTION */}
             <HorizontalScrollSection />
-
-
         </div>
     );
 };

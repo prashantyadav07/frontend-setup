@@ -5,7 +5,7 @@ import hero1 from "../assets/hero2.jpg";
 import TestimonialSection from '@/components/Testimonials';
 import StackedImagesSection from '../components/StackedImagesSection';
 import Videodesign from '../components/hero4';
-import Hero5 from '../components/hero5';
+import Hero5 from '../components/Hero5';
 import Footer from '../components/Footer';
 
 // ====== 3. MAIN PAGE COMPONENT ======
