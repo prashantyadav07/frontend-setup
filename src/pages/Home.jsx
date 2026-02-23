@@ -21,8 +21,14 @@ const HeroSection = () => {
       window.history.scrollRestoration = 'manual';
     }
 
+    // Safety timeout: Ensure intro is removed even if animation events fail
+    const timer = setTimeout(() => {
+      setShowIntro(false);
+    }, 6000);
+
     // Reset scroll restoration on unmount (optional but cleaner)
     return () => {
+      clearTimeout(timer);
       if (window.history.scrollRestoration) {
         window.history.scrollRestoration = 'auto';
       }
