@@ -12,8 +12,8 @@ const Footer = () => {
 
             {/* Footer Card Container */}
             <footer className="relative z-10 max-w-7xl mx-auto rounded-[2rem] md:rounded-[2.5rem] bg-[#F7F9F6] shadow-2xl overflow-hidden border border-black/5">
-                <div className="pt-8 md:pt-12 pb-6 md:pb-8 px-6 md:px-12 lg:px-16 text-[#1a1a1a] font-sans">
-                    
+                <div className="pt-8 md:pt-12 pb-6 md:pb-8 px-6 md:px-12 lg:px-16 text-[#0a0a0a] font-sans">
+
                     {/* Grid: 1 col on mobile, 4 on desktop */}
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-10">
 
@@ -21,10 +21,10 @@ const Footer = () => {
                         <div className="flex flex-col gap-4 md:gap-5">
                             <div className="flex items-center gap-2">
                                 <svg viewBox="0 0 24 24" className="w-7 h-7 md:w-8 md:h-8 fill-[#2D5A27]" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M19 9.3V4h-3v2.6L12 3 2 12h3v8h5v-6h4v6h5v-8h3l-3-2.7zm-9 .7c0-1.1.9-2 2-2s2 .9 2 2-.9 2-2 2-2-.9-2-2z"/>
+                                    <path d="M19 9.3V4h-3v2.6L12 3 2 12h3v8h5v-6h4v6h5v-8h3l-3-2.7zm-9 .7c0-1.1.9-2 2-2s2 .9 2 2-.9 2-2 2-2-.9-2-2z" />
                                 </svg>
                                 <div className="flex flex-col leading-none">
-                                    <span className="text-lg md:text-xl font-black tracking-tight text-[#2D5A27]">RIVER GREEN</span>
+                                    <span className="text-lg md:text-xl font-black tracking-tight text-[#1e3d1a]">RIVER GREEN</span>
                                     <span className="text-[9px] md:text-[10px] font-medium tracking-[0.3em] opacity-70">ESTATES</span>
                                 </div>
                             </div>
@@ -58,8 +58,8 @@ const Footer = () => {
 
                         {/* Column 4: Booking/CTA */}
                         <div className="flex flex-col items-start lg:items-end mt-2 md:mt-0">
-                            <h2 className="text-xl md:text-2xl font-black mb-4 lg:text-right leading-tight text-[#2D5A27]">Book Your<br className="hidden md:block" /> Site Visit</h2>
-                            <button className="w-full md:w-auto bg-[#2D5A27] hover:bg-[#1e3d1a] text-white text-[10px] md:text-xs font-bold py-2.5 px-8 rounded-full transition-transform active:scale-95 shadow-lg mb-5">
+                            <h2 className="text-xl md:text-2xl font-black mb-4 lg:text-right leading-tight text-[#1e3d1a]">Book Your<br className="hidden md:block" /> Site Visit</h2>
+                            <button className="w-full md:w-auto bg-[#1e3d1a] hover:bg-[#122610] text-white text-[10px] md:text-xs font-bold py-2.5 px-8 rounded-full transition-transform active:scale-95 shadow-lg mb-5">
                                 SCHEDULE NOW
                             </button>
 

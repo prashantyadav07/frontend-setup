@@ -6,7 +6,6 @@ import TestimonialSection from '@/components/Testimonials';
 import StackedImagesSection from '../components/StackedImagesSection';
 import Videodesign from '../components/hero4';
 import Hero5 from '../components/Hero5';
-import Footer from '../components/Footer';
 
 // ====== 3. MAIN PAGE COMPONENT ======
 const HeroSection = () => {
@@ -86,10 +85,10 @@ const HeroSection = () => {
                 transition={{ duration: 4, times: [0, 0.1, 0.65, 0.8] }}
                 className="absolute top-1/2 left-1/2 -translate-x-1/2 translate-y-[220px] flex flex-col items-center text-center z-50 w-full px-4"
               >
-                <h2 className="text-[#F0F0F0] text-xs sm:text-[13px] tracking-[0.25em] uppercase font-medium leading-[2]">
+                <h2 className="text-[#E0E0E0] text-xs sm:text-[13px] tracking-[0.25em] uppercase font-medium leading-[2]">
                   Unlock the true potential of your<br />multi-family real estate investment
                 </h2>
-                <div className="mt-6 text-[#C9B171]">
+                <div className="mt-6 text-[#B49A5A]">
                   <svg width="45" height="18" viewBox="0 0 60 20" fill="none" stroke="currentColor" strokeWidth="1.5">
                     <path d="M 10 2 L 18 10 L 10 18 L 2 10 Z" />
                     <path d="M 10 6 L 14 10 L 10 14 L 6 10 Z" />
@@ -150,7 +149,6 @@ const HeroSection = () => {
       <StackedImagesSection />
       <Videodesign />
       <Hero5 />
-      <Footer />
 
     </main>
   );

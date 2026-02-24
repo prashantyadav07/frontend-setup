@@ -1,6 +1,7 @@
 import React, { useRef } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { MapPin, ArrowRight, Compass } from 'lucide-react';
+import newhomeVideo from '../assets/newhome.mp4';
 
 const properties = [
     {
@@ -51,9 +52,12 @@ const PropertyCard = ({ prop, idx }) => {
             className="group relative bg-white flex-shrink-0 w-[80vw] sm:w-[85vw] md:w-[600px] h-[55vh] sm:h-[65vh] md:h-[70vh] shadow-xl overflow-hidden"
         >
             <div className="absolute inset-0">
-                <img
-                    src={prop.image}
-                    alt={prop.title}
+                <video
+                    src={newhomeVideo}
+                    autoPlay
+                    loop
+                    muted
+                    playsInline
                     className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110"
                 />
                 <div className="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors duration-500" />
@@ -62,7 +66,7 @@ const PropertyCard = ({ prop, idx }) => {
             <div className="absolute inset-0 p-5 sm:p-8 flex flex-col justify-end text-white">
                 <div className="translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
                     <div className="flex items-center gap-2 mb-3">
-                        <MapPin className="w-4 h-4 text-[#A88941]" />
+                        <MapPin className="w-4 h-4 text-[#8F7538]" />
                         <span className="text-[10px] sm:text-xs font-bold tracking-widest uppercase">{prop.location}</span>
                     </div>
                     <h3 className="text-2xl sm:text-3xl md:text-5xl font-serif mb-2 sm:mb-4">{prop.title}</h3>
@@ -106,10 +110,10 @@ const HorizontalScrollSection = () => {
 
 const PropertySection = () => {
     return (
-        <div className="bg-white text-[#1A1A1A]">
+        <div className="bg-white text-[#0A0A0A]">
             {/* HERO SECTION - Height adjusted for Mobile to remove whitespace */}
             <div className="relative h-[70vh] sm:h-screen flex flex-col items-center justify-center z-10 bg-white">
-                
+
                 <motion.div
                     initial={{ height: 0 }}
                     animate={{ height: 100 }}
@@ -130,7 +134,7 @@ const PropertySection = () => {
                     initial={{ y: 20, opacity: 0 }}
                     animate={{ y: 0, opacity: 1 }}
                     transition={{ delay: 0.8 }}
-                    className="text-[#bfa065] text-xs font-bold tracking-[0.4em] uppercase mb-6"
+                    className="text-[#AB8D54] text-xs font-bold tracking-[0.4em] uppercase mb-6"
                 >
                     Curated Portfolio
                 </motion.h3>

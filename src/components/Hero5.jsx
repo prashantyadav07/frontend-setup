@@ -8,7 +8,7 @@ const Hero5 = () => {
     // Video speed slow karne ke liye
     useEffect(() => {
         if (videoRef.current) {
-            videoRef.current.playbackRate = 0.7; 
+            videoRef.current.playbackRate = 0.7;
         }
     }, []);
 
@@ -29,13 +29,13 @@ const Hero5 = () => {
                 transition={{ duration: 0.8 }}
                 className="text-center mb-10 relative z-10 w-full"
             >
-                <span className="text-[#C9B171] text-[10px] md:text-[11px] tracking-[0.5em] uppercase font-bold mb-3 block">
+                <span className="text-[#B49A5A] text-[10px] md:text-[11px] tracking-[0.5em] uppercase font-bold mb-3 block">
                     Premium Experience
                 </span>
                 <h2 className="text-3xl md:text-5xl font-extrabold text-black tracking-tight leading-tight max-w-3xl mx-auto uppercase">
                     MODERN SUSTAINABLE LIVING
                 </h2>
-                <div className="w-16 h-[1.5px] bg-[#C9B171] mx-auto mt-4" />
+                <div className="w-16 h-[1.5px] bg-[#B49A5A] mx-auto mt-4" />
             </motion.div>
 
             {/* Video Container - Compact and Professional */}
@@ -61,7 +61,7 @@ const Hero5 = () => {
 
                 {/* Floating Box with Blur effect */}
                 <div className="hidden md:flex absolute -bottom-6 -right-6 w-32 h-32 bg-white/80 backdrop-blur-md border border-zinc-100 shadow-xl rounded-2xl p-4 flex-col justify-center">
-                    <div className="text-[#C9B171] text-xl font-bold mb-1">05</div>
+                    <div className="text-[#B49A5A] text-xl font-bold mb-1">05</div>
                     <div className="text-zinc-500 text-[9px] uppercase tracking-widest leading-tight font-bold">Living<br />Standard</div>
                 </div>
             </motion.div>

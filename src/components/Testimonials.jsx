@@ -26,7 +26,7 @@ const TestimonialSection = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.6 }}
-          className="text-[#1B3019] text-2xl sm:text-3xl md:text-[42px] font-serif mb-8 sm:mb-12 tracking-tight"
+          className="text-[#0D180C] text-2xl sm:text-3xl md:text-[42px] font-serif mb-8 sm:mb-12 tracking-tight"
         >
           But, don't take it from us...
         </motion.h2>
@@ -43,14 +43,14 @@ const TestimonialSection = () => {
           >
             {/* Quote Icon */}
             <div
-              className="text-[#597836] text-[50px] sm:text-[80px] md:text-[100px] leading-[0.6] mb-3 sm:mb-4 md:mb-6"
+              className="text-[#3D5225] text-[50px] sm:text-[80px] md:text-[100px] leading-[0.6] mb-3 sm:mb-4 md:mb-6"
             >
               “
             </div>
 
             {/* Review Content */}
             <p
-              className="text-[#1B3019] text-[16px] sm:text-[20px] md:text-[22px] leading-[1.5] sm:leading-[1.6] mb-8 sm:mb-12 max-w-[600px]"
+              className="text-[#0D180C] text-[16px] sm:text-[20px] md:text-[22px] leading-[1.5] sm:leading-[1.6] mb-8 sm:mb-12 max-w-[600px]"
             >
               Our philosophy is to provide people with beautiful homes in wonderful places.
               We focus on both quality and tranquility so your dream can become a reality.
@@ -58,10 +58,10 @@ const TestimonialSection = () => {
 
             {/* Author Details */}
             <div className="flex flex-col gap-0.5">
-              <h4 className="text-[#333333] font-semibold text-[15px] font-sans">
+              <h4 className="text-[#1A1A1A] font-semibold text-[15px] font-sans">
                 Steven D.
               </h4>
-              <p className="text-[#7A7A7A] text-[14px] font-sans">
+              <p className="text-[#555555] text-[14px] font-sans">
                 Athens, NY
               </p>
             </div>

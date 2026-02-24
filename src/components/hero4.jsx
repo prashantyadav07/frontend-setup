@@ -100,7 +100,7 @@ export default function ProjectsSection() {
                                 <p>422 units</p>
                                 <p>3 min to Layan Beach</p>
                             </div>
-                            <span className="text-[#d9b87a] text-3xl font-light cursor-pointer hover:text-white transition-colors">+</span>
+                            <span className="text-[#C4A66B] text-3xl font-light cursor-pointer hover:text-white transition-colors">+</span>
                         </div>
                     </div>
                 </motion.div>
@@ -132,7 +132,7 @@ export default function ProjectsSection() {
                         <button
                             onMouseEnter={() => setBtnHover(true)}
                             onMouseLeave={() => setBtnHover(false)}
-                            className="flex items-center gap-3 py-3 px-6 sm:px-8 rounded-full bg-[#d9b87a] text-black font-bold text-[10px] sm:text-[11px] tracking-widest uppercase hover:bg-white transition-all"
+                            className="flex items-center gap-3 py-3 px-6 sm:px-8 rounded-full bg-[#C4A66B] text-black font-bold text-[10px] sm:text-[11px] tracking-widest uppercase hover:bg-white transition-all"
                         >
                             GO TO ALL PROJECTS
                             <ArrowDiag moving={btnHover} />

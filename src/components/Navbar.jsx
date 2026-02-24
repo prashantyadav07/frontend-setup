@@ -48,7 +48,7 @@ export default function Navbar() {
       className="fixed top-6 sm:top-8 left-0 right-0 z-50 flex justify-center px-3 sm:px-4 pointer-events-none"
     >
       <div className={`
-        bg-white/95 backdrop-blur-xl shadow-[0_15px_40px_rgba(0,0,0,0.1)] rounded-2xl px-5 sm:px-8 py-3 sm:py-4 transition-all duration-500 pointer-events-auto w-[96%] sm:w-[95%]
+        bg-[#F2F0E9]/95 backdrop-blur-xl shadow-[0_15px_40px_rgba(0,0,0,0.1)] rounded-2xl px-5 sm:px-8 py-3 sm:py-4 transition-all duration-500 pointer-events-auto w-[96%] sm:w-[95%]
         ${scrolled ? 'max-w-7xl' : 'max-w-[1400px]'}
       `}>
 
@@ -133,7 +133,7 @@ export default function Navbar() {
             {/* Phone Button */}
             <a
               href="tel:9494168733"
-              className="px-6 py-2.5 bg-white border border-gray-200 rounded-full font-bold text-[10px] xl:text-[11px] tracking-widest text-black hover:bg-black hover:text-white transition-all uppercase flex items-center gap-2 shadow-sm"
+              className="px-6 py-2.5 bg-[#F2F0E9] border border-gray-200 rounded-full font-bold text-[10px] xl:text-[11px] tracking-widest text-black hover:bg-black hover:text-white transition-all uppercase flex items-center gap-2 shadow-sm"
             >
               <Phone className="w-3.5 h-3.5" />
               949-416-8733
@@ -194,7 +194,7 @@ export default function Navbar() {
                 animate={{ x: 0 }}
                 exit={{ x: '-100%' }}
                 transition={{ type: 'spring', damping: 25, stiffness: 200 }}
-                className="fixed top-0 left-0 bottom-0 w-[85%] max-w-sm bg-white z-[9999] shadow-2xl lg:hidden overflow-y-auto"
+                className="fixed top-0 left-0 bottom-0 w-[85%] max-w-sm bg-[#F2F0E9] z-[9999] shadow-2xl lg:hidden overflow-y-auto"
               >
                 <div className="p-6 flex flex-col h-full">
 
