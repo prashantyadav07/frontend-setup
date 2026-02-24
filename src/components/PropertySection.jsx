@@ -4,6 +4,7 @@ import { MapPin, ArrowRight, Compass } from 'lucide-react';
 import newhomeVideo from '../assets/newhome.mp4';
 import leftTree from '../assets/lefttree.png';
 import rightTree from '../assets/righttree.png';
+import LazyVideo from './LazyVideo';
 
 const properties = [
     {
@@ -54,12 +55,8 @@ const PropertyCard = ({ prop, idx }) => {
             className="group relative bg-white flex-shrink-0 w-[80vw] sm:w-[85vw] md:w-[600px] h-[55vh] sm:h-[65vh] md:h-[70vh] shadow-xl overflow-hidden"
         >
             <div className="absolute inset-0">
-                <video
+                <LazyVideo
                     src={newhomeVideo}
-                    autoPlay
-                    loop
-                    muted
-                    playsInline
                     className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110"
                 />
                 <div className="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors duration-500" />

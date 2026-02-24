@@ -1,16 +1,10 @@
 import React, { useRef, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import videoSrc from '../assets/newhome.mp4';
+import LazyVideo from './LazyVideo';
 
 const Hero5 = () => {
     const videoRef = useRef(null);
-
-    // Video speed slow karne ke liye
-    useEffect(() => {
-        if (videoRef.current) {
-            videoRef.current.playbackRate = 0.7;
-        }
-    }, []);
 
     return (
         <div className="relative min-h-screen w-full bg-white flex flex-col items-center justify-center overflow-hidden font-sans py-12 px-4">
@@ -47,16 +41,12 @@ const Hero5 = () => {
                 className="relative w-full max-w-4xl z-10 px-2"
             >
                 <div className="w-full h-[300px] md:h-[480px] rounded-[2rem] overflow-hidden shadow-2xl border border-black/5 bg-zinc-950">
-                    <video
+                    <LazyVideo
                         ref={videoRef}
-                        autoPlay
-                        loop
-                        muted
-                        playsInline
+                        src={videoSrc}
                         className="w-full h-full object-cover"
-                    >
-                        <source src={videoSrc} type="video/mp4" />
-                    </video>
+                        onPlay={(e) => { if (e.target) e.target.playbackRate = 0.7; }}
+                    />
                 </div>
 
                 {/* Floating Box with Blur effect */}

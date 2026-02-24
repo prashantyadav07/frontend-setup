@@ -1,6 +1,7 @@
 import React, { useRef, useState } from 'react';
 import { motion } from 'framer-motion';
 import newHomeVideo from '../assets/newhome.mp4';
+import LazyVideo from '../components/LazyVideo';
 
 const colors = {
   bg: "#FAF9F6",
@@ -40,13 +41,9 @@ const HighEndAboutUs = () => {
           className="flex-1 w-full lg:h-full flex items-center justify-center p-6 lg:p-12 xl:p-20"
         >
           <div className="relative w-full h-[50vh] lg:h-[75vh] max-w-3xl rounded-[2rem] overflow-hidden shadow-2xl border-4 border-white/20">
-            <video
+            <LazyVideo
               src={newHomeVideo}
               className="w-full h-full object-cover"
-              autoPlay
-              loop
-              muted
-              playsInline
             />
             {/* Subtle overlay */}
             <div className="absolute inset-0 bg-black/5 pointer-events-none" />
@@ -58,7 +55,7 @@ const HighEndAboutUs = () => {
       <section className="py-12 md:py-20 px-6 md:px-20 grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
         <div className="lg:col-span-7 overflow-hidden rounded-3xl h-[50vh] lg:h-[70vh] relative group">
           <motion.div whileInView={{ scale: [1.2, 1] }} transition={{ duration: 1.5 }} className="w-full h-full">
-            <img src="https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&q=80" className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-1000" alt="Story" />
+            <img src="https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&q=80" className="w-full h-full object-cover transition-all duration-1000" alt="Story" />
           </motion.div>
           <div className="absolute inset-0 bg-black/20 group-hover:bg-transparent transition-all duration-700" />
         </div>
@@ -107,13 +104,9 @@ const HighEndAboutUs = () => {
           {/* Video Right */}
           <div className="lg:w-1/2 w-full flex justify-center lg:justify-end items-center">
             <div className="relative w-full max-w-2xl aspect-video rounded-3xl overflow-hidden shadow-2xl border-[5px] md:border-[10px] border-white ring-1 ring-black/5">
-              <video
+              <LazyVideo
                 src={newHomeVideo}
                 className="w-full h-full object-cover"
-                autoPlay
-                loop
-                muted
-                playsInline
               />
               <div className="absolute inset-0 bg-black/10 pointer-events-none" />
             </div>
@@ -208,7 +201,7 @@ const TeamCollageItem = ({ img, name, role, width, height }) => (
     whileHover={{ y: -15, scale: 1.05 }}
     className={`${width} ${height} relative overflow-hidden rounded-xl shadow-xl group bg-gray-100 flex-shrink-0`}
   >
-    <img src={img} className="w-full h-full object-cover transition-all duration-700 filter grayscale group-hover:grayscale-0" alt={name} />
+    <img src={img} className="w-full h-full object-cover transition-all duration-700" alt={name} />
     <div className="absolute inset-x-0 bottom-0 p-4 bg-gradient-to-t from-black/80 to-transparent text-white transform translate-y-full group-hover:translate-y-0 transition-transform duration-500">
       <p className="text-sm font-serif">{name}</p>
       <p className="text-[10px] uppercase tracking-tighter text-[#C5A059]">{role}</p>
