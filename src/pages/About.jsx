@@ -16,34 +16,41 @@ const HighEndAboutUs = () => {
     <div className="bg-[#FAF9F6] text-[#1A1A1A] overflow-x-hidden">
 
       {/* SECTION 1: THE CINEMATIC HERO */}
-      <section className="relative min-h-[85vh] lg:h-screen flex flex-col lg:flex-row items-center justify-center lg:justify-start lg:pl-32 px-6 overflow-hidden py-20 lg:py-0">
-        <motion.div
-          initial={{ opacity: 0, y: 100 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
-          className="z-10 text-center lg:text-left mb-12 lg:mb-0"
-        >
-          <span className="text-xs uppercase tracking-[0.6em] mb-6 block text-[#C5A059]">Architecture & Legacy</span>
-          <h1 className="text-[12vw] md:text-[8vw] font-serif leading-[0.9] tracking-tighter">
-            WE CRAFT <br />
-            <span className="font-light opacity-80">EMOTIONS.</span>
-          </h1>
-        </motion.div>
+      <section className="relative min-h-[85vh] lg:h-screen flex flex-col lg:flex-row items-center justify-center overflow-hidden bg-[#FAF9F6] pt-24 lg:pt-0">
+        {/* Content Left */}
+        <div className="flex-1 flex flex-col justify-center items-center lg:items-start px-6 lg:pl-32 py-20 lg:py-0 z-10 text-center lg:text-left">
+          <motion.div
+            initial={{ opacity: 0, y: 100 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
+          >
+            <span className="text-xs uppercase tracking-[0.6em] mb-6 block text-[#C5A059]">Architecture & Legacy</span>
+            <h1 className="text-[12vw] md:text-[8vw] font-serif leading-[0.9] tracking-tighter">
+              WE CRAFT <br />
+              <span className="font-light opacity-80">EMOTIONS.</span>
+            </h1>
+          </motion.div>
+        </div>
 
+        {/* Video Right (Refined & Balanced) */}
         <motion.div
-          initial={{ opacity: 0, scale: 0.8 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 1.5, delay: 0.5 }}
-          className="relative lg:absolute lg:right-[5%] lg:top-[20%] w-[250px] md:w-[300px] h-[350px] md:h-[400px] rounded-full overflow-hidden border-[10px] md:border-[15px] border-white shadow-2xl z-20"
+          initial={{ opacity: 0, x: 50, scale: 0.9 }}
+          animate={{ opacity: 1, x: 0, scale: 1 }}
+          transition={{ duration: 1.5, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
+          className="flex-1 w-full lg:h-full flex items-center justify-center p-6 lg:p-12 xl:p-20"
         >
-          <video
-            src={newHomeVideo}
-            className="w-full h-full object-cover"
-            autoPlay
-            loop
-            muted
-            playsInline
-          />
+          <div className="relative w-full h-[50vh] lg:h-[75vh] max-w-3xl rounded-[2rem] overflow-hidden shadow-2xl border-4 border-white/20">
+            <video
+              src={newHomeVideo}
+              className="w-full h-full object-cover"
+              autoPlay
+              loop
+              muted
+              playsInline
+            />
+            {/* Subtle overlay */}
+            <div className="absolute inset-0 bg-black/5 pointer-events-none" />
+          </div>
         </motion.div>
       </section>
 

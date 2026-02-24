@@ -2,6 +2,8 @@ import React, { useRef } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { MapPin, ArrowRight, Compass } from 'lucide-react';
 import newhomeVideo from '../assets/newhome.mp4';
+import leftTree from '../assets/lefttree.png';
+import rightTree from '../assets/righttree.png';
 
 const properties = [
     {
@@ -112,7 +114,20 @@ const PropertySection = () => {
     return (
         <div className="bg-white text-[#0A0A0A]">
             {/* HERO SECTION - Height adjusted for Mobile to remove whitespace */}
-            <div className="relative h-[70vh] sm:h-screen flex flex-col items-center justify-center z-10 bg-white">
+            <div className="relative h-[70vh] sm:h-screen flex flex-col items-center justify-center z-10 bg-white overflow-hidden">
+                {/* Left Tree */}
+                <img
+                    src={leftTree}
+                    alt=""
+                    className="absolute -left-12 sm:left-0 top-[60%] -translate-y-1/2 sm:top-auto sm:translate-y-0 sm:bottom-0 h-[35%] sm:h-[70%] object-contain pointer-events-none z-0"
+                />
+
+                {/* Right Tree */}
+                <img
+                    src={rightTree}
+                    alt=""
+                    className="absolute -right-12 sm:right-0 top-[60%] -translate-y-1/2 sm:top-auto sm:translate-y-0 sm:bottom-0 h-[35%] sm:h-[70%] object-contain pointer-events-none z-0"
+                />
 
                 <motion.div
                     initial={{ height: 0 }}
@@ -134,7 +149,7 @@ const PropertySection = () => {
                     initial={{ y: 20, opacity: 0 }}
                     animate={{ y: 0, opacity: 1 }}
                     transition={{ delay: 0.8 }}
-                    className="text-[#AB8D54] text-xs font-bold tracking-[0.4em] uppercase mb-6"
+                    className="text-[#AB8D54] text-xs font-bold tracking-[0.4em] uppercase mb-6 relative z-10"
                 >
                     Curated Portfolio
                 </motion.h3>
@@ -143,7 +158,7 @@ const PropertySection = () => {
                     initial={{ y: 30, opacity: 0 }}
                     animate={{ y: 0, opacity: 1 }}
                     transition={{ delay: 1 }}
-                    className="text-3xl sm:text-5xl md:text-7xl font-serif text-center max-w-4xl leading-tight px-4"
+                    className="text-3xl sm:text-5xl md:text-7xl font-serif text-center max-w-4xl leading-tight px-4 relative z-10"
                 >
                     Discover Architectural <br /> Masterpieces
                 </motion.h1>
