@@ -5,6 +5,7 @@ import About from '@/pages/About';
 import Courses from '@/pages/Courses';
 import Contact from '@/pages/Contact';
 import NotFound from '@/pages/NotFound';
+import Ourprojects from '@/pages/Ourprojects';
 
 /**
  * AppRoutes Component
@@ -21,6 +22,7 @@ export default function AppRoutes() {
         <Route path="about" element={<About />} />
         <Route path="courses" element={<Courses />} />
         <Route path="contact" element={<Contact />} />
+        <Route path="ourproject" element={<Ourprojects />} />
         <Route path="*" element={<NotFound />} />
       </Route>
     </Routes>

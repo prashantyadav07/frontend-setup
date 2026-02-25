@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { createPortal } from 'react-dom';
 import { NavLink, useLocation } from 'react-router-dom';
-import { Menu, X, Home, ScrollText, TrendingUp, Users, Phone, Mail } from 'lucide-react';
+import { Menu, X, Home, ScrollText, TrendingUp, Building2, Phone, Mail } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 export default function Navbar() {
@@ -29,7 +29,7 @@ export default function Navbar() {
   ];
 
   const rightLinks = [
-    { label: 'Team', path: '/team', icon: Users },
+    { label: 'Our Projects', path: '/ourproject', icon: Building2 },
     { label: 'Contact', path: '/contact', icon: Mail },
   ];
 
