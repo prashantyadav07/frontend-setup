@@ -1,10 +1,14 @@
 import React, { useRef } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { MapPin, ArrowRight, Compass } from 'lucide-react';
-import newhomeVideo from '../assets/newhome.mp4';
 import leftTree from '../assets/lefttree.png';
 import rightTree from '../assets/righttree.png';
-import LazyVideo from './LazyVideo';
+
+// Compressed videos (480p, medium quality, web-optimized, git-safe)
+import vid1 from '../assets/compressed/DJI_0052.mp4';
+import vid2 from '../assets/compressed/DJI_0056.mp4';
+import vid3 from '../assets/compressed/DJI_0977.mp4';
+import vid4 from '../assets/compressed/DJI_0991.mp4';
 
 const properties = [
     {
@@ -13,7 +17,7 @@ const properties = [
         location: "Beverly Hills, CA",
         category: "Private Estate",
         description: "A seamless fusion of indoor and outdoor living, wrapped in floor-to-ceiling glass.",
-        image: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80"
+        video: vid1,
     },
     {
         id: 2,
@@ -21,7 +25,7 @@ const properties = [
         location: "Malibu, CA",
         category: "Coastal Retreat",
         description: "Where Pacific breezes meet architectural excellence — a sanctuary sculpted by the ocean.",
-        image: "https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80"
+        video: vid2,
     },
     {
         id: 3,
@@ -29,7 +33,7 @@ const properties = [
         location: "Bel Air, CA",
         category: "Heritage Residence",
         description: "Timeless European stone craftsmanship set within manicured grounds.",
-        image: "https://images.unsplash.com/photo-1583608205776-bfd35f0d9f83?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80"
+        video: vid3,
     },
     {
         id: 4,
@@ -37,15 +41,7 @@ const properties = [
         location: "West Hollywood, CA",
         category: "Urban Pinnacle",
         description: "A sky-high canvas of concrete and light, designed for those who prefer their horizon unobstructed.",
-        image: "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80"
-    },
-    {
-        id: 5,
-        title: "The Redwood Villa",
-        location: "Santa Barbara, CA",
-        category: "Nature Sanctuary",
-        description: "Nestled among ancient redwoods, this villa offers a meditative retreat.",
-        image: "https://images.unsplash.com/photo-1564013799919-ab600027ffc6?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80"
+        video: vid4,
     }
 ];
 
@@ -55,8 +51,12 @@ const PropertyCard = ({ prop, idx }) => {
             className="group relative bg-white flex-shrink-0 w-[80vw] sm:w-[85vw] md:w-[600px] h-[55vh] sm:h-[65vh] md:h-[70vh] shadow-xl overflow-hidden"
         >
             <div className="absolute inset-0">
-                <LazyVideo
-                    src={newhomeVideo}
+                <video
+                    src={prop.video}
+                    autoPlay
+                    loop
+                    muted
+                    playsInline
                     className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110"
                 />
                 <div className="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors duration-500" />
@@ -110,20 +110,36 @@ const HorizontalScrollSection = () => {
 const PropertySection = () => {
     return (
         <div className="bg-white text-[#0A0A0A]">
-            {/* HERO SECTION - Height adjusted for Mobile to remove whitespace */}
+            {/* HERO SECTION */}
             <div className="relative h-[70vh] sm:h-screen flex flex-col items-center justify-center z-10 bg-white overflow-hidden">
                 {/* Left Tree */}
-                <img
+                <motion.img
                     src={leftTree}
-                    alt=""
-                    className="absolute -left-12 sm:left-0 top-[60%] -translate-y-1/2 sm:top-auto sm:translate-y-0 sm:bottom-0 h-[35%] sm:h-[70%] object-contain pointer-events-none z-0"
+                    initial={{ opacity: 0, x: -150, rotate: 0 }}
+                    whileInView={{ opacity: 1, x: 0, rotate: 25 }}
+                    viewport={{ once: false, amount: 0.3 }}
+                    transition={{
+                        type: "spring",
+                        stiffness: 30,
+                        damping: 25,
+                        duration: 2.5
+                    }}
+                    className="absolute left-0 bottom-0 h-[50%] sm:h-[70%] object-contain pointer-events-none z-0 origin-bottom-left"
                 />
 
                 {/* Right Tree */}
-                <img
+                <motion.img
                     src={rightTree}
-                    alt=""
-                    className="absolute -right-12 sm:right-0 top-[60%] -translate-y-1/2 sm:top-auto sm:translate-y-0 sm:bottom-0 h-[35%] sm:h-[70%] object-contain pointer-events-none z-0"
+                    initial={{ opacity: 0, x: 150, rotate: 0 }}
+                    whileInView={{ opacity: 1, x: 0, rotate: -25 }}
+                    viewport={{ once: false, amount: 0.3 }}
+                    transition={{
+                        type: "spring",
+                        stiffness: 30,
+                        damping: 25,
+                        duration: 2.5
+                    }}
+                    className="absolute right-0 bottom-0 h-[50%] sm:h-[70%] object-contain pointer-events-none z-0 origin-bottom-right"
                 />
 
                 <motion.div
@@ -146,7 +162,7 @@ const PropertySection = () => {
                     initial={{ y: 20, opacity: 0 }}
                     animate={{ y: 0, opacity: 1 }}
                     transition={{ delay: 0.8 }}
-                    className="text-[#AB8D54] text-xs font-bold tracking-[0.4em] uppercase mb-6 relative z-10"
+                    className="text-[#AB8D54] text-xs font-bold tracking-[0.4em] uppercase mb-6"
                 >
                     Curated Portfolio
                 </motion.h3>
@@ -155,7 +171,7 @@ const PropertySection = () => {
                     initial={{ y: 30, opacity: 0 }}
                     animate={{ y: 0, opacity: 1 }}
                     transition={{ delay: 1 }}
-                    className="text-3xl sm:text-5xl md:text-7xl font-serif text-center max-w-4xl leading-tight px-4 relative z-10"
+                    className="text-3xl sm:text-5xl md:text-7xl font-serif text-center max-w-4xl leading-tight px-4"
                 >
                     Discover Architectural <br /> Masterpieces
                 </motion.h1>
