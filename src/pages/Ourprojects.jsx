@@ -11,7 +11,7 @@ import {
     Wind,
     ArrowUpRight,
 } from 'lucide-react';
-import projectVideo from '../assets/showcase.webm';
+import projectVideo from '../assets/compressed/DJI_0052.mp4';
 
 gsap.registerPlugin(ScrollTrigger);
 
