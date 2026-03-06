@@ -25,7 +25,7 @@ export default function Navbar() {
   const leftLinks = [
     { label: 'Home', path: '/', icon: Home },
     { label: 'About', path: '/about', icon: ScrollText },
-    { label: 'Investments', path: '/investments', icon: TrendingUp },
+    { label: 'Investments', path: '/investment', icon: TrendingUp },
   ];
 
   const rightLinks = [
