@@ -1,7 +1,9 @@
 import React, { useRef, useState } from 'react';
 import { motion } from 'framer-motion';
 import newHomeVideo from '../assets/newhome.mp4';
+import r0Image from '../assets/r0.png';
 import LazyVideo from '../components/LazyVideo';
+import r1 from '../assets/r1.png';
 
 const colors = {
   bg: "#FAF9F6",
@@ -17,7 +19,7 @@ const HighEndAboutUs = () => {
     <div className="bg-[#FAF9F6] text-[#1A1A1A] overflow-x-hidden">
 
       {/* SECTION 1: THE CINEMATIC HERO */}
-      <section className="relative min-h-[85vh] lg:h-screen flex flex-col lg:flex-row items-center justify-center overflow-hidden bg-[#FAF9F6] pt-24 lg:pt-0">
+      <section className="relative min-h-[85vh] lg:h-screen flex flex-col lg:flex-row items-center justify-center overflow-hidden bg-[#FAF9F6] pt-24 lg:pt-32">
         {/* Content Left */}
         <div className="flex-1 flex flex-col justify-center items-center lg:items-start px-6 lg:pl-32 py-20 lg:py-0 z-10 text-center lg:text-left">
           <motion.div
@@ -40,9 +42,10 @@ const HighEndAboutUs = () => {
           transition={{ duration: 1.5, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
           className="flex-1 w-full lg:h-full flex items-center justify-center p-6 lg:p-12 xl:p-20"
         >
-          <div className="relative w-full h-[50vh] lg:h-[75vh] max-w-3xl rounded-[2rem] overflow-hidden shadow-2xl border-4 border-white/20">
-            <LazyVideo
-              src={newHomeVideo}
+          <div className="relative w-full h-[50vh] lg:h-[70vh] max-w-3xl rounded-[2rem] overflow-hidden shadow-2xl border-4 border-white/20">
+            <img
+              src={r0Image}
+              alt="Architecture Concept"
               className="w-full h-full object-cover"
             />
             {/* Subtle overlay */}
@@ -55,7 +58,7 @@ const HighEndAboutUs = () => {
       <section className="py-12 md:py-20 px-6 md:px-20 grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
         <div className="lg:col-span-7 overflow-hidden rounded-3xl h-[50vh] lg:h-[70vh] relative group">
           <motion.div whileInView={{ scale: [1.2, 1] }} transition={{ duration: 1.5 }} className="w-full h-full">
-            <img src="https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&q=80" className="w-full h-full object-cover transition-all duration-1000" alt="Story" />
+            <img src={r1} className="w-full h-full object-cover transition-all duration-1000" alt="Story" />
           </motion.div>
           <div className="absolute inset-0 bg-black/20 group-hover:bg-transparent transition-all duration-700" />
         </div>

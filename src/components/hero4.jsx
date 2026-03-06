@@ -1,8 +1,8 @@
 import { useState } from 'react'
 import { motion } from 'framer-motion'
-
+import r21 from '../assets/r21.png';
 const BG_URL = 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1800&q=85'
-const PROJECT_IMG = 'https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=600&q=80'
+const PROJECT_IMG = r21;
 
 function ArrowDiag({ moving }) {
     return (

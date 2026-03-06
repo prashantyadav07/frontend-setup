@@ -10,7 +10,15 @@ import {
     Leaf,
     Wind,
     ArrowUpRight,
+    X,
 } from 'lucide-react';
+import r4 from "../assets/r4.png"
+import r2 from "../assets/r2.png"
+import r5 from "../assets/r5.png"
+import r25 from "../assets/r25.png"
+import r6 from "../assets/r6.png"
+import r7 from "../assets/r7.png"
+import r23 from "../assets/r23.png"
 import projectVideo from '../assets/compressed/DJI_0052.mp4';
 
 gsap.registerPlugin(ScrollTrigger);
@@ -20,8 +28,7 @@ const featuredProject = {
     title: 'The Pinnacle',
     location: 'Beverly Hills, CA',
     price: '$12.5M',
-    image:
-        'https://images.pexels.com/photos/106399/pexels-photo-106399.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
+    image: r4,
     description:
         'A sculptural masterpiece with panoramic ocean views, infinity edge pool, and a private glass elevator.',
 };
@@ -32,8 +39,7 @@ const projects = [
         title: 'Villa Serenità',
         location: 'Lake Como, Italy',
         price: '€8.9M',
-        image:
-            'https://images.pexels.com/photos/1438832/pexels-photo-1438832.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
+        image: r2,
         status: 'Ongoing',
     },
     {
@@ -41,8 +47,7 @@ const projects = [
         title: 'Skyline Residence',
         location: 'New York, NY',
         price: '$18.2M',
-        image:
-            'https://images.pexels.com/photos/2462015/pexels-photo-2462015.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
+        image: r5,
         status: 'Completed',
     },
     {
@@ -50,8 +55,7 @@ const projects = [
         title: 'Azure Heights',
         location: 'Miami, FL',
         price: '$9.8M',
-        image:
-            'https://images.pexels.com/photos/258154/pexels-photo-258154.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
+        image: r25,
         status: 'Ongoing',
     },
 ];
@@ -72,12 +76,7 @@ const stats = [
     { label: 'ROI Since Inception', value: 184, suffix: '%', isFloat: false },
 ];
 
-const lifestyleImages = [
-    'https://images.pexels.com/photos/261394/pexels-photo-261394.jpeg?auto=compress&cs=tinysrgb&w=600',
-    'https://images.pexels.com/photos/2251247/pexels-photo-2251247.jpeg?auto=compress&cs=tinysrgb&w=600',
-    'https://images.pexels.com/photos/1732414/pexels-photo-1732414.jpeg?auto=compress&cs=tinysrgb&w=600',
-    'https://images.pexels.com/photos/258154/pexels-photo-258154.jpeg?auto=compress&cs=tinysrgb&w=600',
-];
+const lifestyleImages = [r5, r6, r7, r23];
 
 // Custom Easing for Framer Motion
 const premiumEase = [0.25, 1, 0.5, 1];
@@ -309,15 +308,91 @@ const FeaturedProject = () => {
     );
 };
 
+// Project Modal Component
+const ProjectModal = ({ project, isOpen, onClose }) => {
+    return (
+        <AnimatePresence>
+            {isOpen && project && (
+                <motion.div
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    className="fixed inset-0 z-[100] flex items-center justify-center p-4 md:p-8 bg-black/80 backdrop-blur-md"
+                    onClick={onClose}
+                >
+                    <motion.div
+                        initial={{ scale: 0.9, opacity: 0, y: 20 }}
+                        animate={{ scale: 1, opacity: 1, y: 0 }}
+                        exit={{ scale: 0.9, opacity: 0, y: 20 }}
+                        transition={{ duration: 0.5, ease: premiumEase }}
+                        className="bg-[#F9F8F6] w-full max-w-6xl max-h-[90vh] rounded-[2rem] overflow-hidden shadow-2xl relative flex flex-col md:flex-row"
+                        onClick={(e) => e.stopPropagation()}
+                    >
+                        <button
+                            onClick={onClose}
+                            className="absolute top-6 right-6 z-20 p-3 bg-black/5 hover:bg-black/10 backdrop-blur-md rounded-full text-[#111] transition-colors border border-black/5"
+                        >
+                            <X size={24} />
+                        </button>
+
+                        <div className="w-full md:w-3/5 h-[40vh] md:h-auto relative overflow-hidden">
+                            <img
+                                src={project.image}
+                                alt={project.title}
+                                className="w-full h-full object-cover"
+                            />
+                            <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent md:hidden" />
+                        </div>
+
+                        <div className="w-full md:w-2/5 p-8 md:p-12 overflow-y-auto">
+                            <div className="mb-8">
+                                <p className="text-[#B4A388] uppercase tracking-[0.2em] text-xs font-semibold mb-2">Project Details</p>
+                                <h2 className="text-4xl md:text-5xl font-bold text-[#111] tracking-tight mb-4">{project.title}</h2>
+                                <div className="flex items-center gap-2 text-gray-500 mb-6">
+                                    <MapPin size={18} className="text-[#B4A388]" />
+                                    <span className="text-lg">{project.location}</span>
+                                </div>
+                                <div className="text-3xl font-medium text-[#B4A388] mb-8">{project.price}</div>
+                            </div>
+
+                            <div className="space-y-6">
+                                <div>
+                                    <h4 className="text-lg font-bold text-[#111] mb-2 uppercase tracking-wider text-sm">Description</h4>
+                                    <p className="text-gray-600 font-light leading-relaxed">
+                                        This architectural masterpiece represents the pinnacle of luxury living. Designed with meticulous attention to detail, it offers a harmonious blend of sustainable technology and opulent finishings. Experience panoramic views and unparalleled privacy in a residence that redefines modern sophistication.
+                                    </p>
+                                </div>
+
+                                <div className="pt-8 border-t border-gray-100 flex flex-col sm:flex-row gap-4">
+                                    <button className="flex-1 py-5 bg-[#111] text-white rounded-full font-semibold tracking-widest uppercase hover:bg-[#B4A388] transition-colors duration-500">
+                                        Inquire Interest
+                                    </button>
+                                    <button
+                                        onClick={onClose}
+                                        className="px-8 py-5 border border-black/10 text-[#111] rounded-full font-semibold tracking-widest uppercase hover:bg-black/5 transition-colors duration-500"
+                                    >
+                                        Close
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </motion.div>
+                </motion.div>
+            )}
+        </AnimatePresence>
+    );
+};
+
 // Project Card
-const ProjectCard = ({ project, index }) => {
+const ProjectCard = ({ project, index, onClick }) => {
     return (
         <motion.article
             initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: index * 0.15, ease: premiumEase }}
             viewport={{ once: true, margin: '-50px' }}
-            className="group bg-white rounded-[1.5rem] overflow-hidden shadow-lg shadow-black/5 hover:shadow-2xl hover:shadow-black/10 transition-all duration-500 border border-[#111]/5 flex flex-col"
+            className="group bg-white rounded-[1.5rem] overflow-hidden shadow-lg shadow-black/5 hover:shadow-2xl hover:shadow-black/10 transition-all duration-500 border border-[#111]/5 flex flex-col cursor-pointer"
+            onClick={() => onClick(project)}
         >
             <div className="relative h-72 overflow-hidden">
                 <img
@@ -466,7 +541,7 @@ const InvestmentValue = () => {
 };
 
 // Toggle Section (Upgraded with Framer Motion LayoutId)
-const ToggleSection = () => {
+const ToggleSection = ({ onProjectClick }) => {
     const [active, setActive] = useState('Ongoing');
     const displayProjects = active === 'Ongoing' ? ongoingProjects : completedProjects;
 
@@ -505,6 +580,7 @@ const ToggleSection = () => {
                             exit={{ opacity: 0, scale: 0.9, filter: 'blur(4px)' }}
                             transition={{ duration: 0.4, ease: premiumEase }}
                             className="group flex items-center gap-6 p-5 bg-white rounded-2xl shadow-sm border border-gray-100 hover:shadow-xl hover:shadow-black/5 transition-shadow cursor-pointer"
+                            onClick={() => onProjectClick(proj)}
                         >
                             <div className="w-24 h-24 rounded-xl overflow-hidden shrink-0">
                                 <img src={proj.image} alt={proj.title} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
@@ -628,6 +704,14 @@ const CtaFooter = () => {
 
 // ---------- Main Component ----------
 const ProjectsSection = () => {
+    const [selectedProject, setSelectedProject] = useState(null);
+    const [isModalOpen, setIsModalOpen] = useState(false);
+
+    const handleProjectClick = (project) => {
+        setSelectedProject(project);
+        setIsModalOpen(true);
+    };
+
     return (
         <section className="relative py-24 md:py-32 px-6 md:px-12 lg:px-20 bg-[#F9F8F6] selection:bg-[#B4A388] selection:text-white">
             <PremiumSVGBackground />
@@ -638,17 +722,28 @@ const ProjectsSection = () => {
 
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-12 mb-40">
                     {projects.map((project, idx) => (
-                        <ProjectCard key={project.id} project={project} index={idx} />
+                        <ProjectCard
+                            key={project.id}
+                            project={project}
+                            index={idx}
+                            onClick={handleProjectClick}
+                        />
                     ))}
                 </div>
 
                 <DeveloperVision />
                 <InvestmentValue />
                 <AmenitiesShowcase />
-                <ToggleSection />
+                <ToggleSection onProjectClick={handleProjectClick} />
                 <LifestylePreview />
                 <CtaFooter />
             </div>
+
+            <ProjectModal
+                project={selectedProject}
+                isOpen={isModalOpen}
+                onClose={() => setIsModalOpen(false)}
+            />
         </section>
     );
 };

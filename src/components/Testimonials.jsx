@@ -1,6 +1,6 @@
 import React, { useRef } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
-
+import r26 from '../assets/r26.png';
 const TestimonialSection = () => {
   const containerRef = useRef(null);
 
@@ -83,7 +83,7 @@ const TestimonialSection = () => {
 
             {/* Image */}
             <img
-              src="https://images.unsplash.com/photo-1510798831971-661eb04b3739?q=80&w=1000&auto=format&fit=crop"
+              src={r26}
               alt="HUTS Property in Autumn"
               className="w-full h-full object-cover rounded-[16px] shadow-lg"
             />
