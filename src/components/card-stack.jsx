@@ -106,6 +106,8 @@ export function CardStack({ items, externalIndex = null, cardWidth = 480, cardHe
                     alt={item.title}
                     className="w-full h-full object-cover pointer-events-none select-none"
                     draggable={false}
+                    loading="lazy"
+                    decoding="async"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent flex flex-col justify-end p-6">
                     <h3 className="text-white font-serif text-2xl mb-1">{item.title}</h3>

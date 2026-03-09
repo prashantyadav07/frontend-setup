@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { motion } from 'framer-motion'
+import { Link } from 'react-router-dom'
 import r21 from '../assets/r21.png';
 const BG_URL = 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1800&q=85'
 const PROJECT_IMG = r21;
@@ -128,14 +129,15 @@ export default function ProjectsSection() {
                     </motion.p>
 
                     <motion.div variants={itemVariants}>
-                        <button
+                        <Link
+                            to="/ourproject"
                             onMouseEnter={() => setBtnHover(true)}
                             onMouseLeave={() => setBtnHover(false)}
-                            className="flex items-center gap-3 py-3 px-6 sm:px-8 rounded-full bg-[#C4A66B] text-black font-bold text-[10px] sm:text-[11px] tracking-widest uppercase hover:bg-white transition-all"
+                            className="flex w-fit items-center gap-3 py-3 px-6 sm:px-8 rounded-full bg-[#C4A66B] text-black font-bold text-[10px] sm:text-[11px] tracking-widest uppercase hover:bg-white transition-all"
                         >
                             View All Projects
                             <ArrowDiag moving={btnHover} />
-                        </button>
+                        </Link>
                     </motion.div>
                 </motion.div>
 

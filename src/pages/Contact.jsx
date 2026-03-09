@@ -95,6 +95,7 @@ export default function ContactUs() {
                 src="https://images.unsplash.com/photo-1564013799919-ab600027ffc6?auto=format&fit=crop&q=80&w=1000"
                 alt="Luxury Mansion"
                 className="w-full h-full object-cover"
+                loading="eager"
                 onError={(e) => { e.target.src = "https://via.placeholder.com/500x700?text=Luxury+Home"; }}
               />
             </div>

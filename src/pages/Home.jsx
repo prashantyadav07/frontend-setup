@@ -1,4 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence, useScroll, useTransform } from 'framer-motion';
 import PropertySection from '../components/PropertySection';
 import hero1 from "../assets/hero2.jpg";
@@ -10,6 +11,7 @@ import Hero5 from '../components/Hero5';
 // ====== 3. MAIN PAGE COMPONENT ======
 const HeroSection = () => {
   const [showIntro, setShowIntro] = useState(true);
+  const navigate = useNavigate();
 
   useEffect(() => {
     // Scroll to top on every reload/mount
@@ -47,6 +49,7 @@ const HeroSection = () => {
             src={hero1}
             alt="Mansion Background"
             className="h-full w-full object-cover"
+            loading="eager"
           />
           {/* Professional Gradient Overlay: Darker middle and bottom to reduce faded effect */}
           <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-black/60 to-black/95 pointer-events-none" />
@@ -125,7 +128,10 @@ const HeroSection = () => {
                 Premium residential plots surrounded by nature.
                 Build your dream home in a peaceful and well-planned township.
               </p>
-              <button className="flex-shrink-0 border-2 border-white/80 bg-white/5 backdrop-blur-sm px-6 sm:px-10 py-3 sm:py-4 text-[10px] sm:text-[11px] md:text-[12px] tracking-[0.2em] sm:tracking-[0.25em] uppercase text-white font-bold transition-all duration-300 hover:bg-white hover:text-black hover:border-white whitespace-nowrap">
+              <button
+                onClick={() => navigate('/investment')}
+                className="flex-shrink-0 border-2 border-white/80 bg-white/5 backdrop-blur-sm px-6 sm:px-10 py-3 sm:py-4 text-[10px] sm:text-[11px] md:text-[12px] tracking-[0.2em] sm:tracking-[0.25em] uppercase text-white font-bold transition-all duration-300 hover:bg-white hover:text-black hover:border-white whitespace-nowrap"
+              >
                 View Available Plots
               </button>
             </motion.div>

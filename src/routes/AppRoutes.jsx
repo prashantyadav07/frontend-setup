@@ -1,12 +1,14 @@
 import { Routes, Route } from 'react-router-dom';
+import React, { Suspense } from 'react';
 import MainLayout from '@/layouts/MainLayout';
-import Home from '@/pages/Home';
-import About from '@/pages/About';
-import Courses from '@/pages/Courses';
-import Contact from '@/pages/Contact';
-import NotFound from '@/pages/NotFound';
-import Ourprojects from '@/pages/Ourprojects';
-import Investment from '@/pages/Investment';
+
+const Home = React.lazy(() => import('@/pages/Home'));
+const About = React.lazy(() => import('@/pages/About'));
+const Courses = React.lazy(() => import('@/pages/Courses'));
+const Contact = React.lazy(() => import('@/pages/Contact'));
+const NotFound = React.lazy(() => import('@/pages/NotFound'));
+const Ourprojects = React.lazy(() => import('@/pages/Ourprojects'));
+const Investment = React.lazy(() => import('@/pages/Investment'));
 
 /**
  * AppRoutes Component
@@ -17,16 +19,18 @@ import Investment from '@/pages/Investment';
  */
 export default function AppRoutes() {
   return (
-    <Routes>
-      <Route element={<MainLayout />}>
-        <Route index element={<Home />} />
-        <Route path="about" element={<About />} />
-        <Route path="courses" element={<Courses />} />
-        <Route path="contact" element={<Contact />} />
-        <Route path="ourproject" element={<Ourprojects />} />
-        <Route path="investment" element={<Investment />} />
-        <Route path="*" element={<NotFound />} />
-      </Route>
-    </Routes>
+    <Suspense fallback={null}>
+      <Routes>
+        <Route element={<MainLayout />}>
+          <Route index element={<Home />} />
+          <Route path="about" element={<About />} />
+          <Route path="courses" element={<Courses />} />
+          <Route path="contact" element={<Contact />} />
+          <Route path="ourproject" element={<Ourprojects />} />
+          <Route path="investment" element={<Investment />} />
+          <Route path="*" element={<NotFound />} />
+        </Route>
+      </Routes>
+    </Suspense>
   );
 }

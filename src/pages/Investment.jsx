@@ -1,7 +1,14 @@
-import React, { useRef, useEffect } from "react";
+import React, { useRef, useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import investImg from '../assets/investimg.png';
+import investImg2 from '../assets/investimg2.png';
+import r4 from '../assets/r4.png';
+import r21 from '../assets/r21.png';
+import r22 from '../assets/r22.png';
+import r25 from '../assets/r25.png';
 
 // Register GSAP ScrollTrigger
 gsap.registerPlugin(ScrollTrigger);
@@ -15,60 +22,63 @@ const RealEstateInvestmentPage = () => {
   const plansRef = useRef(null);
   const ctaRef = useRef(null);
   const ctaImageRef = useRef(null);
+  const containerRef = useRef(null);
+  const navigate = useNavigate();
+  const [expandedId, setExpandedId] = useState(null);
 
   // GSAP animations (parallax and scroll-triggered effects)
   useEffect(() => {
-    // Hero parallax: move background image at slower speed
-    if (heroImageRef.current) {
-      gsap.to(heroImageRef.current, {
-        y: "-15%",
-        ease: "none",
-        scrollTrigger: {
-          trigger: heroRef.current,
-          start: "top top",
-          end: "bottom top",
-          scrub: true,
-        },
-      });
-    }
-
-    // CTA section parallax
-    if (ctaImageRef.current) {
-      gsap.to(ctaImageRef.current, {
-        y: "-10%",
-        ease: "none",
-        scrollTrigger: {
-          trigger: ctaRef.current,
-          start: "top bottom",
-          end: "bottom top",
-          scrub: true,
-        },
-      });
-    }
-
-    // Subtle scale animation for cards on scroll using GSAP
-    const cards = gsap.utils.toArray(".invest-card");
-    cards.forEach((card) => {
-      gsap.fromTo(
-        card,
-        { scale: 0.95, opacity: 0.6 },
-        {
-          scale: 1,
-          opacity: 1,
+    let ctx = gsap.context(() => {
+      // Hero parallax: move background image at slower speed
+      if (heroImageRef.current) {
+        gsap.to(heroImageRef.current, {
+          y: "-15%",
+          ease: "none",
           scrollTrigger: {
-            trigger: card,
-            start: "top 85%",
-            end: "bottom 60%",
+            trigger: heroRef.current,
+            start: "top top",
+            end: "bottom top",
             scrub: true,
           },
-        }
-      );
-    });
+        });
+      }
+
+      // CTA section parallax
+      if (ctaImageRef.current) {
+        gsap.to(ctaImageRef.current, {
+          y: "-10%",
+          ease: "none",
+          scrollTrigger: {
+            trigger: ctaRef.current,
+            start: "top bottom",
+            end: "bottom top",
+            scrub: true,
+          },
+        });
+      }
+
+      // Subtle scale animation for cards on scroll using GSAP
+      const cards = gsap.utils.toArray(".invest-card");
+      cards.forEach((card) => {
+        gsap.fromTo(
+          card,
+          { scale: 0.95, opacity: 0.6 },
+          {
+            scale: 1,
+            opacity: 1,
+            scrollTrigger: {
+              trigger: card,
+              start: "top 85%",
+              end: "bottom 60%",
+              scrub: true,
+            },
+          }
+        );
+      });
+    }, containerRef);
 
     // Clean up ScrollTrigger on unmount
-    return () => {
-      ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
-    };
+    return () => ctx.revert();
   }, []);
 
   // Animation variants for Framer Motion (section entrances)
@@ -83,7 +93,7 @@ const RealEstateInvestmentPage = () => {
   };
 
   return (
-    <div className="bg-neutral-50 text-gray-800 font-sans antialiased overflow-x-hidden">
+    <div ref={containerRef} className="bg-neutral-50 text-gray-800 font-sans antialiased overflow-x-hidden">
       {/* HERO SECTION */}
       <section
         ref={heroRef}
@@ -95,7 +105,7 @@ const RealEstateInvestmentPage = () => {
           className="absolute inset-0 w-full h-[120%] bg-cover bg-center will-change-transform"
           style={{
             backgroundImage:
-              "url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80')",
+              `url(${investImg})`,
           }}
         >
           <div className="absolute inset-0 bg-black/30" />
@@ -117,6 +127,7 @@ const RealEstateInvestmentPage = () => {
           <motion.button
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
+            onClick={() => navigate('/ourproject')}
             className="bg-white text-gray-900 px-8 py-4 rounded-full font-semibold text-lg shadow-xl hover:shadow-2xl transition"
           >
             Explore Sites
@@ -143,28 +154,32 @@ const RealEstateInvestmentPage = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {[
             {
+              id: 1,
               title: "Residential",
               desc: "Luxury apartments and villas in urban hubs with strong rental demand.",
-              image:
-                "https://images.unsplash.com/photo-1568605114967-8130f3a36994?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+              detailedDesc: "Our residential developments focus on high-yield areas with excellent amenities. We ensure top-tier construction quality and strategic placement to maximize both lifestyle and investment ROI. Each project is designed with modern aesthetics and sustainable practices.",
+              image: r4,
             },
             {
+              id: 2,
               title: "Commercial",
               desc: "Office spaces and retail centers in thriving business districts.",
-              image:
-                "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+              detailedDesc: "From Grade-A office spaces to prime retail hubs, our commercial projects are located at the heart of economic activity. These investments offer stable rental income and significant capital appreciation potential in rapidly expanding business zones.",
+              image: r22,
             },
             {
+              id: 3,
               title: "Plots",
               desc: "Undervalued land parcels with high appreciation potential.",
-              image:
-                "https://images.unsplash.com/photo-1500382017468-9049fed747ef?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+              detailedDesc: "We identify land with hidden value before the market catches up. Our plot developments come with clear titles, planned infrastructure, and are situated in the path of city expansion, ensuring rapid value growth for early investors.",
+              image: r25,
             },
             {
+              id: 4,
               title: "Luxury Villas",
               desc: "Exclusive waterfront and hillside estates for elite investors.",
-              image:
-                "https://images.unsplash.com/photo-1613977257363-707ba9348227?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+              detailedDesc: "Experience the pinnacle of luxury with our signature villa collections. These exclusive properties offer unmatched privacy, bespoke architecture, and are located in the most sought-after scenic locales, representing a prestigious asset class.",
+              image: r21,
             },
           ].map((item, idx) => (
             <motion.div
@@ -178,12 +193,33 @@ const RealEstateInvestmentPage = () => {
                   src={item.image}
                   alt={item.title}
                   className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                  loading="lazy"
+                  decoding="async"
                 />
               </div>
               <div className="p-6">
                 <h3 className="text-2xl font-semibold mb-2">{item.title}</h3>
                 <p className="text-gray-600">{item.desc}</p>
-                <div className="mt-4 text-amber-600 font-medium">Learn more →</div>
+
+                <motion.div
+                  initial={false}
+                  animate={{ height: expandedId === item.id ? "auto" : 0, opacity: expandedId === item.id ? 1 : 0 }}
+                  className="overflow-hidden"
+                >
+                  <p className="mt-4 text-gray-500 text-sm leading-relaxed border-t pt-4 border-gray-100">
+                    {item.detailedDesc}
+                  </p>
+                </motion.div>
+
+                <button
+                  onClick={() => setExpandedId(expandedId === item.id ? null : item.id)}
+                  className="mt-4 text-amber-600 font-medium hover:text-amber-700 transition-colors flex items-center gap-1"
+                >
+                  {expandedId === item.id ? "Show less" : "Learn more"}
+                  <span className={`transform transition-transform duration-300 ${expandedId === item.id ? "rotate-180" : ""}`}>
+                    →
+                  </span>
+                </button>
               </div>
             </motion.div>
           ))}
@@ -204,7 +240,7 @@ const RealEstateInvestmentPage = () => {
             Why Invest With The River Green
           </motion.h2>
           <motion.p variants={fadeUp} className="text-center text-gray-600 mb-16 max-w-2xl mx-auto">
-           Discover a trusted township development designed for modern living, long-term value, and a peaceful environment.
+            Discover a trusted township development designed for modern living, long-term value, and a peaceful environment.
           </motion.p>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
@@ -250,52 +286,51 @@ const RealEstateInvestmentPage = () => {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {[
               {
-                name: "Prime Location",
-                minInvestment: "Strategically located township",
-                roi: "Excellent connectivity",
-                features: ["Residential units", "Rental income", "3-year term"],
+                name: "Residential Plots",
+                tagline: "Ideal for your dream home",
+                features: ["Vastu Compliant Layouts", "Internal Grid Roads", "Secured Gated Entry", "Lush Green Parks"],
               },
               {
-                name: "Growth",
-                minInvestment: "$150,000",
-                roi: "13-16%",
-                features: ["Mix of residential & commercial", "Quarterly payouts", "5-year term"],
+                name: "Investment Plots",
+                tagline: "High appreciation potential",
+                features: ["Strategic Location", "Upcoming Infrastructure", "Clear Legal Titles", "Boundary Wall Included"],
                 popular: true,
               },
               {
-                name: "Premium",
-                minInvestment: "$300,000",
-                roi: "17-20%",
-                features: ["Luxury villas & plots", "Capital appreciation focus", "7-year term"],
+                name: "Corner & Premium Plots",
+                tagline: "Prime visibility and space",
+                features: ["Wider Main Road Access", "Park Facing Options", "Better Ventilation", "Exclusive Entry Points"],
               },
             ].map((plan, idx) => (
               <motion.div
                 key={idx}
                 variants={fadeUp}
                 whileHover={{ y: -5 }}
-                className={`relative bg-white rounded-2xl shadow-xl p-8 border ${
-                  plan.popular ? "border-amber-400 ring-2 ring-amber-200" : "border-gray-100"
-                }`}
+                className={`relative bg-white rounded-2xl shadow-xl p-8 border ${plan.popular ? "border-amber-400 ring-4 ring-amber-100" : "border-gray-100"
+                  }`}
               >
                 {plan.popular && (
-                  <span className="absolute -top-4 left-1/2 -translate-x-1/2 bg-amber-500 text-white px-4 py-1 rounded-full text-sm font-semibold">
-                    Most Popular
+                  <span className="absolute -top-4 left-1/2 -translate-x-1/2 bg-amber-500 text-white px-4 py-1 rounded-full text-sm font-semibold shadow-lg">
+                    Highest Demand
                   </span>
                 )}
-                <h3 className="text-2xl font-bold mb-2">{plan.name}</h3>
-                <p className="text-4xl font-light text-amber-700 mb-4">{plan.minInvestment}</p>
-                <p className="text-lg mb-4">
-                  Expected ROI: <span className="font-bold text-green-600">{plan.roi}</span>
-                </p>
-                <ul className="space-y-2 mb-8">
+                <h3 className="text-xl font-medium text-gray-500 uppercase tracking-wider mb-2">{plan.name}</h3>
+                <p className="text-2xl font-bold text-gray-900 mb-4">{plan.tagline}</p>
+                <div className="mb-6 border-b pb-4 border-gray-100">
+                  <span className="text-amber-700 font-semibold italic text-sm">Key Features & Amenities</span>
+                </div>
+                <ul className="space-y-3 mb-8">
                   {plan.features.map((feature, i) => (
                     <li key={i} className="flex items-center gap-2 text-gray-600">
-                      <span className="text-amber-500">✓</span> {feature}
+                      <span className="text-amber-500 font-bold">✓</span> {feature}
                     </li>
                   ))}
                 </ul>
-                <button className="w-full py-3 rounded-full bg-gray-900 text-white font-semibold hover:bg-gray-800 transition">
-                  Select Plan
+                <button
+                  onClick={() => navigate('/contact')}
+                  className="w-full py-4 rounded-xl bg-gray-900 text-white font-semibold hover:bg-amber-600 transition-colors duration-300 shadow-lg hover:shadow-amber-200"
+                >
+                  Request Details
                 </button>
               </motion.div>
             ))}
@@ -314,7 +349,7 @@ const RealEstateInvestmentPage = () => {
           className="absolute inset-0 w-full h-[110%] bg-cover bg-center will-change-transform"
           style={{
             backgroundImage:
-              "url('https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80')",
+              `url(${investImg2})`,
           }}
         >
           <div className="absolute inset-0 bg-black/50" />
@@ -329,7 +364,7 @@ const RealEstateInvestmentPage = () => {
         >
           <h2 className="text-4xl md:text-5xl font-bold mb-6">
             Long-Term Value. Smart Investment. Peaceful Living.
-            
+
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12 text-left bg-white/10 backdrop-blur-sm p-8 rounded-3xl">
             <div>
@@ -355,6 +390,7 @@ const RealEstateInvestmentPage = () => {
           <motion.button
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
+            onClick={() => navigate('/contact')}
             className="bg-amber-500 hover:bg-amber-600 text-white px-10 py-4 rounded-full font-semibold text-lg shadow-2xl transition"
           >
             Schedule a Site Visit

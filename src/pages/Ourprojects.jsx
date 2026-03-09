@@ -3,6 +3,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { motion, useInView, AnimatePresence } from 'framer-motion';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { useNavigate } from 'react-router-dom';
 import {
     MapPin,
     Home,
@@ -21,6 +22,7 @@ import r6 from "../assets/r6.png"
 import r7 from "../assets/r7.png"
 import r23 from "../assets/r23.png"
 import projectVideo from '../assets/compressed/DJI_0052.mp4';
+import HLSVideoPlayer from '../components/HLSVideoPlayer';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -83,13 +85,14 @@ const lifestyleImages = [r5, r6, r7, r23];
 const premiumEase = [0.25, 1, 0.5, 1];
 
 // ---------- Premium Animated SVG Background ----------
-const PremiumSVGBackground = () => {
+const PremiumSVGBackground = ({ isVisible }) => {
     const svgRef = useRef(null);
+    const animRef = useRef(null);
 
     useEffect(() => {
         let ctx = gsap.context(() => {
             const paths = svgRef.current.querySelectorAll('.flow-path');
-            gsap.fromTo(
+            animRef.current = gsap.fromTo(
                 paths,
                 { strokeDashoffset: 1 },
                 {
@@ -108,6 +111,11 @@ const PremiumSVGBackground = () => {
 
         return () => ctx.revert(); // Cleanup GSAP
     }, []);
+
+    useEffect(() => {
+        if (!isVisible) animRef.current?.pause();
+        else animRef.current?.play();
+    }, [isVisible]);
 
     return (
         <div className="absolute inset-0 w-full h-full pointer-events-none opacity-20 overflow-hidden">
@@ -159,15 +167,14 @@ const IntroHeader = () => {
                 initial={{ opacity: 0, x: -50 }}
                 animate={isInView ? { opacity: 1, x: 0 } : {}}
                 transition={{ duration: 1, ease: premiumEase }}
-                className="relative w-full h-[400px] md:h-[500px] flex justify-center items-center"
+                className="relative w-full h-[280px] md:h-[350px] flex justify-center items-center"
             >
-                <video
-                    src={projectVideo}
-                    autoPlay
-                    loop
-                    muted
-                    playsInline
-                    className="w-full h-full object-contain pointer-events-none"
+                <HLSVideoPlayer
+                    mp4Src={projectVideo}
+                    loop={true}
+                    muted={true}
+                    playsInline={true}
+                    className="w-full h-full object-cover rounded-2xl pointer-events-none"
                     style={{
                         maxHeight: '100%',
                         background: 'transparent'
@@ -241,6 +248,7 @@ const FeaturedProject = () => {
                         src={featuredProject.image}
                         alt={featuredProject.title}
                         className="w-full h-full object-cover opacity-90 group-hover:opacity-100 group-hover:scale-105 transition-all duration-[1.5s] ease-out"
+                        loading="eager"
                     />
                 </div>
             </div>
@@ -309,8 +317,8 @@ const FeaturedProject = () => {
     );
 };
 
-// Project Modal Component
-const ProjectModal = ({ project, isOpen, onClose }) => {
+// Project Details Modal Component
+const ProjectModal = ({ project, isOpen, onClose, onImageClick }) => {
     return (
         <AnimatePresence>
             {isOpen && project && (
@@ -336,13 +344,19 @@ const ProjectModal = ({ project, isOpen, onClose }) => {
                             <X size={24} />
                         </button>
 
-                        <div className="w-full md:w-3/5 h-[40vh] md:h-auto relative overflow-hidden">
+                        <div className="w-full md:w-3/5 h-[40vh] md:h-auto relative overflow-hidden group/modal cursor-zoom-in"
+                            onClick={() => onImageClick(project.image)}>
                             <img
                                 src={project.image}
                                 alt={project.title}
-                                className="w-full h-full object-cover"
+                                className="w-full h-full object-cover group-hover/modal:scale-105 transition-transform duration-[1.5s]"
+                                loading="lazy"
+                                decoding="async"
                             />
                             <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent md:hidden" />
+                            <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover/modal:opacity-100 transition-opacity">
+                                <div className="bg-black/20 backdrop-blur-sm text-white px-6 py-2 rounded-full border border-white/20 text-sm font-medium uppercase tracking-widest">Click to Enlarge</div>
+                            </div>
                         </div>
 
                         <div className="w-full md:w-2/5 p-8 md:p-12 overflow-y-auto">
@@ -384,6 +398,48 @@ const ProjectModal = ({ project, isOpen, onClose }) => {
     );
 };
 
+// Lightbox Component for Gallery Images
+const Lightbox = ({ image, isOpen, onClose }) => {
+    return (
+        <AnimatePresence>
+            {isOpen && image && (
+                <motion.div
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    className="fixed inset-0 z-[110] flex items-center justify-center bg-black/95 backdrop-blur-xl p-4 md:p-12"
+                    onClick={onClose}
+                >
+                    <motion.button
+                        initial={{ opacity: 0, scale: 0.5 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        exit={{ opacity: 0, scale: 0.5 }}
+                        onClick={onClose}
+                        className="absolute top-8 right-8 z-[120] p-4 bg-white/10 hover:bg-white/20 rounded-full text-white transition-all border border-white/10"
+                    >
+                        <X size={28} />
+                    </motion.button>
+
+                    <motion.div
+                        initial={{ scale: 0.8, opacity: 0 }}
+                        animate={{ scale: 1, opacity: 1 }}
+                        exit={{ scale: 0.8, opacity: 0 }}
+                        transition={{ type: "spring", damping: 25, stiffness: 200 }}
+                        className="relative max-w-7xl max-h-full aspect-auto rounded-xl overflow-hidden shadow-[0_0_50px_rgba(0,0,0,0.5)]"
+                        onClick={(e) => e.stopPropagation()}
+                    >
+                        <img
+                            src={image}
+                            alt="Large Preview"
+                            className="max-w-full max-h-[85vh] object-contain select-none"
+                        />
+                    </motion.div>
+                </motion.div>
+            )}
+        </AnimatePresence>
+    );
+};
+
 // Project Card
 const ProjectCard = ({ project, index, onClick }) => {
     return (
@@ -400,6 +456,8 @@ const ProjectCard = ({ project, index, onClick }) => {
                     src={project.image}
                     alt={project.title}
                     className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-[1.5s] ease-out"
+                    loading="lazy"
+                    decoding="async"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                 <div className="absolute top-5 right-5 bg-white/90 backdrop-blur-md text-[#111] text-xs font-bold tracking-widest px-4 py-2 rounded-full uppercase shadow-sm">
@@ -494,14 +552,14 @@ const InvestmentValue = () => {
                 if (!el) return;
 
                 gsap.to(el, {
-                    innerHTML: stat.value,
+                    textContent: stat.value,
                     duration: 2.5,
                     delay: idx * 0.2,
                     ease: 'power3.out',
-                    snap: { innerHTML: stat.isFloat ? 0.1 : 1 },
+                    snap: { textContent: stat.isFloat ? 0.1 : 1 },
                     onUpdate: function () {
                         if (stat.isFloat) {
-                            el.innerHTML = Number(this.targets()[0].innerHTML).toFixed(1);
+                            el.textContent = Number(this.targets()[0].textContent).toFixed(1);
                         }
                     },
                 });
@@ -530,7 +588,7 @@ const InvestmentValue = () => {
                         className="bg-white rounded-3xl p-10 text-center shadow-lg shadow-black/[0.03] border border-gray-100 hover:-translate-y-2 transition-transform duration-500"
                     >
                         <div className="text-5xl md:text-6xl font-light text-[#B4A388] mb-4 flex justify-center items-end">
-                            <span ref={(el) => (numberRefs.current[idx] = el)}>0</span>
+                            <span ref={(el) => (numberRefs.current[idx] = el)} className="tabular-nums">0</span>
                             <span className="text-4xl ml-1">{stat.suffix}</span>
                         </div>
                         <p className="text-[#111] uppercase tracking-[0.15em] text-xs font-semibold">{stat.label}</p>
@@ -584,7 +642,7 @@ const ToggleSection = ({ onProjectClick }) => {
                             onClick={() => onProjectClick(proj)}
                         >
                             <div className="w-24 h-24 rounded-xl overflow-hidden shrink-0">
-                                <img src={proj.image} alt={proj.title} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
+                                <img src={proj.image} alt={proj.title} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" loading="lazy" decoding="async" />
                             </div>
                             <div className="flex-grow">
                                 <h4 className="text-xl font-bold text-[#111] mb-1">{proj.title}</h4>
@@ -643,7 +701,7 @@ const AmenitiesShowcase = () => {
 };
 
 // Luxury Lifestyle Preview
-const LifestylePreview = () => {
+const LifestylePreview = ({ onImageClick }) => {
     return (
         <div className="mb-40">
             <h3 className="text-4xl md:text-5xl font-medium text-[#111] mb-16 text-center">
@@ -657,13 +715,14 @@ const LifestylePreview = () => {
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
                         transition={{ duration: 0.8, delay: idx * 0.15, ease: premiumEase }}
-                        className={`relative rounded-2xl overflow-hidden group ${idx === 1 || idx === 2 ? 'md:translate-y-12' : ''}`}
+                        className={`relative rounded-2xl overflow-hidden group cursor-pointer ${idx === 1 || idx === 2 ? 'md:translate-y-12' : ''}`}
+                        onClick={() => onImageClick(img)}
                     >
                         <div className="aspect-[4/5] w-full">
-                            <img src={img} alt="Luxury Lifestyle" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-[2s] ease-out" />
+                            <img src={img} alt="Luxury Lifestyle" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-[2s] ease-out" loading="lazy" decoding="async" />
                         </div>
                         <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/0 to-black/0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end p-6">
-                            <span className="text-white text-sm uppercase tracking-widest font-medium opacity-0 group-hover:opacity-100 translate-y-4 group-hover:translate-y-0 transition-all duration-500 delay-100">View Gallery</span>
+                            <span className="text-white text-sm uppercase tracking-widest font-medium opacity-0 group-hover:opacity-100 translate-y-4 group-hover:translate-y-0 transition-all duration-500 delay-100">View Large</span>
                         </div>
                     </motion.div>
                 ))}
@@ -674,6 +733,7 @@ const LifestylePreview = () => {
 
 // CTA Footer
 const CtaFooter = () => {
+    const navigate = useNavigate();
     return (
         <motion.div
             initial={{ opacity: 0, y: 40 }}
@@ -688,6 +748,7 @@ const CtaFooter = () => {
             <motion.button
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
+                onClick={() => navigate('/contact')}
                 className="relative px-12 py-5 bg-[#111] text-[#F9F8F6] rounded-full text-sm font-semibold tracking-[0.15em] uppercase overflow-hidden group inline-flex items-center gap-4"
             >
                 <span className="relative z-10">Contact Us</span>
@@ -707,6 +768,14 @@ const CtaFooter = () => {
 const ProjectsSection = () => {
     const [selectedProject, setSelectedProject] = useState(null);
     const [isModalOpen, setIsModalOpen] = useState(false);
+    const [selectedImage, setSelectedImage] = useState(null);
+    const [isLightboxOpen, setIsLightboxOpen] = useState(false);
+
+    const premiumBgRef = useRef(null);
+    const isPremiumBgVisible = useInView(premiumBgRef, { amount: 0.1 });
+
+    const devVisionRef = useRef(null);
+    const isDevVisionVisible = useInView(devVisionRef, { amount: 0.1 });
 
     const handleProjectClick = (project) => {
         setSelectedProject(project);
@@ -715,7 +784,9 @@ const ProjectsSection = () => {
 
     return (
         <section className="relative py-24 md:py-32 px-6 md:px-12 lg:px-20 bg-[#F9F8F6] selection:bg-[#B4A388] selection:text-white">
-            <PremiumSVGBackground />
+            <div ref={premiumBgRef} className="absolute inset-0 pointer-events-none">
+                <PremiumSVGBackground isVisible={isPremiumBgVisible} />
+            </div>
 
             <div className="max-w-[1400px] mx-auto relative z-10">
                 <IntroHeader />
@@ -732,11 +803,16 @@ const ProjectsSection = () => {
                     ))}
                 </div>
 
-                <DeveloperVision />
+                <div ref={devVisionRef} style={{ minHeight: '1px' }}>
+                    {isDevVisionVisible && <DeveloperVision />}
+                </div>
                 <InvestmentValue />
                 <AmenitiesShowcase />
                 <ToggleSection onProjectClick={handleProjectClick} />
-                <LifestylePreview />
+                <LifestylePreview onImageClick={(img) => {
+                    setSelectedImage(img);
+                    setIsLightboxOpen(true);
+                }} />
                 <CtaFooter />
             </div>
 
@@ -744,6 +820,16 @@ const ProjectsSection = () => {
                 project={selectedProject}
                 isOpen={isModalOpen}
                 onClose={() => setIsModalOpen(false)}
+                onImageClick={(img) => {
+                    setSelectedImage(img);
+                    setIsLightboxOpen(true);
+                }}
+            />
+
+            <Lightbox
+                image={selectedImage}
+                isOpen={isLightboxOpen}
+                onClose={() => setIsLightboxOpen(false)}
             />
         </section>
     );

@@ -62,6 +62,8 @@ const UpdatedHeroSection = () => {
                             src={hut}
                             alt="Foundation Property"
                             className="w-full h-auto object-contain scale-105"
+                            loading="lazy"
+                            decoding="async"
                         />
                     </div>
                 </motion.div>

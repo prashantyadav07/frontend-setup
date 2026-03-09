@@ -1,5 +1,6 @@
 import React, { useRef, useEffect } from 'react';
 import { motion } from 'framer-motion';
+import { Link } from 'react-router-dom';
 import videoSrc from '../assets/newhome.mp4';
 import LazyVideo from './LazyVideo';
 
@@ -11,8 +12,8 @@ const Hero5 = () => {
 
             {/* Background Blurry Blobs - More Blur added */}
             <div className="absolute top-0 left-0 w-full h-full pointer-events-none overflow-hidden">
-                <div className="absolute top-1/4 -left-20 w-96 h-96 bg-blue-900/5 rounded-full blur-[150px]" />
-                <div className="absolute bottom-1/4 -right-20 w-96 h-96 bg-zinc-900/10 rounded-full blur-[150px]" />
+                <div className="absolute top-1/4 -left-20 w-96 h-96 bg-blue-900/5 rounded-full blur-[150px] will-change-transform transform-gpu" />
+                <div className="absolute bottom-1/4 -right-20 w-96 h-96 bg-zinc-900/10 rounded-full blur-[150px] will-change-transform transform-gpu" />
             </div>
 
             {/* Title Section */}
@@ -69,9 +70,12 @@ const Hero5 = () => {
                 </p>
 
                 <div className="flex justify-center">
-                    <button className="px-10 py-3.5 bg-black text-white text-[11px] font-bold tracking-[0.2em] uppercase transition-all duration-500 hover:bg-[#C9B171] w-full sm:w-auto">
+                    <Link
+                        to="/investment"
+                        className="px-10 py-3.5 bg-black text-white text-[11px] font-bold tracking-[0.2em] uppercase transition-all duration-500 hover:bg-[#C9B171] w-full sm:w-auto text-center"
+                    >
                         Explore the Lifestyle
-                    </button>
+                    </Link>
                 </div>
             </motion.div>
 

@@ -74,7 +74,7 @@ const TestimonialSection = () => {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="w-[90%] md:w-[42%] h-[200px] sm:h-[260px] md:h-[380px] self-end md:absolute md:right-0 md:top-1/2 md:-translate-y-1/2 z-20 -mt-10 sm:-mt-16 md:mt-0 mr-4 md:mr-0"
+            className="w-[90%] md:w-[42%] h-[200px] sm:h-[260px] md:h-[380px] self-end md:absolute md:right-0 md:top-1/2 md:-translate-y-1/2 z-20 -mt-10 sm:-mt-16 md:mt-0 mr-4 md:mr-0 will-change-transform transform-gpu"
           >
             {/* Badge */}
             <div className="absolute top-4 right-4 bg-[#5C4A3D]/90 backdrop-blur-sm text-[#F9F8F3] px-3.5 py-1.5 rounded-md text-[11px] font-medium tracking-wide z-30 font-sans shadow-sm">
@@ -86,6 +86,8 @@ const TestimonialSection = () => {
               src={r26}
               alt="HUTS Property in Autumn"
               className="w-full h-full object-cover rounded-[16px] shadow-lg"
+              loading="lazy"
+              decoding="async"
             />
           </motion.div>
 

@@ -1,9 +1,13 @@
 import React, { useRef, useState } from 'react';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
+import { useNavigate } from 'react-router-dom';
+import { X } from 'lucide-react';
 import newHomeVideo from '../assets/newhome.mp4';
 import r0Image from '../assets/r0.png';
 import LazyVideo from '../components/LazyVideo';
 import r1 from '../assets/r1.png';
+import r2 from '../assets/r2.png';
+import r3 from '../assets/r3.png';
 
 const colors = {
   bg: "#FAF9F6",
@@ -13,10 +17,74 @@ const colors = {
 };
 
 const HighEndAboutUs = () => {
-  // No scroll-driven logic
+  const navigate = useNavigate();
+  const [showStory, setShowStory] = useState(false);
 
   return (
     <div className="bg-[#FAF9F6] text-[#1A1A1A] overflow-x-hidden">
+
+      {/* STORY MODAL */}
+      <AnimatePresence>
+        {showStory && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-[100] flex items-center justify-center p-4 md:p-8 bg-black/60 backdrop-blur-sm"
+          >
+            <motion.div
+              initial={{ scale: 0.9, y: 20, opacity: 0 }}
+              animate={{ scale: 1, y: 0, opacity: 1 }}
+              exit={{ scale: 0.9, y: 20, opacity: 0 }}
+              transition={{ type: "spring", damping: 25, stiffness: 300 }}
+              className="relative w-full max-w-5xl bg-white rounded-[2rem] overflow-hidden shadow-2xl flex flex-col md:flex-row max-h-[90vh]"
+            >
+              {/* Close Button */}
+              <button
+                onClick={() => setShowStory(false)}
+                className="absolute top-6 right-6 z-50 p-2 bg-black/10 hover:bg-black/20 rounded-full transition-colors group"
+              >
+                <X size={24} className="text-gray-800 group-hover:scale-110 transition-transform" />
+              </button>
+
+              {/* Image Side */}
+              <div className="md:w-1/2 h-64 md:h-auto overflow-hidden">
+                <img
+                  src={r2}
+                  alt="Our Vision"
+                  className="w-full h-full object-cover"
+                />
+              </div>
+
+              {/* Content Side */}
+              <div className="md:w-1/2 p-8 md:p-12 overflow-y-auto">
+                <span className="text-xs uppercase tracking-[0.4em] text-[#C5A059] mb-4 block">Our Journey</span>
+                <h2 className="text-3xl md:text-4xl font-serif mb-6 leading-tight">A Legacy of Vision and Integrity</h2>
+                <div className="space-y-6 text-gray-600 text-lg leading-relaxed">
+                  <p>
+                    Our story began with a simple yet profound realization: that a home is more than just a structure; it's the foundation of a life well-lived. In the bustling heart of Meerut, amidst the rapid growth of the city, we saw a need for spaces that offer both luxury and a deep connection to nature.
+                  </p>
+                  <p>
+                    The River Green was born from this vision. We didn't just want to build plots; we wanted to curate environments. From the initial blueprint to the final blade of grass in our parks, every detail has been meticulously planned to foster community, sustainability, and timeless elegance.
+                  </p>
+                  <p>
+                    Today, we continue to push boundaries, blending traditional values with modern innovation to create townships that aren't just lived in, but loved for generations.
+                  </p>
+                </div>
+                <div className="mt-10 pt-8 border-t border-gray-100 flex items-center gap-4">
+                  <div className="w-12 h-12 rounded-full overflow-hidden bg-gray-100">
+                    <img src={r3} alt="Founder" className="w-full h-full object-cover" />
+                  </div>
+                  <div>
+                    <p className="font-serif text-lg leading-none">Prashant Yadav</p>
+                    <p className="text-xs uppercase tracking-widest text-[#C5A059] mt-1">Founding Visionary</p>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       {/* SECTION 1: THE CINEMATIC HERO */}
       <section className="relative min-h-[85vh] lg:h-screen flex flex-col lg:flex-row items-center justify-center overflow-hidden bg-[#FAF9F6] pt-24 lg:pt-32">
@@ -47,6 +115,7 @@ const HighEndAboutUs = () => {
               src={r0Image}
               alt="Architecture Concept"
               className="w-full h-full object-cover"
+              loading="eager"
             />
             {/* Subtle overlay */}
             <div className="absolute inset-0 bg-black/5 pointer-events-none" />
@@ -58,7 +127,7 @@ const HighEndAboutUs = () => {
       <section className="py-12 md:py-20 px-6 md:px-20 grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
         <div className="lg:col-span-7 overflow-hidden rounded-3xl h-[50vh] lg:h-[70vh] relative group">
           <motion.div whileInView={{ scale: [1.2, 1] }} transition={{ duration: 1.5 }} className="w-full h-full">
-            <img src={r1} className="w-full h-full object-cover transition-all duration-1000" alt="Story" />
+            <img src={r1} className="w-full h-full object-cover transition-all duration-1000" alt="Story" loading="lazy" decoding="async" />
           </motion.div>
           <div className="absolute inset-0 bg-black/20 group-hover:bg-transparent transition-all duration-700" />
         </div>
@@ -67,7 +136,14 @@ const HighEndAboutUs = () => {
           <motion.p initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} transition={{ delay: 0.3 }} className="text-gray-500 text-lg leading-relaxed">
             Our journey began in the heart of Meerut, driven by a vision to create thoughtfully planned townships. Today, The River Green stands as a symbol of trust, modern development, and spaces where families can build their dreams.
           </motion.p>
-          <motion.button whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} className="px-8 py-4 bg-[#1A1A1A] text-white rounded-full text-sm uppercase tracking-widest font-medium">Read Our Story</motion.button>
+          <motion.button
+            onClick={() => setShowStory(true)}
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            className="px-8 py-4 bg-[#1A1A1A] text-white rounded-full text-sm uppercase tracking-widest font-medium"
+          >
+            Read Our Story
+          </motion.button>
         </div>
       </section>
 
@@ -189,8 +265,8 @@ const HighEndAboutUs = () => {
         <motion.div whileInView={{ scale: [0.8, 1], opacity: [0, 1] }} transition={{ duration: 1 }}>
           <h2 className="text-[12vw] font-serif leading-none tracking-tighter mb-10">Find Your Perfect Plot</h2>
           <div className="flex flex-wrap justify-center gap-4 md:gap-6">
-            <MagneticButton text="Book a Site Visit" />
-            <MagneticButton text="Contact Our Team" light />
+            <MagneticButton text="Book a Site Visit" onClick={() => navigate('/contact')} />
+            <MagneticButton text="Contact Our Team" light onClick={() => navigate('/contact')} />
           </div>
         </motion.div>
       </footer>
@@ -204,7 +280,7 @@ const TeamCollageItem = ({ img, name, role, width, height }) => (
     whileHover={{ y: -15, scale: 1.05 }}
     className={`${width} ${height} relative overflow-hidden rounded-xl shadow-xl group bg-gray-100 flex-shrink-0`}
   >
-    <img src={img} className="w-full h-full object-cover transition-all duration-700" alt={name} />
+    <img src={img} className="w-full h-full object-cover transition-all duration-700" alt={name} loading="lazy" decoding="async" />
     <div className="absolute inset-x-0 bottom-0 p-4 bg-gradient-to-t from-black/80 to-transparent text-white transform translate-y-full group-hover:translate-y-0 transition-transform duration-500">
       <p className="text-sm font-serif">{name}</p>
       <p className="text-[10px] uppercase tracking-tighter text-[#C5A059]">{role}</p>
@@ -212,7 +288,7 @@ const TeamCollageItem = ({ img, name, role, width, height }) => (
   </motion.div>
 );
 
-const MagneticButton = ({ text, light = false }) => {
+const MagneticButton = ({ text, light = false, onClick }) => {
   const btnRef = useRef(null);
   const [position, setPosition] = useState({ x: 0, y: 0 });
   const handleMouse = (e) => {
@@ -228,6 +304,7 @@ const MagneticButton = ({ text, light = false }) => {
       ref={btnRef}
       onMouseMove={handleMouse}
       onMouseLeave={reset}
+      onClick={onClick}
       animate={{ x: position.x, y: position.y }}
       transition={{ type: "spring", stiffness: 150, damping: 15, mass: 0.1 }}
       className={`px-12 py-5 rounded-full text-xs uppercase tracking-[0.3em] font-bold transition-colors ${light ? "border border-black text-black hover:bg-black hover:text-white" : "bg-black text-white hover:bg-[#C5A059]"}`}

@@ -3,6 +3,7 @@ import { motion, useScroll, useTransform } from 'framer-motion';
 import { MapPin, ArrowRight, Compass } from 'lucide-react';
 import leftTree from '../assets/lefttree.png';
 import rightTree from '../assets/righttree.png';
+import HLSVideoPlayer from './HLSVideoPlayer';
 
 // Compressed videos (480p, medium quality, web-optimized, git-safe)
 import vid1 from '../assets/compressed/DJI_0052.mp4';
@@ -51,12 +52,11 @@ const PropertyCard = ({ prop, idx }) => {
             className="group relative bg-white flex-shrink-0 w-[80vw] sm:w-[85vw] md:w-[600px] h-[55vh] sm:h-[65vh] md:h-[70vh] shadow-xl overflow-hidden"
         >
             <div className="absolute inset-0">
-                <video
-                    src={prop.video}
-                    autoPlay
-                    loop
-                    muted
-                    playsInline
+                <HLSVideoPlayer
+                    mp4Src={prop.video}
+                    loop={true}
+                    muted={true}
+                    playsInline={true}
                     className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110"
                 />
                 <div className="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors duration-500" />
@@ -96,7 +96,7 @@ const HorizontalScrollSection = () => {
             <div className="sticky top-0 h-screen flex items-center overflow-hidden">
                 <motion.div
                     style={{ x }}
-                    className="flex gap-10 pl-[10vw]"
+                    className="flex gap-10 pl-[10vw] will-change-transform transform-gpu"
                 >
                     {properties.map((prop, idx) => (
                         <PropertyCard key={prop.id} prop={prop} idx={idx} />
