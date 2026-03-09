@@ -1,4 +1,5 @@
 import AppRoutes from '@/routes/AppRoutes';
+import ScrollToTop from '@/components/ScrollToTop';
 
 /**
  * App Component
@@ -7,5 +8,10 @@ import AppRoutes from '@/routes/AppRoutes';
  * Provides routing configuration and global layout structure.
  */
 export default function App() {
-  return <AppRoutes />;
+  return (
+    <>
+      <ScrollToTop />
+      <AppRoutes />
+    </>
+  );
 }

@@ -109,17 +109,17 @@ const RealEstateInvestmentPage = () => {
           className="relative z-10 text-center text-white px-4 max-w-4xl"
         >
           <h1 className="text-5xl md:text-7xl font-bold leading-tight mb-6">
-            Smart Real Estate Investments
+            Invest in the Future of Living
           </h1>
           <p className="text-xl md:text-2xl font-light mb-10">
-            Unlock premium opportunities with high-growth potential in prime locations.
+            At The River Green, we offer thoughtfully planned township developments that combine peaceful living with exceptional investment potential.
           </p>
           <motion.button
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             className="bg-white text-gray-900 px-8 py-4 rounded-full font-semibold text-lg shadow-xl hover:shadow-2xl transition"
           >
-            Explore Opportunities
+            Explore Sites
           </motion.button>
         </motion.div>
       </section>
@@ -134,10 +134,10 @@ const RealEstateInvestmentPage = () => {
         className="py-24 px-6 max-w-7xl mx-auto"
       >
         <motion.h2 variants={fadeUp} className="text-4xl font-bold text-center mb-4">
-          Investment Opportunities
+          Smart Investment Opportunities
         </motion.h2>
         <motion.p variants={fadeUp} className="text-center text-gray-600 mb-16 max-w-2xl mx-auto">
-          Choose from a curated selection of high-yield real estate assets.
+          Choose from carefully planned residential plots located in prime areas with excellent growth potential.
         </motion.p>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
@@ -201,18 +201,18 @@ const RealEstateInvestmentPage = () => {
       >
         <div className="max-w-7xl mx-auto">
           <motion.h2 variants={fadeUp} className="text-4xl font-bold text-center mb-4">
-            Why Invest With Us
+            Why Invest With The River Green
           </motion.h2>
           <motion.p variants={fadeUp} className="text-center text-gray-600 mb-16 max-w-2xl mx-auto">
-            Unmatched expertise and a track record of delivering exceptional returns.
+           Discover a trusted township development designed for modern living, long-term value, and a peaceful environment.
           </motion.p>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {[
-              { title: "High ROI", desc: "Average annual returns of 12-18% across portfolios.", icon: "📈" },
-              { title: "Trusted Developer", desc: "20+ years of excellence with 50+ completed projects.", icon: "🏆" },
-              { title: "Prime Locations", desc: "Properties in the most sought-after neighborhoods.", icon: "📍" },
-              { title: "Secure Investment", desc: "Fully compliant, insured, and legally vetted assets.", icon: "🛡️" },
+              { title: "High Growth Potential", desc: "Plots located in rapidly developing areas with strong appreciation potential for long-term investment.", icon: "📈" },
+              { title: "Trusted Development", desc: "Years of experience in creating well-planned communities with quality infrastructure and reliable planning.", icon: "🏆" },
+              { title: "Prime Locations", desc: "Strategically located townships with excellent connectivity to key roads, markets, and essential facilities.", icon: "📍" },
+              { title: "Clear & Secure Investment", desc: "100% transparent documentation and legally verified plots to ensure complete peace of mind.", icon: "🛡️" },
             ].map((item, idx) => (
               <motion.div
                 key={idx}
@@ -241,18 +241,18 @@ const RealEstateInvestmentPage = () => {
       >
         <div className="max-w-7xl mx-auto">
           <motion.h2 variants={fadeUp} className="text-4xl font-bold text-center mb-4">
-            Investment Plans & ROI
+            Investment Opportunities
           </motion.h2>
           <motion.p variants={fadeUp} className="text-center text-gray-600 mb-16 max-w-2xl mx-auto">
-            Flexible entry points designed for both new and seasoned investors.
+            Discover premium residential plots designed for modern living and long-term value in prime locations.
           </motion.p>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {[
               {
-                name: "Starter",
-                minInvestment: "$50,000",
-                roi: "10-12%",
+                name: "Prime Location",
+                minInvestment: "Strategically located township",
+                roi: "Excellent connectivity",
                 features: ["Residential units", "Rental income", "3-year term"],
               },
               {
@@ -328,26 +328,27 @@ const RealEstateInvestmentPage = () => {
           className="relative z-10 text-white text-center max-w-4xl px-6"
         >
           <h2 className="text-4xl md:text-5xl font-bold mb-6">
-            Long‑term growth. Passive income. Peace of mind.
+            Long-Term Value. Smart Investment. Peaceful Living.
+            
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12 text-left bg-white/10 backdrop-blur-sm p-8 rounded-3xl">
             <div>
               <h3 className="text-2xl font-semibold mb-2 flex items-center gap-2">
-                <span className="text-3xl">📈</span> Appreciation
+                <span className="text-3xl">📈</span> Future Appreciation
               </h3>
-              <p className="text-white/80">Properties in high-growth corridors with 2x value potential.</p>
+              <p className="text-white/80">Plots located in rapidly developing areas with excellent potential for long-term value growth.</p>
             </div>
             <div>
               <h3 className="text-2xl font-semibold mb-2 flex items-center gap-2">
-                <span className="text-3xl">💰</span> Rental Income
+                <span className="text-3xl">🌿</span>Planned Township Living
               </h3>
-              <p className="text-white/80">Steady monthly cash flow from premium tenants.</p>
+              <p className="text-white/80">Wide roads, green surroundings, and modern infrastructure designed for a peaceful lifestyle.</p>
             </div>
             <div>
               <h3 className="text-2xl font-semibold mb-2 flex items-center gap-2">
-                <span className="text-3xl">🔒</span> Tax Advantages
+                <span className="text-3xl">🔒</span>Secure & Transparent Investment
               </h3>
-              <p className="text-white/80">Depreciation and 1031 exchange benefits for investors.</p>
+              <p className="text-white/80">Clear documentation and trusted development ensuring complete peace of mind for buyers.</p>
             </div>
           </div>
 
@@ -356,15 +357,15 @@ const RealEstateInvestmentPage = () => {
             whileTap={{ scale: 0.95 }}
             className="bg-amber-500 hover:bg-amber-600 text-white px-10 py-4 rounded-full font-semibold text-lg shadow-2xl transition"
           >
-            Schedule Investment Consultation
+            Schedule a Site Visit
           </motion.button>
         </motion.div>
       </section>
 
       {/* FOOTER (optional, minimal) */}
-      <footer className="bg-gray-900 text-white py-8 text-center text-sm">
+      {/* <footer className="bg-gray-900 text-white py-8 text-center text-sm">
         <p>© 2025 Prestige Real Estate Investments. All rights reserved.</p>
-      </footer>
+      </footer> */}
     </div>
   );
 };

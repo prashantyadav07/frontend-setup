@@ -27,10 +27,10 @@ const HighEndAboutUs = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
           >
-            <span className="text-xs uppercase tracking-[0.6em] mb-6 block text-[#C5A059]">Architecture & Legacy</span>
+            <span className="text-xs uppercase tracking-[0.6em] mb-6 block text-[#C5A059]">THE RIVER GREEN</span>
             <h1 className="text-[12vw] md:text-[8vw] font-serif leading-[0.9] tracking-tighter">
-              WE CRAFT <br />
-              <span className="font-light opacity-80">EMOTIONS.</span>
+              Luxury Plot Living.<br />
+              <span className="font-light opacity-80"></span>
             </h1>
           </motion.div>
         </div>
@@ -63,11 +63,11 @@ const HighEndAboutUs = () => {
           <div className="absolute inset-0 bg-black/20 group-hover:bg-transparent transition-all duration-700" />
         </div>
         <div className="lg:col-span-5 space-y-8">
-          <motion.h2 initial={{ opacity: 0, x: 50 }} whileInView={{ opacity: 1, x: 0 }} className="text-4xl md:text-5xl font-serif leading-tight">A Journey From <br /> Bricks to Dreams.</motion.h2>
+          <motion.h2 initial={{ opacity: 0, x: 50 }} whileInView={{ opacity: 1, x: 0 }} className="text-4xl md:text-5xl font-serif leading-tight">A Journey From <br /> Vision to Community.</motion.h2>
           <motion.p initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} transition={{ delay: 0.3 }} className="text-gray-500 text-lg leading-relaxed">
-            Humara safar Meerut ki galliyon se shuru hua tha, par aaj hum global standards ko redefine kar rahe hain. Har structure ek signature hai, har space ek legacy.
+            Our journey began in the heart of Meerut, driven by a vision to create thoughtfully planned townships. Today, The River Green stands as a symbol of trust, modern development, and spaces where families can build their dreams.
           </motion.p>
-          <motion.button whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} className="px-8 py-4 bg-[#1A1A1A] text-white rounded-full text-sm uppercase tracking-widest font-medium">Read Our Manifesto</motion.button>
+          <motion.button whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} className="px-8 py-4 bg-[#1A1A1A] text-white rounded-full text-sm uppercase tracking-widest font-medium">Read Our Story</motion.button>
         </div>
       </section>
 
@@ -75,10 +75,10 @@ const HighEndAboutUs = () => {
       <section className="py-12 md:py-16 bg-white border-y border-black/5">
         <div className="max-w-7xl mx-auto px-6 grid grid-cols-2 md:flex md:flex-wrap justify-between gap-8 md:gap-12">
           {[
-            { label: "Handcrafted Villas", val: "450+" },
-            { label: "Global Awards", val: "28" },
-            { label: "Satisfied Families", val: "2k" },
-            { label: "Years of Trust", val: "25" }
+            { label: "Residential Plots ", val: "500+" },
+            { label: "Township Developments", val: "10+" },
+            { label: "Happy Families", val: "700+" },
+            { label: "Years of Trust", val: "3+" }
           ].map((item, i) => (
             <motion.div key={i} initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} transition={{ delay: i * 0.1 }} className="text-center">
               <h3 className="text-4xl md:text-6xl font-serif mb-2 text-[#C5A059]">{item.val}</h3>
@@ -94,14 +94,14 @@ const HighEndAboutUs = () => {
           {/* Content Left */}
           <div className="lg:w-1/2 text-center lg:text-left mb-8 lg:mb-0">
             <h2 className="text-4xl md:text-7xl font-serif uppercase tracking-tighter mb-6 leading-tight">
-              Featured <br />
-              <span className="italic text-[#C5A059]">Portfolio</span>
+              OUR<br />
+              <span className="italic text-[#C5A059]">DEVELOPMENTS </span>
             </h2>
             <div className="w-20 h-1 bg-[#C5A059] mb-8 mx-auto lg:mx-0"></div>
             <p className="text-gray-500 text-lg max-w-md mx-auto lg:mx-0 leading-relaxed mb-8">
-              Explore our most prestigious projects, where every detail is a testament to our commitment to excellence and luxury.
+              Each project reflects our commitment to quality, smart planning, and creating communities designed for modern living.
             </p>
-            <p className="text-[#C5A059] text-sm uppercase tracking-[0.3em] font-medium">Selected Works & Projects</p>
+            <p className="text-[#C5A059] text-sm uppercase tracking-[0.3em] font-medium">Explore Projects</p>
           </div>
 
           {/* Video Right */}
@@ -120,9 +120,9 @@ const HighEndAboutUs = () => {
       {/* SECTION 5: PHILOSOPHY */}
       <section className="py-12 md:py-16 px-6 max-w-4xl mx-auto space-y-12 md:space-y-20">
         {[
-          { title: "Conscious Living", desc: "Green buildings are not an option, they are a responsibility. We use solar-integrated glass and rainwater harvesting in every unit." },
-          { title: "Timeless Aesthetics", desc: "Design jo purana na ho. Hum trends ko nahi, timelessness ko follow karte hain." },
-          { title: "Trust & Transparency", desc: "Zero hidden costs. 100% legal clarity. That's the Prashant Yadav promise." }
+          { title: "Sustainable Living", desc: "We believe modern living should respect nature. Our townships are designed with green spaces, eco-friendly planning, and infrastructure that supports a healthier environment." },
+          { title: "Timeless Planning", desc: "Great communities never go out of style. Our developments are thoughtfully planned to offer lasting value, functional design, and a lifestyle that stands the test of time." },
+          { title: "Trust & Transparency", desc: "At The River Green, every project is built on honesty, legal clarity, and complete transparency — ensuring confidence and peace of mind for every buyer." }
         ].map((item, i) => (
           <motion.div key={i} initial={{ opacity: 0, y: 50 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ margin: "-100px" }} className="border-l-2 border-[#C5A059] pl-6 md:pl-10">
             <span className="text-[#C5A059] font-mono text-sm mb-4 block">0{i + 1} / 03</span>
@@ -136,8 +136,8 @@ const HighEndAboutUs = () => {
       <section className="py-12 md:py-24 px-6 bg-white overflow-hidden">
         <div className="max-w-5xl mx-auto flex flex-col items-center">
           <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-5xl font-serif leading-tight mb-4">The Minds Behind The Masterpieces.</h2>
-            <p className="text-gray-400 text-[10px] md:text-xs uppercase tracking-widest">Our Leadership & Visionaries</p>
+            <h2 className="text-3xl md:text-5xl font-serif leading-tight mb-4">The Vision Behind The River Green</h2>
+            <p className="text-gray-400 text-[10px] md:text-xs uppercase tracking-widest">Meet the team dedicated to building thoughtfully planned communities and delivering exceptional living experiences.</p>
           </div>
 
           {/* Desktop/Tablet Collage Layout */}
@@ -163,8 +163,8 @@ const HighEndAboutUs = () => {
 
             <motion.div initial={{ scale: 0, opacity: 0 }} whileInView={{ scale: 1, opacity: 1 }} className="absolute z-30 w-28 h-28 rounded-full border border-[#C5A059]/30 bg-white/90 backdrop-blur-md flex items-center justify-center shadow-xl">
               <div className="text-center">
-                <span className="text-[10px] uppercase tracking-[0.2em] text-[#C5A059] block">Our</span>
-                <span className="text-lg font-serif italic">Team</span>
+                <span className="text-[10px] uppercase tracking-[0.2em] text-[#C5A059] block">OUR </span>
+                <span className="text-lg font-serif italic">EXPERTS</span>
               </div>
             </motion.div>
 
@@ -187,10 +187,10 @@ const HighEndAboutUs = () => {
       {/* SECTION 7: CALL TO ACTION (FOOTER) */}
       <footer className="min-h-[50vh] md:h-screen bg-[#F5F5F7] flex flex-col items-center justify-center text-center px-6 py-20 relative overflow-hidden">
         <motion.div whileInView={{ scale: [0.8, 1], opacity: [0, 1] }} transition={{ duration: 1 }}>
-          <h2 className="text-[12vw] font-serif leading-none tracking-tighter mb-10">WORK WITH US</h2>
+          <h2 className="text-[12vw] font-serif leading-none tracking-tighter mb-10">Find Your Perfect Plot</h2>
           <div className="flex flex-wrap justify-center gap-4 md:gap-6">
-            <MagneticButton text="Start a Project" />
-            <MagneticButton text="Contact Studio" light />
+            <MagneticButton text="Book a Site Visit" />
+            <MagneticButton text="Contact Our Team" light />
           </div>
         </motion.div>
       </footer>

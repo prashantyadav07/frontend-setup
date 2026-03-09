@@ -29,7 +29,7 @@ const Footer = () => {
                                 </div>
                             </div>
                             <p className="text-[11px] md:text-xs leading-relaxed opacity-80 max-w-xs">
-                                Premier living spaces surrounded by nature. We specialize in luxury residential plots, sustainable housing, and premium real estate investments.
+                                Creating premium residential communities where modern infrastructure meets natural surroundings. We specialize in thoughtfully planned townships and high-value residential plots designed for peaceful living and smart investment.
                             </p>
                         </div>
 
@@ -39,9 +39,9 @@ const Footer = () => {
                                 <h3 className="text-xs md:text-sm font-bold mb-4 md:mb-5 border-b border-[#2D5A27]/10 pb-2">Properties</h3>
                                 <ul className="space-y-2 md:space-y-2.5 text-[10px] md:text-xs font-semibold opacity-90">
                                     <li><a href="#" className="hover:text-[#2D5A27] transition-colors">Residential Plots</a></li>
-                                    <li><a href="#" className="hover:text-[#2D5A27] transition-colors">Luxury Villas</a></li>
-                                    <li><a href="#" className="hover:text-[#2D5A27] transition-colors">Commercial</a></li>
-                                    <li className="hidden md:block"><a href="#" className="hover:text-[#2D5A27] transition-colors">Current Projects</a></li>
+                                    <li><a href="#" className="hover:text-[#2D5A27] transition-colors">Premium Township Projects</a></li>
+                                    <li><a href="#" className="hover:text-[#2D5A27] transition-colors">Future Developments</a></li>
+                                    <li className="hidden md:block"><a href="#" className="hover:text-[#2D5A27] transition-colors">Investment Opportunities</a></li>
                                 </ul>
                             </div>
 
@@ -49,9 +49,9 @@ const Footer = () => {
                                 <h3 className="text-xs md:text-sm font-bold mb-4 md:mb-5 border-b border-[#2D5A27]/10 pb-2">Resources</h3>
                                 <ul className="space-y-2 md:space-y-2.5 text-[10px] md:text-xs font-semibold opacity-90">
                                     <li><a href="#" className="hover:text-[#2D5A27] transition-colors">Buyer's Guide</a></li>
-                                    <li><a href="#" className="hover:text-[#2D5A27] transition-colors">Home Loans</a></li>
-                                    <li className="hidden md:block"><a href="#" className="hover:text-[#2D5A27] transition-colors">Legal Docs</a></li>
-                                    <li><a href="#" className="hover:text-[#2D5A27] transition-colors">Virtual Tours</a></li>
+                                    <li><a href="#" className="hover:text-[#2D5A27] transition-colors">Investment Insights</a></li>
+                                    <li className="hidden md:block"><a href="#" className="hover:text-[#2D5A27] transition-colors">Legal Documentation</a></li>
+                                    <li><a href="#" className="hover:text-[#2D5A27] transition-colors">Virtual Site Tour</a></li>
                                 </ul>
                             </div>
                         </div>
@@ -60,7 +60,7 @@ const Footer = () => {
                         <div className="flex flex-col items-start lg:items-end mt-2 md:mt-0">
                             <h2 className="text-xl md:text-2xl font-black mb-4 lg:text-right leading-tight text-[#1e3d1a]">Book Your<br className="hidden md:block" /> Site Visit</h2>
                             <button className="w-full md:w-auto bg-[#1e3d1a] hover:bg-[#122610] text-white text-[10px] md:text-xs font-bold py-2.5 px-8 rounded-full transition-transform active:scale-95 shadow-lg mb-5">
-                                SCHEDULE NOW
+                                Schedule a Visit
                             </button>
 
                             <div className="flex items-center gap-2 mb-4">
@@ -88,7 +88,7 @@ const Footer = () => {
                         <p>© 2026 River Green Estates. All Rights Reserved.</p>
                         <div className="flex gap-6">
                             <a href="#" className="hover:opacity-100">Privacy Policy</a>
-                            <a href="#" className="hover:opacity-100">Terms</a>
+                            <a href="#" className="hover:opacity-100">Terms & Conditions</a>
                         </div>
                     </div>
                 </div>

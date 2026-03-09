@@ -16,32 +16,31 @@ const UpdatedHeroSection = () => {
                 >
                     {/* Main Heading */}
                     <h1 className="text-2xl sm:text-4xl md:text-5xl font-black text-gray-900 tracking-tight leading-tight mb-5 sm:mb-8">
-                        Effortless Capital, <br /> Limitless Opportunities.
+                        Smart Investment, <br /> Exceptional Living.
                     </h1>
 
                     {/* Description */}
                     <p className="text-base sm:text-lg text-gray-600 font-medium leading-relaxed max-w-xl mb-8 sm:mb-12">
-                        At Foundation, we're focused on fusing expert knowledge and insight with cutting-edge
-                        technology, elevating investment property financing to the next level.
+                        At The River Green, we combine thoughtful planning, natural surroundings, and modern infrastructure to create a community where investment value and peaceful living go hand in hand.
                     </p>
 
                     {/* Features Grid */}
                     <div className="grid grid-cols-1 md:grid-cols-2 border-t border-gray-200">
                         <div className="py-5 border-b border-gray-200 flex items-center gap-4">
                             <span className="text-gray-400 font-bold text-sm">01</span>
-                            <span className="text-gray-950 font-extrabold text-[13px] sm:text-[15px] uppercase tracking-wide">On-Demand Capital, Anytime</span>
+                            <span className="text-gray-950 font-extrabold text-[13px] sm:text-[15px] uppercase tracking-wide">Prime Location Advantage</span>
                         </div>
                         <div className="py-5 border-b border-gray-200 flex items-center gap-4 md:pl-6">
                             <span className="text-gray-400 font-bold text-sm">03</span>
-                            <span className="text-gray-950 font-extrabold text-[13px] sm:text-[15px] uppercase tracking-wide">Funding Solutions, Coast to Coast</span>
+                            <span className="text-gray-950 font-extrabold text-[13px] sm:text-[15px] uppercase tracking-wide">Premium Residential Plots</span>
                         </div>
                         <div className="py-5 border-b border-gray-200 flex items-center gap-4">
                             <span className="text-gray-400 font-bold text-sm">02</span>
-                            <span className="text-gray-950 font-extrabold text-[13px] sm:text-[15px] uppercase tracking-wide">Tailored Financing for Every Deal</span>
+                            <span className="text-gray-950 font-extrabold text-[13px] sm:text-[15px] uppercase tracking-wide">Modern Infrastructure</span>
                         </div>
                         <div className="py-5 border-b border-gray-200 flex items-center gap-4 md:pl-6">
                             <span className="text-gray-400 font-bold text-sm">04</span>
-                            <span className="text-gray-950 font-extrabold text-[13px] sm:text-[15px] uppercase tracking-wide">Designed for Long-Term Growth</span>
+                            <span className="text-gray-950 font-extrabold text-[13px] sm:text-[15px] uppercase tracking-wide">Future Growth Potential</span>
                         </div>
                     </div>
 

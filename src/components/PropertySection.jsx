@@ -173,7 +173,7 @@ const PropertySection = () => {
                     transition={{ delay: 1 }}
                     className="text-3xl sm:text-5xl md:text-7xl font-serif text-center max-w-4xl leading-tight px-4"
                 >
-                    Discover Architectural <br /> Masterpieces
+                    Explore Our Premium<br /> Developments
                 </motion.h1>
             </div>
 

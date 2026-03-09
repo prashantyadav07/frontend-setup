@@ -11,6 +11,7 @@ import {
     Wind,
     ArrowUpRight,
     X,
+    Map,
 } from 'lucide-react';
 import r4 from "../assets/r4.png"
 import r2 from "../assets/r2.png"
@@ -25,12 +26,12 @@ gsap.registerPlugin(ScrollTrigger);
 
 // ---------- Data ----------
 const featuredProject = {
-    title: 'The Pinnacle',
-    location: 'Beverly Hills, CA',
-    price: '$12.5M',
+    title: 'Prime Location • Premium Residential Plots',
+    location: 'Shamli , Uttar Pradesh',
+    price: '',
     image: r4,
     description:
-        'A sculptural masterpiece with panoramic ocean views, infinity edge pool, and a private glass elevator.',
+        'A thoughtfully planned township offering modern infrastructure, green surroundings, and the perfect place to build your dream home.',
 };
 
 const projects = [
@@ -61,19 +62,19 @@ const projects = [
 ];
 
 const amenities = [
-    { icon: Wind, label: 'Infinity Pool' },
-    { icon: Leaf, label: 'Private Gardens' },
-    { icon: Shield, label: '24/7 Security' },
-    { icon: Home, label: 'Spa & Wellness' },
+    { icon: Leaf, label: 'Green Parks & Open Spaces' },
+    { icon: Map, label: 'Wide Internal Roads' },
+    { icon: Shield, label: 'Gated Community Security' },
+    { icon: Home, label: 'Modern Infrastructure' },
 ];
 
 const ongoingProjects = projects.filter((p) => p.status === 'Ongoing');
 const completedProjects = projects.filter((p) => p.status === 'Completed');
 
 const stats = [
-    { label: 'Avg. Annual Appreciation', value: 12.5, suffix: '%', isFloat: true },
-    { label: 'Luxury Units Sold', value: 347, suffix: '+', isFloat: false },
-    { label: 'ROI Since Inception', value: 184, suffix: '%', isFloat: false },
+    { label: 'Premium Plots', value: 500, suffix: '+', isFloat: false },
+    { label: 'Happy Families', value: 700, suffix: '+', isFloat: false },
+    { label: 'Successful Developments', value: 10, suffix: '+', isFloat: false }
 ];
 
 const lifestyleImages = [r5, r6, r7, r23];
@@ -149,7 +150,7 @@ const PremiumSVGBackground = () => {
 const IntroHeader = () => {
     const headerRef = useRef(null);
     const isInView = useInView(headerRef, { once: true, amount: 0.5 });
-    const words = ['Curated', 'Residences'];
+    const words = ['Modern Living at ', 'The River Green'];
 
     return (
         <header ref={headerRef} className="mb-24 pt-10 grid lg:grid-cols-2 gap-12 items-center overflow-hidden">
@@ -189,7 +190,7 @@ const IntroHeader = () => {
                             initial={{ opacity: 0, y: 40 }}
                             animate={isInView ? { opacity: 1, y: 0 } : {}}
                             transition={{ duration: 0.8, delay: 0.3 + i * 0.15, ease: premiumEase }}
-                            className="inline-block"
+                            className="inline-block whitespace-nowrap"
                         >
                             {word}
                         </motion.span>
@@ -201,7 +202,7 @@ const IntroHeader = () => {
                     transition={{ duration: 0.8, delay: 0.6, ease: premiumEase }}
                     className="text-xl md:text-2xl text-gray-500 mt-6 max-w-2xl mx-auto lg:mx-0 font-light"
                 >
-                    Redefining the standard of modern luxury, one architectural masterpiece at a time.
+                    Thoughtfully planned residential plots designed for peaceful living, green surroundings, and long-term value.
                 </motion.p>
             </div>
         </header>
@@ -253,7 +254,7 @@ const FeaturedProject = () => {
                     transition={{ duration: 0.6, delay: 0.2 }}
                     className="text-[#B4A388] uppercase tracking-[0.25em] text-xs md:text-sm font-semibold mb-6"
                 >
-                    Featured Project
+                    The River Green Township
                 </motion.p>
                 <motion.h3
                     initial={{ opacity: 0, y: 20 }}
@@ -440,12 +441,12 @@ const DeveloperVision = () => {
                     <p className="text-[#B4A388] uppercase tracking-[0.2em] text-sm font-semibold">Our Philosophy</p>
                 </div>
                 <h3 className="text-4xl md:text-5xl lg:text-6xl font-medium text-[#111] leading-[1.1] mb-8 tracking-tight">
-                    Crafting <span className="italic font-serif text-[#B4A388] font-light">timeless</span> spaces for the discerning few.
+                    Designed<span className="italic font-serif text-[#B4A388] font-light"> for Living.</span> Built for the Future.
                 </h3>
                 <p className="text-gray-500 text-lg md:text-xl font-light leading-relaxed mb-8">
-                    Every project begins with a dialogue between architecture and its natural surroundings. We believe true luxury lies not just in opulence, but in creating serene environments that resonate deeply with your lifestyle.
+                    We believe great communities are created through thoughtful planning, green surroundings, and spaces where families can truly feel at home.
                 </p>
-                <button className="text-[#111] font-semibold border-b-2 border-[#B4A388] pb-1 hover:text-[#B4A388] transition-colors">Read Our Story</button>
+                <button className="text-[#111] font-semibold border-b-2 border-[#B4A388] pb-1 hover:text-[#B4A388] transition-colors">Learn More</button>
             </motion.div>
 
             <motion.div
@@ -516,7 +517,7 @@ const InvestmentValue = () => {
                 <h3 className="text-4xl md:text-5xl font-medium text-[#111] mb-4">
                     Investment <span className="italic font-serif text-[#B4A388] font-light">Excellence</span>
                 </h3>
-                <p className="text-gray-500 max-w-2xl mx-auto font-light">Consistent growth and unparalleled value creation across our portfolio.</p>
+                <p className="text-gray-500 max-w-2xl mx-auto font-light">Delivering thoughtfully planned townships designed for modern living, long-term value, and a trusted real estate investment.</p>
             </div>
 
             <div className="grid md:grid-cols-3 gap-6 lg:gap-10">
@@ -613,7 +614,7 @@ const AmenitiesShowcase = () => {
                     <h3 className="text-4xl md:text-5xl font-medium mb-4">
                         Curated <span className="italic font-serif text-[#B4A388]">Amenities</span>
                     </h3>
-                    <p className="text-gray-400 font-light max-w-xl mx-auto">Experiencing life at its peak with facilities designed for complete holistic well-being.</p>
+                    <p className="text-gray-400 font-light max-w-xl mx-auto">Designed to offer a balanced lifestyle with modern infrastructure, green surroundings, and essential facilities for comfortable community living.</p>
                 </div>
 
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-10">
@@ -681,15 +682,15 @@ const CtaFooter = () => {
             transition={{ duration: 1, ease: premiumEase }}
             className="text-center py-20 border-t border-[#B4A388]/20 mt-20"
         >
-            <h3 className="text-4xl md:text-5xl lg:text-6xl font-medium text-[#111] mb-8 tracking-tight">Begin Your Journey</h3>
-            <p className="text-gray-500 text-lg mb-10 font-light max-w-lg mx-auto">Connect with our private advisory team to explore our portfolio of exclusive residences.</p>
+            <h3 className="text-4xl md:text-5xl lg:text-6xl font-medium text-[#111] mb-8 tracking-tight">Start Your Journey</h3>
+            <p className="text-gray-500 text-lg mb-10 font-light max-w-lg mx-auto">Discover thoughtfully planned plots at The River Green and take the first step toward your dream home.</p>
 
             <motion.button
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
                 className="relative px-12 py-5 bg-[#111] text-[#F9F8F6] rounded-full text-sm font-semibold tracking-[0.15em] uppercase overflow-hidden group inline-flex items-center gap-4"
             >
-                <span className="relative z-10">Schedule Private Tour</span>
+                <span className="relative z-10">Contact Us</span>
                 <ArrowUpRight size={18} className="relative z-10 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
                 <motion.div
                     className="absolute inset-0 bg-[#B4A388]"

@@ -94,13 +94,13 @@ export default function ProjectsSection() {
 
                         <div className="pt-5 pb-1">
                             <h3 className="text-white mb-2 tracking-wide uppercase font-bold text-[14px] sm:text-[18px]">
-                                THE MOMENTUM DISTRICT
+                                THE RIVER GREEN TOWNSHIP
                             </h3>
                             <div className="space-y-0.5 mb-5 text-gray-400 text-[12px] sm:text-[14px]">
-                                <p>422 units</p>
-                                <p>3 min to Layan Beach</p>
+                                <p>Premium Residential Plots</p>
+                                <p>Designed for Modern Living</p>
                             </div>
-                            <span className="text-[#C4A66B] text-3xl font-light cursor-pointer hover:text-white transition-colors">+</span>
+                            <span className="text-[#C4A66B] text-3xl font-light cursor-pointer hover:text-white transition-colors"></span>
                         </div>
                     </div>
                 </motion.div>
@@ -124,8 +124,7 @@ export default function ProjectsSection() {
                         variants={itemVariants}
                         className="mb-8 text-gray-300 text-[16px] leading-relaxed"
                     >
-                        Explore our ongoing and completed projects to see how we bring
-                        ideas to life — shaping the future of real estate in Phuket.
+                        Explore our ongoing and completed township developments where thoughtful planning, modern infrastructure, and natural surroundings come together to create exceptional living spaces.
                     </motion.p>
 
                     <motion.div variants={itemVariants}>
@@ -134,7 +133,7 @@ export default function ProjectsSection() {
                             onMouseLeave={() => setBtnHover(false)}
                             className="flex items-center gap-3 py-3 px-6 sm:px-8 rounded-full bg-[#C4A66B] text-black font-bold text-[10px] sm:text-[11px] tracking-widest uppercase hover:bg-white transition-all"
                         >
-                            GO TO ALL PROJECTS
+                            View All Projects
                             <ArrowDiag moving={btnHover} />
                         </button>
                     </motion.div>

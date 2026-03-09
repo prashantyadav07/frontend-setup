@@ -112,7 +112,7 @@ const HeroSection = () => {
               transition={{ duration: 1.2, delay: 2, ease: "easeOut" }}
               className="text-[clamp(2rem,7vw,5.5rem)] font-serif font-black leading-[1.1] text-white w-full max-w-[90%] mx-auto"
             >
-              The River Green<br />Expert Approach
+              Luxury Living at <br />The River Green
             </motion.h1>
 
             <motion.div
@@ -122,10 +122,11 @@ const HeroSection = () => {
               className="flex flex-col items-center gap-6 w-full max-w-2xl px-4"
             >
               <p className="text-[10px] sm:text-[12px] md:text-[14px] tracking-[0.2em] sm:tracking-[0.25em] uppercase text-white/90 leading-[1.8] sm:leading-[2] font-medium text-center">
-                Unlock the true potential of your multi-family real estate investment
+                Premium residential plots surrounded by nature.
+                Build your dream home in a peaceful and well-planned township.
               </p>
               <button className="flex-shrink-0 border-2 border-white/80 bg-white/5 backdrop-blur-sm px-6 sm:px-10 py-3 sm:py-4 text-[10px] sm:text-[11px] md:text-[12px] tracking-[0.2em] sm:tracking-[0.25em] uppercase text-white font-bold transition-all duration-300 hover:bg-white hover:text-black hover:border-white whitespace-nowrap">
-                Investment Inquiry
+                View Available Plots
               </button>
             </motion.div>
           </div>

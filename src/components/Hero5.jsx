@@ -24,10 +24,10 @@ const Hero5 = () => {
                 className="text-center mb-10 relative z-10 w-full"
             >
                 <span className="text-[#B49A5A] text-[10px] md:text-[11px] tracking-[0.5em] uppercase font-bold mb-3 block">
-                    Premium Experience
+                    PREMIUM LIVING
                 </span>
                 <h2 className="text-3xl md:text-5xl font-extrabold text-black tracking-tight leading-tight max-w-3xl mx-auto uppercase">
-                    MODERN SUSTAINABLE LIVING
+                    Experience Life at The River Green
                 </h2>
                 <div className="w-16 h-[1.5px] bg-[#B49A5A] mx-auto mt-4" />
             </motion.div>
@@ -65,13 +65,12 @@ const Hero5 = () => {
                 className="mt-12 text-center z-10 px-4 max-w-xl"
             >
                 <p className="text-zinc-500 text-sm md:text-base leading-relaxed mb-8">
-                    Redefining luxury through architectural innovation and eco-conscious design.
-                    Crafted to harmonize with the environment.
+                    A thoughtfully planned township where modern infrastructure meets natural beauty. Designed to offer peaceful living, open spaces, and a lifestyle that feels truly exceptional.
                 </p>
 
                 <div className="flex justify-center">
                     <button className="px-10 py-3.5 bg-black text-white text-[11px] font-bold tracking-[0.2em] uppercase transition-all duration-500 hover:bg-[#C9B171] w-full sm:w-auto">
-                        Discover Details
+                        Explore the Lifestyle
                     </button>
                 </div>
             </motion.div>

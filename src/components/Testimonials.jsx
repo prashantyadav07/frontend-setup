@@ -28,7 +28,7 @@ const TestimonialSection = () => {
           transition={{ duration: 0.6 }}
           className="text-[#0D180C] text-2xl sm:text-3xl md:text-[42px] font-serif mb-8 sm:mb-12 tracking-tight"
         >
-          But, don't take it from us...
+          Our Philosophy
         </motion.h2>
 
         <div className="relative w-full flex flex-col md:block">
@@ -52,8 +52,8 @@ const TestimonialSection = () => {
             <p
               className="text-[#0D180C] text-[16px] sm:text-[20px] md:text-[22px] leading-[1.5] sm:leading-[1.6] mb-8 sm:mb-12 max-w-[600px]"
             >
-              Our philosophy is to provide people with beautiful homes in wonderful places.
-              We focus on both quality and tranquility so your dream can become a reality.
+              “Great communities are built with vision, trust, and attention to every detail. At The River Green, we design spaces that bring people closer to nature while offering the comfort of modern living.”
+
             </p>
 
             {/* Author Details */}
