@@ -2,7 +2,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence, useScroll, useTransform } from 'framer-motion';
 import PropertySection from '../components/PropertySection';
-import mainVideo from "../assets/main.mp4";
+const mainVideo = "https://res.cloudinary.com/dy7errtcp/video/upload/v1773153927/main_ocx1to.mp4";
 import TestimonialSection from '@/components/Testimonials';
 import Videodesign from '../components/hero4';
 import Hero5 from '../components/Hero5';

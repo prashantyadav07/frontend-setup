@@ -6,7 +6,7 @@ import r4 from "../assets/r4.png"
 import r2 from "../assets/r2.png"
 import r5 from "../assets/r5.png"
 import r25 from "../assets/r25.png"
-import projectVideo from '../assets/main.mp4';
+const projectVideo = "https://res.cloudinary.com/dy7errtcp/video/upload/v1773153927/main_ocx1to.mp4";
 import HLSVideoPlayer from '../components/HLSVideoPlayer';
 
 // Export projects so ProjectDetails can access them natively
