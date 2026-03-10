@@ -6,7 +6,7 @@ import r4 from "../assets/r4.png"
 import r2 from "../assets/r2.png"
 import r5 from "../assets/r5.png"
 import r25 from "../assets/r25.png"
-import projectVideo from '../assets/main.mp4';
+import projectVideo from '../../src/assets/main.mp4';
 import HLSVideoPlayer from '../components/HLSVideoPlayer';
 
 // Export projects so ProjectDetails can access them natively
