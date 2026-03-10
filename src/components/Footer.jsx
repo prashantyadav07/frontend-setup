@@ -4,97 +4,87 @@ import { useNavigate } from 'react-router-dom';
 const Footer = () => {
     const navigate = useNavigate();
     return (
-        <div className="relative w-full px-4 md:px-8 pb-10 overflow-hidden bg-white">
-            {/* Background Watermark Content - Fixed for mobile overflow */}
-            {/* <div className="absolute inset-x-0 bottom-[-5%] sm:bottom-[-10%] flex justify-center pointer-events-none select-none z-0">
-                <h2 className="text-[20vw] md:text-[18vw] font-black text-[#2D5A27]/10 tracking-tighter uppercase whitespace-nowrap">
-                    river green
-                </h2>
-            </div> */}
+        <div className="relative w-full pt-20 pb-10 overflow-hidden bg-black text-white font-sans selection:bg-[#B49A5A] selection:text-black">
 
-            {/* Footer Card Container */}
-            <footer className="relative z-10 max-w-7xl mx-auto rounded-[2rem] md:rounded-[2.5rem] bg-[#F7F9F6] shadow-2xl overflow-hidden border border-black/5">
-                <div className="pt-8 md:pt-12 pb-6 md:pb-8 px-6 md:px-12 lg:px-16 text-[#0a0a0a] font-sans">
+            {/* Ambient Background Glows */}
+            <div className="absolute top-0 right-0 w-[500px] h-[500px] rounded-full bg-[radial-gradient(circle,rgba(180,154,90,0.1)_0%,transparent_70%)] pointer-events-none" />
+            <div className="absolute bottom-0 left-0 w-[500px] h-[500px] rounded-full bg-[radial-gradient(circle,rgba(255,255,255,0.05)_0%,transparent_70%)] pointer-events-none" />
 
-                    {/* Grid: 1 col on mobile, 4 on desktop */}
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-10">
+            {/* Gradient Top Border Divider */}
+            <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-[#B49A5A]/50 to-transparent" />
 
-                        {/* Column 1: Logo & Vision */}
-                        <div className="flex flex-col gap-4 md:gap-5">
-                            <div className="flex items-center gap-2">
-                                <svg viewBox="0 0 24 24" className="w-7 h-7 md:w-8 md:h-8 fill-[#2D5A27]" xmlns="http://www.w3.org/2000/svg">
+            {/* Footer Container */}
+            <footer className="relative z-10 max-w-7xl mx-auto px-6 md:px-12 lg:px-16">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8 mb-16">
+
+                    {/* Column 1: Brand & Vision */}
+                    <div className="flex flex-col gap-6 lg:pr-8">
+                        <div className="flex items-center gap-3 cursor-pointer" onClick={() => navigate('/')}>
+                            <div className="w-10 h-10 rounded-full bg-gradient-to-tr from-[#B49A5A] to-[#E5D3B3] flex items-center justify-center shadow-[0_0_20px_rgba(180,154,90,0.3)]">
+                                <svg viewBox="0 0 24 24" className="w-5 h-5 fill-black" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M19 9.3V4h-3v2.6L12 3 2 12h3v8h5v-6h4v6h5v-8h3l-3-2.7zm-9 .7c0-1.1.9-2 2-2s2 .9 2 2-.9 2-2 2-2-.9-2-2z" />
                                 </svg>
-                                <div className="flex flex-col leading-none">
-                                    <span className="text-lg md:text-xl font-black tracking-tight text-[#1e3d1a]">RIVER GREEN</span>
-                                    <span className="text-[9px] md:text-[10px] font-medium tracking-[0.3em] opacity-70">ESTATES</span>
-                                </div>
                             </div>
-                            <p className="text-[11px] md:text-xs leading-relaxed opacity-80 max-w-xs">
-                                Creating premium residential communities where modern infrastructure meets natural surroundings. We specialize in thoughtfully planned townships and high-value residential plots designed for peaceful living and smart investment.
-                            </p>
-                        </div>
-
-                        {/* Column 2 & 3: Wrapped in a div to take less height on mobile */}
-                        <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-2 col-span-1 md:col-span-2 gap-4 md:gap-10">
-                            <div>
-                                <h3 className="text-xs md:text-sm font-bold mb-4 md:mb-5 border-b border-[#2D5A27]/10 pb-2">Properties</h3>
-                                <ul className="space-y-2 md:space-y-2.5 text-[10px] md:text-xs font-semibold opacity-90">
-                                    <li><a href="#" className="hover:text-[#2D5A27] transition-colors">Residential Plots</a></li>
-                                    <li><a href="#" className="hover:text-[#2D5A27] transition-colors">Premium Township Projects</a></li>
-                                    <li><a href="#" className="hover:text-[#2D5A27] transition-colors">Future Developments</a></li>
-                                    <li className="hidden md:block"><a href="#" className="hover:text-[#2D5A27] transition-colors">Investment Opportunities</a></li>
-                                </ul>
-                            </div>
-
-                            <div>
-                                <h3 className="text-xs md:text-sm font-bold mb-4 md:mb-5 border-b border-[#2D5A27]/10 pb-2">Resources</h3>
-                                <ul className="space-y-2 md:space-y-2.5 text-[10px] md:text-xs font-semibold opacity-90">
-                                    <li><a href="#" className="hover:text-[#2D5A27] transition-colors">Buyer's Guide</a></li>
-                                    <li><a href="#" className="hover:text-[#2D5A27] transition-colors">Investment Insights</a></li>
-                                    <li className="hidden md:block"><a href="#" className="hover:text-[#2D5A27] transition-colors">Legal Documentation</a></li>
-                                    <li><a href="#" className="hover:text-[#2D5A27] transition-colors">Virtual Site Tour</a></li>
-                                </ul>
+                            <div className="flex flex-col leading-none">
+                                <span className="text-xl font-serif font-bold tracking-tight text-white mb-1">DEFENCE GARDEN</span>
+                                <span className="text-[9px] font-bold tracking-[0.4em] text-[#B49A5A] uppercase">Estates</span>
                             </div>
                         </div>
-
-                        {/* Column 4: Booking/CTA */}
-                        <div className="flex flex-col items-start lg:items-end mt-2 md:mt-0">
-                            <h2 className="text-xl md:text-2xl font-black mb-4 lg:text-right leading-tight text-[#1e3d1a]">Book Your<br className="hidden md:block" /> Site Visit</h2>
-                            <button
-                                onClick={() => navigate('/contact')}
-                                className="w-full md:w-auto bg-[#1e3d1a] hover:bg-[#122610] text-white text-[10px] md:text-xs font-bold py-2.5 px-8 rounded-full transition-transform active:scale-95 shadow-lg mb-5"
-                            >
-                                Schedule a Visit
-                            </button>
-
-                            <div className="flex items-center gap-2 mb-4">
-                                <div className="flex -space-x-1.5">
-                                    <div className="w-5 h-5 md:w-6 md:h-6 rounded-full bg-gray-200 border border-white overflow-hidden">
-                                        <img src="https://i.pravatar.cc/100?u=property1" alt="Buyer" loading="lazy" decoding="async" />
-                                    </div>
-                                    <div className="w-5 h-5 md:w-6 md:h-6 rounded-full bg-gray-300 border border-white overflow-hidden">
-                                        <img src="https://i.pravatar.cc/100?u=property3" alt="Buyer" loading="lazy" decoding="async" />
-                                    </div>
-                                </div>
-                                <div className="flex flex-col">
-                                    <div className="flex items-center gap-1">
-                                        <span className="font-bold text-[10px] md:text-xs">4.9</span>
-                                        <div className="flex text-yellow-600 text-[8px] md:text-[10px]">★★★★★</div>
-                                    </div>
-                                    <span className="text-[7px] md:text-[8px] font-bold opacity-60">500+ Happy Families</span>
-                                </div>
-                            </div>
-                        </div>
+                        <p className="text-gray-400 text-sm leading-relaxed font-light">
+                            Creating premium residential communities where modern luxury meets natural serenity. We specialize in thoughtfully planned, high-value townships designed for elevated living.
+                        </p>
                     </div>
 
-                    {/* Bottom Copyright */}
-                    <div className="mt-8 md:mt-12 pt-6 border-t border-black/5 flex flex-col md:flex-row justify-between items-center gap-4 text-[9px] md:text-[10px] font-medium opacity-50 uppercase tracking-widest text-center">
-                        <p>© 2026 River Green Estates. All Rights Reserved.</p>
-                        <div className="flex gap-6">
-                            <a href="#" className="hover:opacity-100">Privacy Policy</a>
-                            <a href="#" className="hover:opacity-100">Terms & Conditions</a>
-                        </div>
+                    {/* Column 2: Properties */}
+                    <div>
+                        <h3 className="text-lg font-serif font-bold mb-6 text-white inline-block relative">
+                            Properties
+                            <span className="absolute -bottom-2 left-0 w-1/2 h-[2px] bg-gradient-to-r from-[#B49A5A] to-transparent" />
+                        </h3>
+                        <ul className="space-y-4 text-sm font-light text-gray-400">
+                            <li><a href="#" className="hover:text-[#B49A5A] transition-colors flex items-center gap-2 group"><span className="w-1.5 h-1.5 rounded-full bg-white/20 group-hover:bg-[#B49A5A] transition-colors" /> Residential Plots</a></li>
+                            <li><a href="#" className="hover:text-[#B49A5A] transition-colors flex items-center gap-2 group"><span className="w-1.5 h-1.5 rounded-full bg-white/20 group-hover:bg-[#B49A5A] transition-colors" /> Premium Townships</a></li>
+                            <li><a href="#" className="hover:text-[#B49A5A] transition-colors flex items-center gap-2 group"><span className="w-1.5 h-1.5 rounded-full bg-white/20 group-hover:bg-[#B49A5A] transition-colors" /> Future Developments</a></li>
+                            <li><a href="#" onClick={(e) => { e.preventDefault(); navigate('/investment'); }} className="hover:text-[#B49A5A] transition-colors flex items-center gap-2 group"><span className="w-1.5 h-1.5 rounded-full bg-[#B49A5A]/50 group-hover:bg-[#B49A5A] transition-colors" /> Investment Opportunities</a></li>
+                        </ul>
+                    </div>
+
+                    {/* Column 3: Resources */}
+                    <div>
+                        <h3 className="text-lg font-serif font-bold mb-6 text-white inline-block relative">
+                            Resources
+                            <span className="absolute -bottom-2 left-0 w-1/2 h-[2px] bg-gradient-to-r from-[#B49A5A] to-transparent" />
+                        </h3>
+                        <ul className="space-y-4 text-sm font-light text-gray-400">
+                            <li><a href="#" className="hover:text-[#B49A5A] transition-colors flex items-center gap-2 group"><span className="w-1.5 h-1.5 rounded-full bg-white/20 group-hover:bg-[#B49A5A] transition-colors" /> Buyer's Guide</a></li>
+                            <li><a href="#" className="hover:text-[#B49A5A] transition-colors flex items-center gap-2 group"><span className="w-1.5 h-1.5 rounded-full bg-white/20 group-hover:bg-[#B49A5A] transition-colors" /> Investment Insights</a></li>
+                            <li><a href="#" className="hover:text-[#B49A5A] transition-colors flex items-center gap-2 group"><span className="w-1.5 h-1.5 rounded-full bg-white/20 group-hover:bg-[#B49A5A] transition-colors" /> Legal Documentation</a></li>
+                            <li><a href="#" className="hover:text-[#B49A5A] transition-colors flex items-center gap-2 group"><span className="w-1.5 h-1.5 rounded-full bg-white/20 group-hover:bg-[#B49A5A] transition-colors" /> Virtual Site Tour</a></li>
+                        </ul>
+                    </div>
+
+                    {/* Column 4: Contact/CTA */}
+                    <div className="flex flex-col lg:items-end">
+                        <h3 className="text-2xl font-serif font-bold mb-4 text-white lg:text-right">Ready to invest?</h3>
+                        <p className="text-sm font-light text-gray-400 mb-6 lg:text-right">Speak with our premium property advisors today.</p>
+                        <button
+                            onClick={() => navigate('/contact')}
+                            className="bg-gradient-to-r from-[#B49A5A] to-[#C9B37E] hover:from-white hover:to-white text-black px-8 py-3.5 rounded-full font-bold uppercase tracking-widest text-[11px] transition-all shadow-[0_0_20px_rgba(180,154,90,0.2)] hover:shadow-[0_0_30px_rgba(255,255,255,0.4)] w-full lg:w-auto"
+                        >
+                            Schedule a Visit
+                        </button>
+                    </div>
+
+                </div>
+
+                {/* Bottom Bar */}
+                <div className="pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-6">
+                    <p className="text-[10px] text-gray-500 uppercase tracking-widest font-bold">
+                        © 2026 Defence Garden Estates. All Rights Reserved.
+                    </p>
+                    <div className="flex gap-8 text-[10px] text-gray-500 uppercase tracking-widest font-bold">
+                        <a href="#" className="hover:text-white transition-colors">Privacy Policy</a>
+                        <a href="#" className="hover:text-white transition-colors">Terms of Service</a>
                     </div>
                 </div>
             </footer>

@@ -65,7 +65,7 @@ const HighEndAboutUs = () => {
                     Our story began with a simple yet profound realization: that a home is more than just a structure; it's the foundation of a life well-lived. In the bustling heart of Meerut, amidst the rapid growth of the city, we saw a need for spaces that offer both luxury and a deep connection to nature.
                   </p>
                   <p>
-                    The River Green was born from this vision. We didn't just want to build plots; we wanted to curate environments. From the initial blueprint to the final blade of grass in our parks, every detail has been meticulously planned to foster community, sustainability, and timeless elegance.
+                    Defence Garden was born from this vision. We didn't just want to build plots; we wanted to curate environments. From the initial blueprint to the final blade of grass in our parks, every detail has been meticulously planned to foster community, sustainability, and timeless elegance.
                   </p>
                   <p>
                     Today, we continue to push boundaries, blending traditional values with modern innovation to create townships that aren't just lived in, but loved for generations.
@@ -95,7 +95,7 @@ const HighEndAboutUs = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
           >
-            <span className="text-xs uppercase tracking-[0.6em] mb-6 block text-[#C5A059]">THE RIVER GREEN</span>
+            <span className="text-xs uppercase tracking-[0.6em] mb-6 block text-[#C5A059]">DEFENCE GARDEN</span>
             <h1 className="text-[12vw] md:text-[8vw] font-serif leading-[0.9] tracking-tighter">
               Luxury Plot Living.<br />
               <span className="font-light opacity-80"></span>
@@ -134,7 +134,7 @@ const HighEndAboutUs = () => {
         <div className="lg:col-span-5 space-y-8">
           <motion.h2 initial={{ opacity: 0, x: 50 }} whileInView={{ opacity: 1, x: 0 }} className="text-4xl md:text-5xl font-serif leading-tight">A Journey From <br /> Vision to Community.</motion.h2>
           <motion.p initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} transition={{ delay: 0.3 }} className="text-gray-500 text-lg leading-relaxed">
-            Our journey began in the heart of Meerut, driven by a vision to create thoughtfully planned townships. Today, The River Green stands as a symbol of trust, modern development, and spaces where families can build their dreams.
+            Our journey began in the heart of Meerut, driven by a vision to create thoughtfully planned townships. Today, Defence Garden stands as a symbol of trust, modern development, and spaces where families can build their dreams.
           </motion.p>
           <motion.button
             onClick={() => setShowStory(true)}
@@ -198,7 +198,7 @@ const HighEndAboutUs = () => {
         {[
           { title: "Sustainable Living", desc: "We believe modern living should respect nature. Our townships are designed with green spaces, eco-friendly planning, and infrastructure that supports a healthier environment." },
           { title: "Timeless Planning", desc: "Great communities never go out of style. Our developments are thoughtfully planned to offer lasting value, functional design, and a lifestyle that stands the test of time." },
-          { title: "Trust & Transparency", desc: "At The River Green, every project is built on honesty, legal clarity, and complete transparency — ensuring confidence and peace of mind for every buyer." }
+          { title: "Trust & Transparency", desc: "At Defence Garden, every project is built on honesty, legal clarity, and complete transparency — ensuring confidence and peace of mind for every buyer." }
         ].map((item, i) => (
           <motion.div key={i} initial={{ opacity: 0, y: 50 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ margin: "-100px" }} className="border-l-2 border-[#C5A059] pl-6 md:pl-10">
             <span className="text-[#C5A059] font-mono text-sm mb-4 block">0{i + 1} / 03</span>
@@ -212,7 +212,7 @@ const HighEndAboutUs = () => {
       <section className="py-12 md:py-24 px-6 bg-white overflow-hidden">
         <div className="max-w-5xl mx-auto flex flex-col items-center">
           <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-5xl font-serif leading-tight mb-4">The Vision Behind The River Green</h2>
+            <h2 className="text-3xl md:text-5xl font-serif leading-tight mb-4">The Vision Behind Defence Garden</h2>
             <p className="text-gray-400 text-[10px] md:text-xs uppercase tracking-widest">Meet the team dedicated to building thoughtfully planned communities and delivering exceptional living experiences.</p>
           </div>
 

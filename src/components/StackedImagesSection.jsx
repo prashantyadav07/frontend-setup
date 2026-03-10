@@ -21,7 +21,7 @@ const UpdatedHeroSection = () => {
 
                     {/* Description */}
                     <p className="text-base sm:text-lg text-gray-600 font-medium leading-relaxed max-w-xl mb-8 sm:mb-12">
-                        At The River Green, we combine thoughtful planning, natural surroundings, and modern infrastructure to create a community where investment value and peaceful living go hand in hand.
+                        At Defence Garden, we combine thoughtful planning, natural surroundings, and modern infrastructure to create a community where investment value and peaceful living go hand in hand.
                     </p>
 
                     {/* Features Grid */}
