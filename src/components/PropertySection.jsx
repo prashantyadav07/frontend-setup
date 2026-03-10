@@ -111,35 +111,35 @@ const PropertySection = () => {
     return (
         <div className="bg-white text-[#0A0A0A]">
             {/* HERO SECTION */}
-            <div className="relative h-[70vh] sm:h-screen flex flex-col items-center justify-center z-10 bg-white overflow-hidden">
+            <div className="relative min-h-[55vh] sm:h-screen flex flex-col items-center justify-center z-10 bg-white overflow-hidden py-24 sm:py-0">
                 {/* Left Tree */}
                 <motion.img
                     src={leftTree}
-                    initial={{ opacity: 0, x: -150, rotate: 0 }}
+                    initial={{ opacity: 0, x: -100, rotate: 0 }}
                     whileInView={{ opacity: 1, x: 0, rotate: 25 }}
-                    viewport={{ once: false, amount: 0.3 }}
+                    viewport={{ once: false, amount: 0 }}
                     transition={{
                         type: "spring",
                         stiffness: 30,
                         damping: 25,
                         duration: 2.5
                     }}
-                    className="absolute left-0 bottom-0 h-[50%] sm:h-[70%] object-contain pointer-events-none z-0 origin-bottom-left"
+                    className="absolute left-[-15vw] sm:left-0 bottom-0 w-[55vw] sm:w-auto h-auto sm:h-[70%] object-contain pointer-events-none z-0 origin-bottom-left"
                 />
 
                 {/* Right Tree */}
                 <motion.img
                     src={rightTree}
-                    initial={{ opacity: 0, x: 150, rotate: 0 }}
+                    initial={{ opacity: 0, x: 100, rotate: 0 }}
                     whileInView={{ opacity: 1, x: 0, rotate: -25 }}
-                    viewport={{ once: false, amount: 0.3 }}
+                    viewport={{ once: false, amount: 0 }}
                     transition={{
                         type: "spring",
                         stiffness: 30,
                         damping: 25,
                         duration: 2.5
                     }}
-                    className="absolute right-0 bottom-0 h-[50%] sm:h-[70%] object-contain pointer-events-none z-0 origin-bottom-right"
+                    className="absolute right-[-15vw] sm:right-0 bottom-0 w-[55vw] sm:w-auto h-auto sm:h-[70%] object-contain pointer-events-none z-0 origin-bottom-right"
                 />
 
                 <motion.div
