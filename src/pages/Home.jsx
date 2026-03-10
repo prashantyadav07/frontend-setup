@@ -2,9 +2,8 @@ import React, { useState, useRef, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence, useScroll, useTransform } from 'framer-motion';
 import PropertySection from '../components/PropertySection';
-import hero1 from "../assets/hero2.jpg";
+import mainVideo from "../assets/main.mp4";
 import TestimonialSection from '@/components/Testimonials';
-import StackedImagesSection from '../components/StackedImagesSection';
 import Videodesign from '../components/hero4';
 import Hero5 from '../components/Hero5';
 
@@ -43,13 +42,15 @@ const HeroSection = () => {
       {/* ======= EXACT SAME ORIGINAL HERO SECTION ======= */}
       <section className="relative h-screen w-full overflow-hidden bg-black z-10">
 
-        {/* 1. BACKGROUND IMAGE */}
+        {/* 1. BACKGROUND VIDEO */}
         <div className="absolute inset-0 z-0 bg-black">
-          <img
-            src={hero1}
-            alt="Mansion Background"
+          <video
+            src={mainVideo}
             className="h-full w-full object-cover"
-            loading="eager"
+            autoPlay
+            loop
+            muted
+            playsInline
           />
           {/* Professional Gradient Overlay: Darker middle and bottom to reduce faded effect */}
           <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-black/60 to-black/95 pointer-events-none" />
@@ -115,7 +116,7 @@ const HeroSection = () => {
               transition={{ duration: 1.2, delay: 2, ease: "easeOut" }}
               className="text-[clamp(2rem,7vw,5.5rem)] font-serif font-black leading-[1.1] text-white w-full max-w-[90%] mx-auto"
             >
-              Luxury Living at <br />The River Green
+              Luxury Living at <br />Defence Garden
             </motion.h1>
 
             <motion.div
@@ -152,8 +153,6 @@ const HeroSection = () => {
       </section>
       <PropertySection />
       <TestimonialSection />
-
-      <StackedImagesSection />
       <Videodesign />
       <Hero5 />
 

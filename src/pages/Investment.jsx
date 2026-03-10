@@ -1,6 +1,6 @@
 import React, { useRef, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { motion } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import investImg from '../assets/investimg.png';
@@ -10,29 +10,42 @@ import r21 from '../assets/r21.png';
 import r22 from '../assets/r22.png';
 import r25 from '../assets/r25.png';
 
-// Register GSAP ScrollTrigger
 gsap.registerPlugin(ScrollTrigger);
 
+const fadeUp = {
+  hidden: { opacity: 0, y: 40 },
+  visible: (i = 1) => ({
+    opacity: 1,
+    y: 0,
+    transition: { delay: i * 0.1, duration: 0.8, ease: [0.16, 1, 0.3, 1] }
+  }),
+};
+
+const staggerChildren = {
+  hidden: { opacity: 0 },
+  visible: { opacity: 1, transition: { staggerChildren: 0.15 } },
+};
+
 const RealEstateInvestmentPage = () => {
-  // Refs for sections and parallax elements
+  const containerRef = useRef(null);
   const heroRef = useRef(null);
   const heroImageRef = useRef(null);
-  const opportunitiesRef = useRef(null);
-  const whyInvestRef = useRef(null);
-  const plansRef = useRef(null);
-  const ctaRef = useRef(null);
   const ctaImageRef = useRef(null);
-  const containerRef = useRef(null);
   const navigate = useNavigate();
   const [expandedId, setExpandedId] = useState(null);
 
-  // GSAP animations (parallax and scroll-triggered effects)
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start start", "end end"]
+  });
+
+  // GSAP for performance-heavy parallax
   useEffect(() => {
     let ctx = gsap.context(() => {
-      // Hero parallax: move background image at slower speed
+      // Hero Image Parallax
       if (heroImageRef.current) {
         gsap.to(heroImageRef.current, {
-          y: "-15%",
+          y: "20%",
           ease: "none",
           scrollTrigger: {
             trigger: heroRef.current,
@@ -43,13 +56,13 @@ const RealEstateInvestmentPage = () => {
         });
       }
 
-      // CTA section parallax
+      // CTA Image Parallax
       if (ctaImageRef.current) {
         gsap.to(ctaImageRef.current, {
-          y: "-10%",
+          y: "15%",
           ease: "none",
           scrollTrigger: {
-            trigger: ctaRef.current,
+            trigger: ".cta-section",
             start: "top bottom",
             end: "bottom top",
             scrub: true,
@@ -57,351 +70,287 @@ const RealEstateInvestmentPage = () => {
         });
       }
 
-      // Subtle scale animation for cards on scroll using GSAP
+      // Card scale-up on scroll
       const cards = gsap.utils.toArray(".invest-card");
       cards.forEach((card) => {
         gsap.fromTo(
           card,
-          { scale: 0.95, opacity: 0.6 },
+          { scale: 0.95, opacity: 0, y: 50 },
           {
             scale: 1,
             opacity: 1,
+            y: 0,
+            duration: 1,
+            ease: "power3.out",
             scrollTrigger: {
               trigger: card,
               start: "top 85%",
-              end: "bottom 60%",
-              scrub: true,
             },
           }
         );
       });
     }, containerRef);
 
-    // Clean up ScrollTrigger on unmount
     return () => ctx.revert();
   }, []);
 
-  // Animation variants for Framer Motion (section entrances)
-  const fadeUp = {
-    hidden: { opacity: 0, y: 40 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.7, ease: "easeOut" } },
-  };
-
-  const staggerChildren = {
-    hidden: { opacity: 0 },
-    visible: { opacity: 1, transition: { staggerChildren: 0.15 } },
-  };
-
   return (
-    <div ref={containerRef} className="bg-neutral-50 text-gray-800 font-sans antialiased overflow-x-hidden">
-      {/* HERO SECTION */}
-      <section
-        ref={heroRef}
-        className="relative h-screen flex items-center justify-center overflow-hidden"
-      >
-        {/* Parallax background image */}
+    <div ref={containerRef} className="bg-black text-white font-sans antialiased overflow-x-hidden relative selection:bg-[#B49A5A] selection:text-black">
+
+      {/* GLOBAL BACKGROUND GLOWS */}
+      <div className="fixed inset-0 z-0 pointer-events-none">
+        <div className="absolute top-1/4 -left-64 w-[50vw] h-[50vw] rounded-full bg-[radial-gradient(circle,rgba(180,154,90,0.1)_0%,transparent_70%)]" />
+        <div className="absolute top-3/4 -right-64 w-[60vw] h-[60vw] rounded-full bg-[radial-gradient(circle,rgba(255,255,255,0.05)_0%,transparent_70%)]" />
+      </div>
+
+      {/* ── HERO SECTION ── */}
+      <section ref={heroRef} className="relative h-[100svh] flex items-center justify-center overflow-hidden z-10">
         <div
           ref={heroImageRef}
-          className="absolute inset-0 w-full h-[120%] bg-cover bg-center will-change-transform"
-          style={{
-            backgroundImage:
-              `url(${investImg})`,
-          }}
+          className="absolute inset-x-0 -top-[20%] h-[140%] w-full bg-cover bg-center will-change-transform"
+          style={{ backgroundImage: `url(${investImg})` }}
         >
-          <div className="absolute inset-0 bg-black/30" />
+          <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black pointer-events-none" />
         </div>
 
-        {/* Hero content */}
         <motion.div
           initial="hidden"
           animate="visible"
-          variants={fadeUp}
-          className="relative z-10 text-center text-white px-4 max-w-4xl"
+          className="relative z-10 text-center px-4 max-w-5xl mt-20"
         >
-          <h1 className="text-5xl md:text-7xl font-bold leading-tight mb-6">
-            Invest in the Future of Living
-          </h1>
-          <p className="text-xl md:text-2xl font-light mb-10">
-            At The River Green, we offer thoughtfully planned township developments that combine peaceful living with exceptional investment potential.
-          </p>
-          <motion.button
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            onClick={() => navigate('/ourproject')}
-            className="bg-white text-gray-900 px-8 py-4 rounded-full font-semibold text-lg shadow-xl hover:shadow-2xl transition"
-          >
-            Explore Sites
-          </motion.button>
+          <motion.p custom={0} variants={fadeUp} className="text-[#B49A5A] text-[10px] sm:text-[12px] tracking-[0.4em] uppercase font-bold mb-6">
+            Premium Portfolio
+          </motion.p>
+          <motion.h1 custom={1} variants={fadeUp} className="text-[clamp(40px,6vw,90px)] font-serif font-black leading-[1.05] mb-6">
+            INVEST IN THE <br />
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-gray-300 to-gray-500">FUTURE OF LIVING</span>
+          </motion.h1>
+          <motion.p custom={2} variants={fadeUp} className="text-gray-400 text-[14px] sm:text-[18px] font-light mb-12 max-w-2xl mx-auto leading-relaxed">
+            At Defence Garden, we offer thoughtfully planned township developments that combine peaceful living with exceptional investment potential.
+          </motion.p>
+          <motion.div custom={3} variants={fadeUp}>
+            <button
+              onClick={() => navigate('/ourproject')}
+              className="group relative inline-flex items-center gap-3 py-4 sm:py-5 px-8 sm:px-10 border border-white/20 bg-black/40 backdrop-blur-md text-white font-bold text-[10px] sm:text-[12px] tracking-[0.2em] uppercase overflow-hidden transition-all duration-500 hover:border-[#B49A5A]"
+            >
+              <div className="absolute inset-0 bg-[#B49A5A] translate-y-[100%] transition-transform duration-500 ease-out group-hover:translate-y-0" />
+              <span className="relative z-10 transition-colors duration-500 group-hover:text-black">Explore Sites</span>
+              <span className="relative z-10 transition-colors duration-500 group-hover:text-black">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" className="transform transition-transform duration-300 group-hover:translate-x-1">
+                  <path d="M5 12h14M12 5l7 7-7 7" />
+                </svg>
+              </span>
+            </button>
+          </motion.div>
         </motion.div>
+        <div className="absolute bottom-0 w-full h-40 bg-gradient-to-t from-black to-transparent pointer-events-none" />
       </section>
 
-      {/* INVESTMENT OPPORTUNITIES SECTION */}
-      <motion.section
-        ref={opportunitiesRef}
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, margin: "-100px" }}
-        variants={staggerChildren}
-        className="py-24 px-6 max-w-7xl mx-auto"
-      >
-        <motion.h2 variants={fadeUp} className="text-4xl font-bold text-center mb-4">
-          Smart Investment Opportunities
-        </motion.h2>
-        <motion.p variants={fadeUp} className="text-center text-gray-600 mb-16 max-w-2xl mx-auto">
-          Choose from carefully planned residential plots located in prime areas with excellent growth potential.
-        </motion.p>
+      {/* ── OPPORTUNITIES SECTION ── */}
+      <section className="relative py-32 px-6 max-w-[1400px] mx-auto z-10">
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.2 }}
+          className="text-center mb-20"
+        >
+          <motion.h2 custom={1} variants={fadeUp} className="text-[clamp(30px,4vw,50px)] font-serif font-bold mb-4">
+            Smart Opportunities
+          </motion.h2>
+          <motion.div custom={2} variants={fadeUp} className="w-12 h-[2px] bg-[#B49A5A]/60 mx-auto mb-6" />
+          <motion.p custom={3} variants={fadeUp} className="text-gray-400 max-w-2xl mx-auto text-[14px] sm:text-[16px] leading-[1.8]">
+            Choose from carefully planned residential plots located in prime areas with excellent growth potential.
+          </motion.p>
+        </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
           {[
-            {
-              id: 1,
-              title: "Residential",
-              desc: "Luxury apartments and villas in urban hubs with strong rental demand.",
-              detailedDesc: "Our residential developments focus on high-yield areas with excellent amenities. We ensure top-tier construction quality and strategic placement to maximize both lifestyle and investment ROI. Each project is designed with modern aesthetics and sustainable practices.",
-              image: r4,
-            },
-            {
-              id: 2,
-              title: "Commercial",
-              desc: "Office spaces and retail centers in thriving business districts.",
-              detailedDesc: "From Grade-A office spaces to prime retail hubs, our commercial projects are located at the heart of economic activity. These investments offer stable rental income and significant capital appreciation potential in rapidly expanding business zones.",
-              image: r22,
-            },
-            {
-              id: 3,
-              title: "Plots",
-              desc: "Undervalued land parcels with high appreciation potential.",
-              detailedDesc: "We identify land with hidden value before the market catches up. Our plot developments come with clear titles, planned infrastructure, and are situated in the path of city expansion, ensuring rapid value growth for early investors.",
-              image: r25,
-            },
-            {
-              id: 4,
-              title: "Luxury Villas",
-              desc: "Exclusive waterfront and hillside estates for elite investors.",
-              detailedDesc: "Experience the pinnacle of luxury with our signature villa collections. These exclusive properties offer unmatched privacy, bespoke architecture, and are located in the most sought-after scenic locales, representing a prestigious asset class.",
-              image: r21,
-            },
-          ].map((item, idx) => (
-            <motion.div
-              key={idx}
-              variants={fadeUp}
-              whileHover={{ y: -10, scale: 1.02 }}
-              className="invest-card bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all border border-gray-100 overflow-hidden group"
-            >
-              <div className="h-48 overflow-hidden">
-                <img
-                  src={item.image}
-                  alt={item.title}
-                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                  loading="lazy"
-                  decoding="async"
-                />
+            { id: 1, title: "Residential", desc: "Luxury apartments and villas in urban hubs.", extended: "Our residential developments focus on high-yield areas with excellent amenities. We ensure top-tier construction quality.", img: r4 },
+            { id: 2, title: "Commercial", desc: "Office spaces and retail centers in districts.", extended: "From Grade-A office spaces to prime retail hubs, our commercial projects are located at the heart of economic activity.", img: r22 },
+            { id: 3, title: "Plots", desc: "Undervalued land parcels with high potential.", extended: "We identify land with hidden value before the market catches up. Our plot developments come with clear titles.", img: r25 },
+            { id: 4, title: "Luxury Villas", desc: "Exclusive waterfront and hillside estates.", extended: "Experience the pinnacle of luxury with our signature villa collections offering unmatched privacy and bespoke architecture.", img: r21 },
+          ].map((item) => (
+            <div key={item.id} className="invest-card group relative rounded-[2rem] overflow-hidden bg-[#0a0a0a] border border-white/5 shadow-2xl">
+              <div className="h-56 sm:h-64 overflow-hidden relative">
+                <img src={item.img} alt={item.title} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-80 group-hover:opacity-100" />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0a] via-black/20 to-transparent" />
               </div>
-              <div className="p-6">
-                <h3 className="text-2xl font-semibold mb-2">{item.title}</h3>
-                <p className="text-gray-600">{item.desc}</p>
+              <div className="p-6 sm:p-8 relative z-10 -mt-6">
+                <h3 className="text-xl sm:text-2xl font-bold mb-3 font-serif tracking-wide">{item.title}</h3>
+                <p className="text-gray-400 text-sm leading-relaxed mb-4">{item.desc}</p>
 
                 <motion.div
                   initial={false}
                   animate={{ height: expandedId === item.id ? "auto" : 0, opacity: expandedId === item.id ? 1 : 0 }}
                   className="overflow-hidden"
                 >
-                  <p className="mt-4 text-gray-500 text-sm leading-relaxed border-t pt-4 border-gray-100">
-                    {item.detailedDesc}
+                  <p className="text-gray-500 text-[13px] leading-relaxed border-t border-white/10 pt-4 pb-4">
+                    {item.extended}
                   </p>
                 </motion.div>
 
                 <button
                   onClick={() => setExpandedId(expandedId === item.id ? null : item.id)}
-                  className="mt-4 text-amber-600 font-medium hover:text-amber-700 transition-colors flex items-center gap-1"
+                  className="text-[#B49A5A] text-[11px] font-bold tracking-[0.2em] uppercase hover:text-white transition-colors flex items-center gap-2"
                 >
-                  {expandedId === item.id ? "Show less" : "Learn more"}
-                  <span className={`transform transition-transform duration-300 ${expandedId === item.id ? "rotate-180" : ""}`}>
-                    →
-                  </span>
+                  {expandedId === item.id ? "Close" : "Learn More"}
+                  <span className={`transform transition-transform duration-300 ${expandedId === item.id ? "-rotate-90" : "rotate-0"}`}>&rarr;</span>
                 </button>
               </div>
-            </motion.div>
+            </div>
           ))}
         </div>
-      </motion.section>
+      </section>
 
-      {/* WHY INVEST WITH US SECTION */}
-      <motion.section
-        ref={whyInvestRef}
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, margin: "-100px" }}
-        variants={staggerChildren}
-        className="py-24 px-6 bg-white"
-      >
-        <div className="max-w-7xl mx-auto">
-          <motion.h2 variants={fadeUp} className="text-4xl font-bold text-center mb-4">
-            Why Invest With The River Green
-          </motion.h2>
-          <motion.p variants={fadeUp} className="text-center text-gray-600 mb-16 max-w-2xl mx-auto">
-            Discover a trusted township development designed for modern living, long-term value, and a peaceful environment.
-          </motion.p>
+      {/* ── WHY INVEST SECTION ── */}
+      <section className="relative py-32 px-6 bg-[#050505] border-y border-white/5 z-10 shadow-[0_0_100px_rgba(0,0,0,0.5)]">
+        <div className="max-w-[1400px] mx-auto">
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.2 }}
+            className="text-center mb-20"
+          >
+            <motion.h2 custom={1} variants={fadeUp} className="text-[clamp(30px,4vw,50px)] font-serif font-bold mb-4">
+              Why Invest With Us
+            </motion.h2>
+            <motion.div custom={2} variants={fadeUp} className="w-12 h-[2px] bg-[#B49A5A]/60 mx-auto mb-6" />
+            <motion.p custom={3} variants={fadeUp} className="text-gray-400 max-w-2xl mx-auto text-[14px] sm:text-[16px] leading-[1.8]">
+              Discover a trusted township development designed for modern living, long-term value, and a peaceful environment.
+            </motion.p>
+          </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
             {[
-              { title: "High Growth Potential", desc: "Plots located in rapidly developing areas with strong appreciation potential for long-term investment.", icon: "📈" },
-              { title: "Trusted Development", desc: "Years of experience in creating well-planned communities with quality infrastructure and reliable planning.", icon: "🏆" },
-              { title: "Prime Locations", desc: "Strategically located townships with excellent connectivity to key roads, markets, and essential facilities.", icon: "📍" },
-              { title: "Clear & Secure Investment", desc: "100% transparent documentation and legally verified plots to ensure complete peace of mind.", icon: "🛡️" },
+              { title: "High Growth", desc: "Plots located in rapidly developing areas with strong appreciation.", num: "01" },
+              { title: "Trusted Dev", desc: "Years of experience in creating well-planned communities.", num: "02" },
+              { title: "Prime Locations", desc: "Strategically located townships with excellent connectivity.", num: "03" },
+              { title: "Secure Invest", desc: "100% transparent documentation and legally verified plots.", num: "04" },
             ].map((item, idx) => (
               <motion.div
                 key={idx}
-                variants={fadeUp}
-                className="flex flex-col items-center text-center p-6"
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: idx * 0.15, duration: 0.8 }}
+                className="group relative p-8 glass-panel bg-white/[0.02] border border-white/5 rounded-[2rem] hover:bg-white/[0.04] transition-colors"
               >
-                <div className="w-20 h-20 bg-amber-100 rounded-full flex items-center justify-center text-4xl mb-4 shadow-inner">
-                  {item.icon}
+                <div className="text-[#B49A5A]/20 text-6xl font-serif font-black absolute top-4 right-6 group-hover:text-[#B49A5A]/40 transition-colors duration-500">
+                  {item.num}
                 </div>
-                <h3 className="text-xl font-semibold mb-2">{item.title}</h3>
-                <p className="text-gray-600">{item.desc}</p>
+                <h3 className="text-xl font-bold mb-4 mt-8 font-serif">{item.title}</h3>
+                <p className="text-gray-400 text-sm leading-relaxed">{item.desc}</p>
               </motion.div>
             ))}
           </div>
         </div>
-      </motion.section>
+      </section>
 
-      {/* INVESTMENT PLANS / ROI SECTION */}
-      <motion.section
-        ref={plansRef}
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, margin: "-100px" }}
-        variants={staggerChildren}
-        className="py-24 px-6 bg-neutral-50"
-      >
-        <div className="max-w-7xl mx-auto">
-          <motion.h2 variants={fadeUp} className="text-4xl font-bold text-center mb-4">
-            Investment Opportunities
+      {/* ── PLANS SECTION ── */}
+      <section className="relative py-32 px-6 max-w-[1400px] mx-auto z-10">
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.2 }}
+          className="text-center mb-20"
+        >
+          <motion.h2 custom={1} variants={fadeUp} className="text-[clamp(30px,4vw,50px)] font-serif font-bold mb-4">
+            Opportunities
           </motion.h2>
-          <motion.p variants={fadeUp} className="text-center text-gray-600 mb-16 max-w-2xl mx-auto">
-            Discover premium residential plots designed for modern living and long-term value in prime locations.
-          </motion.p>
+          <motion.div custom={2} variants={fadeUp} className="w-12 h-[2px] bg-[#B49A5A]/60 mx-auto mb-6" />
+        </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {[
-              {
-                name: "Residential Plots",
-                tagline: "Ideal for your dream home",
-                features: ["Vastu Compliant Layouts", "Internal Grid Roads", "Secured Gated Entry", "Lush Green Parks"],
-              },
-              {
-                name: "Investment Plots",
-                tagline: "High appreciation potential",
-                features: ["Strategic Location", "Upcoming Infrastructure", "Clear Legal Titles", "Boundary Wall Included"],
-                popular: true,
-              },
-              {
-                name: "Corner & Premium Plots",
-                tagline: "Prime visibility and space",
-                features: ["Wider Main Road Access", "Park Facing Options", "Better Ventilation", "Exclusive Entry Points"],
-              },
-            ].map((plan, idx) => (
-              <motion.div
-                key={idx}
-                variants={fadeUp}
-                whileHover={{ y: -5 }}
-                className={`relative bg-white rounded-2xl shadow-xl p-8 border ${plan.popular ? "border-amber-400 ring-4 ring-amber-100" : "border-gray-100"
-                  }`}
-              >
-                {plan.popular && (
-                  <span className="absolute -top-4 left-1/2 -translate-x-1/2 bg-amber-500 text-white px-4 py-1 rounded-full text-sm font-semibold shadow-lg">
-                    Highest Demand
-                  </span>
-                )}
-                <h3 className="text-xl font-medium text-gray-500 uppercase tracking-wider mb-2">{plan.name}</h3>
-                <p className="text-2xl font-bold text-gray-900 mb-4">{plan.tagline}</p>
-                <div className="mb-6 border-b pb-4 border-gray-100">
-                  <span className="text-amber-700 font-semibold italic text-sm">Key Features & Amenities</span>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          {[
+            {
+              name: "Residential",
+              tagline: "Dream Home Canvas",
+              features: ["Vastu Compliant Layouts", "Internal Grid Roads", "Secured Gated Entry", "Lush Green Parks"],
+            },
+            {
+              name: "Investment",
+              tagline: "High Appreciation",
+              features: ["Strategic Location", "Upcoming Infrastructure", "Clear Legal Titles", "Boundary Wall Included"],
+              popular: true,
+            },
+            {
+              name: "Premium Corner",
+              tagline: "Prime Visibility",
+              features: ["Wider Main Road Access", "Park Facing Options", "Better Ventilation", "Exclusive Entry Points"],
+            },
+          ].map((plan, idx) => (
+            <motion.div
+              key={idx}
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: idx * 0.2, duration: 0.8 }}
+              className={`relative bg-[#0a0a0a] rounded-[2rem] p-8 sm:p-10 border ${plan.popular ? "border-[#B49A5A]/50 shadow-[0_0_40px_rgba(180,154,90,0.15)] transform md:-translate-y-4" : "border-white/5"}`}
+            >
+              {plan.popular && (
+                <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-gradient-to-r from-[#B49A5A] to-[#8B733D] text-black px-6 py-1.5 rounded-full text-[10px] sm:text-[11px] font-bold tracking-[0.2em] uppercase shadow-lg">
+                  Highest Demand
                 </div>
-                <ul className="space-y-3 mb-8">
-                  {plan.features.map((feature, i) => (
-                    <li key={i} className="flex items-center gap-2 text-gray-600">
-                      <span className="text-amber-500 font-bold">✓</span> {feature}
-                    </li>
-                  ))}
-                </ul>
-                <button
-                  onClick={() => navigate('/contact')}
-                  className="w-full py-4 rounded-xl bg-gray-900 text-white font-semibold hover:bg-amber-600 transition-colors duration-300 shadow-lg hover:shadow-amber-200"
-                >
-                  Request Details
-                </button>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </motion.section>
+              )}
+              <h3 className="text-[#B49A5A] text-[10px] sm:text-[12px] uppercase tracking-[0.3em] font-semibold mb-3">{plan.name}</h3>
+              <p className="text-2xl sm:text-3xl font-serif font-bold text-white mb-6 leading-tight">{plan.tagline}</p>
 
-      {/* INVESTOR BENEFITS / CTA SECTION */}
-      <section
-        ref={ctaRef}
-        className="relative h-[600px] flex items-center justify-center overflow-hidden"
-      >
-        {/* Parallax background */}
+              <div className="w-full h-[1px] bg-white/10 mb-6" />
+
+              <ul className="space-y-4 mb-10">
+                {plan.features.map((feature, i) => (
+                  <li key={i} className="flex items-start gap-3 text-gray-400 text-sm sm:text-[15px]">
+                    <span className="text-[#B49A5A] font-bold mt-0.5">&rarr;</span> {feature}
+                  </li>
+                ))}
+              </ul>
+
+              <button
+                onClick={() => navigate('/contact')}
+                className={`w-full py-4 rounded-xl font-bold tracking-widest uppercase text-[10px] sm:text-[11px] transition-all duration-300 ${plan.popular ? "bg-[#B49A5A] text-black hover:bg-white" : "bg-white/5 text-white border border-white/10 hover:bg-white hover:text-black"}`}
+              >
+                Request Details
+              </button>
+            </motion.div>
+          ))}
+        </div>
+      </section>
+
+      {/* ── CTA / BOTTOM PARALLAX ── */}
+      <section className="cta-section relative h-[70vh] flex items-center justify-center overflow-hidden z-20">
         <div
           ref={ctaImageRef}
-          className="absolute inset-0 w-full h-[110%] bg-cover bg-center will-change-transform"
-          style={{
-            backgroundImage:
-              `url(${investImg2})`,
-          }}
+          className="absolute inset-x-0 -top-[20%] h-[140%] w-full bg-cover bg-center will-change-transform"
+          style={{ backgroundImage: `url(${investImg2})` }}
         >
-          <div className="absolute inset-0 bg-black/50" />
+          <div className="absolute inset-0 bg-black/70 backdrop-blur-[2px]" />
         </div>
 
         <motion.div
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
-          variants={fadeUp}
-          className="relative z-10 text-white text-center max-w-4xl px-6"
+          className="relative z-10 text-center max-w-4xl px-6"
         >
-          <h2 className="text-4xl md:text-5xl font-bold mb-6">
-            Long-Term Value. Smart Investment. Peaceful Living.
-
-          </h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12 text-left bg-white/10 backdrop-blur-sm p-8 rounded-3xl">
-            <div>
-              <h3 className="text-2xl font-semibold mb-2 flex items-center gap-2">
-                <span className="text-3xl">📈</span> Future Appreciation
-              </h3>
-              <p className="text-white/80">Plots located in rapidly developing areas with excellent potential for long-term value growth.</p>
-            </div>
-            <div>
-              <h3 className="text-2xl font-semibold mb-2 flex items-center gap-2">
-                <span className="text-3xl">🌿</span>Planned Township Living
-              </h3>
-              <p className="text-white/80">Wide roads, green surroundings, and modern infrastructure designed for a peaceful lifestyle.</p>
-            </div>
-            <div>
-              <h3 className="text-2xl font-semibold mb-2 flex items-center gap-2">
-                <span className="text-3xl">🔒</span>Secure & Transparent Investment
-              </h3>
-              <p className="text-white/80">Clear documentation and trusted development ensuring complete peace of mind for buyers.</p>
-            </div>
-          </div>
+          <motion.h2 custom={1} variants={fadeUp} className="text-[clamp(30px,5vw,50px)] font-serif font-bold mb-8 leading-tight">
+            Long-Term Value. <br className="md:hidden" />
+            <span className="text-[#B49A5A]">Smart Investment.</span>
+          </motion.h2>
 
           <motion.button
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
+            custom={2} variants={fadeUp}
             onClick={() => navigate('/contact')}
-            className="bg-amber-500 hover:bg-amber-600 text-white px-10 py-4 rounded-full font-semibold text-lg shadow-2xl transition"
+            className="group relative inline-flex items-center gap-3 py-4 sm:py-5 px-8 sm:px-12 border-2 border-[#B49A5A] bg-[#B49A5A] text-black font-bold text-[10px] sm:text-[12px] tracking-[0.2em] uppercase overflow-hidden transition-all duration-500 hover:bg-transparent hover:text-white"
           >
-            Schedule a Site Visit
+            <span className="relative z-10">Schedule a Site Visit</span>
+            <span className="relative z-10">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" className="transform transition-transform duration-300 group-hover:translate-x-1">
+                <path d="M5 12h14M12 5l7 7-7 7" />
+              </svg>
+            </span>
           </motion.button>
         </motion.div>
       </section>
-
-      {/* FOOTER (optional, minimal) */}
-      {/* <footer className="bg-gray-900 text-white py-8 text-center text-sm">
-        <p>© 2025 Prestige Real Estate Investments. All rights reserved.</p>
-      </footer> */}
     </div>
   );
 };

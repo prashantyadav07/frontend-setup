@@ -9,6 +9,7 @@ const Contact = React.lazy(() => import('@/pages/Contact'));
 const NotFound = React.lazy(() => import('@/pages/NotFound'));
 const Ourprojects = React.lazy(() => import('@/pages/Ourprojects'));
 const Investment = React.lazy(() => import('@/pages/Investment'));
+const ProjectDetails = React.lazy(() => import('@/pages/ProjectDetails'));
 
 /**
  * AppRoutes Component
@@ -27,6 +28,7 @@ export default function AppRoutes() {
           <Route path="courses" element={<Courses />} />
           <Route path="contact" element={<Contact />} />
           <Route path="ourproject" element={<Ourprojects />} />
+          <Route path="project/:id" element={<ProjectDetails />} />
           <Route path="investment" element={<Investment />} />
           <Route path="*" element={<NotFound />} />
         </Route>

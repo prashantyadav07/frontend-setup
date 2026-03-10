@@ -1,84 +1,115 @@
-import React, { useRef, useEffect } from 'react';
-import { motion } from 'framer-motion';
+import React, { useRef } from 'react';
+import { motion, useScroll, useTransform } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import videoSrc from '../assets/newhome.mp4';
 import LazyVideo from './LazyVideo';
 
 const Hero5 = () => {
+    const containerRef = useRef(null);
     const videoRef = useRef(null);
 
-    return (
-        <div className="relative min-h-screen w-full bg-white flex flex-col items-center justify-center overflow-hidden font-sans py-12 px-4">
+    const { scrollYProgress } = useScroll({
+        target: containerRef,
+        offset: ["start end", "end start"]
+    });
 
-            {/* Background Blurry Blobs - More Blur added */}
-            <div className="absolute top-0 left-0 w-full h-full pointer-events-none overflow-hidden">
-                <div className="absolute top-1/4 -left-20 w-96 h-96 bg-blue-900/5 rounded-full blur-[150px] will-change-transform transform-gpu" />
-                <div className="absolute bottom-1/4 -right-20 w-96 h-96 bg-zinc-900/10 rounded-full blur-[150px] will-change-transform transform-gpu" />
+    const yText = useTransform(scrollYProgress, [0, 1], [150, -150]);
+
+    // Smoke effect reveal for text - Removed heavy filter: blur() for performance
+    const smokeVariants = {
+        hidden: { opacity: 0, scale: 1.05, y: 20 },
+        visible: (i = 1) => ({
+            opacity: 1,
+            scale: 1,
+            y: 0,
+            transition: {
+                delay: i * 0.15,
+                duration: 1.5,
+                ease: "easeOut"
+            }
+        })
+    };
+
+    return (
+        <div ref={containerRef} className="relative min-h-[120vh] w-full bg-black flex items-center justify-center overflow-hidden font-sans">
+
+            {/* FULL SCREEN VIDEO BACKGROUND */}
+            <div className="absolute inset-0 w-full h-full z-0">
+                <LazyVideo
+                    ref={videoRef}
+                    src={videoSrc}
+                    className="w-full h-full object-cover opacity-60"
+                    onPlay={(e) => { if (e.target) e.target.playbackRate = 0.8; }}
+                />
+                {/* Gradient Overlays for contrast */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-black/60 z-10" />
+                <div className="absolute inset-0 bg-gradient-to-b from-black via-black/20 to-transparent z-10" />
             </div>
 
-            {/* Title Section */}
-            <motion.div
-                initial={{ y: 30, opacity: 0 }}
-                whileInView={{ y: 0, opacity: 1 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.8 }}
-                className="text-center mb-10 relative z-10 w-full"
-            >
-                <span className="text-[#B49A5A] text-[10px] md:text-[11px] tracking-[0.5em] uppercase font-bold mb-3 block">
-                    PREMIUM LIVING
-                </span>
-                <h2 className="text-3xl md:text-5xl font-extrabold text-black tracking-tight leading-tight max-w-3xl mx-auto uppercase">
-                    Experience Life at The River Green
-                </h2>
-                <div className="w-16 h-[1.5px] bg-[#B49A5A] mx-auto mt-4" />
-            </motion.div>
+            {/* Premium Background Glows - Replaced heavy CSS blur with radial gradients */}
+            <div className="absolute inset-0 z-0 pointer-events-none">
+                <div className="absolute top-1/4 -left-32 w-[60vw] h-[60vw] md:w-[35vw] md:h-[35vw] rounded-full bg-[radial-gradient(circle,rgba(180,154,90,0.12)_0%,transparent_70%)]" />
+                <div className="absolute bottom-0 right-0 w-[70vw] h-[70vw] md:w-[45vw] md:h-[45vw] rounded-full bg-[radial-gradient(circle,rgba(255,255,255,0.06)_0%,transparent_70%)]" />
+            </div>
 
-            {/* Video Container - Compact and Professional */}
-            <motion.div
-                initial={{ scale: 0.98, opacity: 0 }}
-                whileInView={{ scale: 1, opacity: 1 }}
-                viewport={{ once: true }}
-                transition={{ duration: 1, delay: 0.2 }}
-                className="relative w-full max-w-4xl z-10 px-2"
-            >
-                <div className="w-full h-[300px] md:h-[480px] rounded-[2rem] overflow-hidden shadow-2xl border border-black/5 bg-zinc-950">
-                    <LazyVideo
-                        ref={videoRef}
-                        src={videoSrc}
-                        className="w-full h-full object-cover"
-                        onPlay={(e) => { if (e.target) e.target.playbackRate = 0.7; }}
-                    />
-                </div>
+            {/* TEXT CONTENT CENTERED */}
+            <div className="relative z-20 w-full max-w-[1400px] px-6 text-center flex flex-col items-center justify-center h-full pointer-events-none">
+                <motion.div style={{ y: yText }} className="flex flex-col items-center pointer-events-auto">
 
-                {/* Floating Box with Blur effect */}
-                <div className="hidden md:flex absolute -bottom-6 -right-6 w-32 h-32 bg-white/80 backdrop-blur-md border border-zinc-100 shadow-xl rounded-2xl p-4 flex-col justify-center">
-                    <div className="text-[#B49A5A] text-xl font-bold mb-1">05</div>
-                    <div className="text-zinc-500 text-[9px] uppercase tracking-widest leading-tight font-bold">Living<br />Standard</div>
-                </div>
-            </motion.div>
-
-            {/* Bottom Content */}
-            <motion.div
-                initial={{ y: 30, opacity: 0 }}
-                whileInView={{ y: 0, opacity: 1 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.8, delay: 0.4 }}
-                className="mt-12 text-center z-10 px-4 max-w-xl"
-            >
-                <p className="text-zinc-500 text-sm md:text-base leading-relaxed mb-8">
-                    A thoughtfully planned township where modern infrastructure meets natural beauty. Designed to offer peaceful living, open spaces, and a lifestyle that feels truly exceptional.
-                </p>
-
-                <div className="flex justify-center">
-                    <Link
-                        to="/investment"
-                        className="px-10 py-3.5 bg-black text-white text-[11px] font-bold tracking-[0.2em] uppercase transition-all duration-500 hover:bg-[#C9B171] w-full sm:w-auto text-center"
+                    <motion.p
+                        custom={1}
+                        initial="hidden" animate="visible" variants={smokeVariants}
+                        className="text-[#B49A5A] text-[10px] md:text-[14px] tracking-[0.5em] uppercase font-bold mb-6 text-shadow-sm"
                     >
-                        Explore the Lifestyle
-                    </Link>
-                </div>
-            </motion.div>
+                        Premium Lifestyle
+                    </motion.p>
 
+                    <motion.h2
+                        custom={2}
+                        initial="hidden" animate="visible" variants={smokeVariants}
+                        className="text-white leading-[1.1] mb-8 font-serif font-black tracking-tight"
+                        style={{ fontSize: 'clamp(40px, 7vw, 110px)' }}
+                    >
+                        <span>EXPERIENCE LIFE</span>
+                        <br />
+                        <span className="text-transparent bg-clip-text bg-gradient-to-r from-gray-100 to-gray-500 font-light">
+                            AT DEFENCE GARDEN
+                        </span>
+                    </motion.h2>
+
+                    <motion.div
+                        custom={3}
+                        initial={{ width: 0, opacity: 0 }} whileInView={{ width: "120px", opacity: 1 }} transition={{ delay: 0.8, duration: 1.5 }} viewport={{ once: false }}
+                        className="h-[2px] bg-[#B49A5A] mb-10"
+                    />
+
+                    <motion.p
+                        custom={4}
+                        initial="hidden" animate="visible" variants={smokeVariants}
+                        className="text-gray-300 text-[16px] md:text-[22px] leading-[1.8] font-light max-w-3xl mx-auto mb-12"
+                    >
+                        A thoughtfully planned township where modern infrastructure meets natural beauty. Designed to offer peaceful living, open spaces, and a lifestyle that feels truly exceptional.
+                    </motion.p>
+
+                    <motion.div
+                        custom={5}
+                        initial="hidden" animate="visible" variants={smokeVariants}
+                    >
+                        <Link
+                            to="/investment"
+                            className="group relative inline-flex items-center justify-center gap-3 py-4 px-10 bg-white/10 backdrop-blur-md border border-white/20 text-white font-bold text-[11px] md:text-[13px] tracking-[0.2em] uppercase overflow-hidden transition-all duration-500 hover:border-[#B49A5A] rounded-full shadow-lg hover:shadow-xl"
+                        >
+                            <div className="absolute inset-0 bg-gradient-to-r from-[#B49A5A] to-[#E5D3B3] translate-y-[100%] transition-transform duration-500 ease-out group-hover:translate-y-0" />
+                            <span className="relative z-10 transition-colors duration-500 group-hover:text-black">Explore the Lifestyle</span>
+                            <span className="relative z-10 transition-colors duration-500 group-hover:text-black">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" className="transform transition-transform duration-300 group-hover:translate-x-1">
+                                    <path d="M5 12h14M12 5l7 7-7 7" />
+                                </svg>
+                            </span>
+                        </Link>
+                    </motion.div>
+                </motion.div>
+            </div>
         </div>
     );
 };

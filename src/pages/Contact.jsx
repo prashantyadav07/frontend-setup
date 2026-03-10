@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
 import { motion } from 'framer-motion';
 import { gsap } from 'gsap';
 import { useGSAP } from '@gsap/react';
@@ -12,159 +12,209 @@ import {
   Linkedin,
   Facebook
 } from 'lucide-react';
+import r7 from "../assets/r7.png"
 
 export default function ContactUs() {
   const containerRef = useRef(null);
+  const [focusedInput, setFocusedInput] = useState(null);
 
   useGSAP(() => {
     gsap.from('.reveal-up', {
       y: 50,
       opacity: 0,
       duration: 1,
-      stagger: 0.2,
-      ease: 'power3.out'
+      stagger: 0.15,
+      ease: 'power3.out',
+      delay: 0.2
     });
 
     gsap.from('.arch-image', {
       scale: 1.05,
       opacity: 0,
       duration: 1.5,
-      ease: 'expo.out'
+      ease: 'expo.out',
+      delay: 0.5
     });
   }, { scope: containerRef });
 
   return (
-    <div ref={containerRef} className="min-h-screen bg-[#FAF9F6] text-zinc-900 font-sans">
+    <div ref={containerRef} className="min-h-screen bg-black text-white font-sans selection:bg-[#B49A5A] selection:text-black overflow-x-hidden">
 
-      {/* 1. TOP SECTION: Added more padding-top (pt-32) to prevent Navbar overlap */}
-      <section className="relative pt-32 md:pt-40 pb-20 px-6 lg:px-20 max-w-[1400px] mx-auto">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
+      {/* Background Glows */}
+      <div className="fixed inset-0 z-0 pointer-events-none">
+        <div className="absolute top-0 right-0 w-[50vw] h-[50vw] rounded-full bg-[#B49A5A]/5 blur-[150px]" />
+        <div className="absolute bottom-0 left-0 w-[50vw] h-[50vw] rounded-full bg-white/5 blur-[150px]" />
+      </div>
 
-          {/* Left Side: Text and Form */}
-          <div className="lg:col-span-7 space-y-10">
-            <div className="space-y-6">
-              <h1 className="reveal-up text-5xl lg:text-8xl font-light tracking-tight text-[#4A5D4E] leading-[1.1]">
-                Contact<br />
-                <span className="italic font-serif whitespace-nowrap">The River Green</span>
-              </h1>
-              <p className="reveal-up text-zinc-600 max-w-lg leading-relaxed text-lg font-light">
-                Our team is here to help you explore premium residential plots and guide you in finding the perfect place to build your dream home.
-              </p>
-            </div>
+      <div className="relative z-10">
+        <section className="relative pt-32 md:pt-40 pb-20 px-6 lg:px-20 max-w-[1400px] mx-auto min-h-screen flex items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center w-full">
 
-            <form className="reveal-up space-y-5 max-w-xl">
-              <div className="space-y-4">
-                <input
-                  type="text"
-                  placeholder="Your Full Name"
-                  className="w-full p-4 bg-white border border-zinc-200 rounded-lg focus:outline-none focus:ring-1 focus:ring-[#4A5D4E] transition-all shadow-sm"
-                />
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  <input
-                    type="email"
-                    placeholder="Email Address"
-                    className="w-full p-4 bg-white border border-zinc-200 rounded-lg focus:outline-none focus:ring-1 focus:ring-[#4A5D4E] transition-all shadow-sm"
-                  />
-                  <input
-                    type="tel"
-                    placeholder="Phone Number"
-                    className="w-full p-4 bg-white border border-zinc-200 rounded-lg focus:outline-none focus:ring-1 focus:ring-[#4A5D4E] transition-all shadow-sm"
-                  />
-                </div>
-                <textarea
-                  placeholder="Tell us about your requirements..."
-                  rows="4"
-                  className="w-full p-4 bg-white border border-zinc-200 rounded-lg focus:outline-none focus:ring-1 focus:ring-[#4A5D4E] transition-all shadow-sm resize-none"
-                ></textarea>
+            {/* Left Side: Text and Form */}
+            <div className="lg:col-span-7 space-y-12">
+              <div className="space-y-6">
+                <p className="reveal-up text-[#B49A5A] uppercase tracking-[0.3em] text-[10px] font-bold">Get In Touch</p>
+                <h1 className="reveal-up text-5xl lg:text-7xl xl:text-8xl font-serif font-bold tracking-tight text-white leading-[1.1]">
+                  Contact<br />
+                  <span className="italic font-light text-transparent bg-clip-text bg-gradient-to-r from-gray-300 to-gray-600">Defence Garden</span>
+                </h1>
+                <p className="reveal-up text-gray-400 max-w-lg leading-relaxed text-lg font-light">
+                  Our dedicated team is ready to guide you in finding the perfect residential plot to build your ultimate dream home.
+                </p>
               </div>
 
-              <motion.button
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
-                className="w-full md:w-auto bg-[#4A5D4E] text-white px-12 py-5 rounded-lg flex items-center justify-center gap-3 uppercase tracking-[0.2em] text-xs font-bold transition-all shadow-lg"
-              >
-                Book a Site Visit<ArrowRight size={16} />
-              </motion.button>
-            </form>
-          </div>
+              <form className="reveal-up space-y-6 max-w-xl">
+                <div className="space-y-6">
+                  {/* Name Input */}
+                  <div className="relative group">
+                    <input
+                      type="text"
+                      id="name"
+                      onFocus={() => setFocusedInput('name')}
+                      onBlur={() => setFocusedInput(null)}
+                      className="peer w-full p-4 pt-6 bg-white/5 border border-white/10 rounded-xl focus:outline-none focus:border-[#B49A5A]/50 transition-all text-white placeholder-transparent"
+                      placeholder="Your Full Name"
+                    />
+                    <label
+                      htmlFor="name"
+                      className="absolute left-4 top-2 text-[10px] uppercase tracking-widest text-[#B49A5A] transition-all peer-placeholder-shown:text-gray-500 peer-placeholder-shown:top-5 peer-placeholder-shown:text-xs peer-placeholder-shown:tracking-normal peer-focus:top-2 peer-focus:text-[10px] peer-focus:tracking-widest peer-focus:text-[#B49A5A]"
+                    >
+                      Your Full Name
+                    </label>
+                  </div>
 
-          {/* Right Side: Arch Design Image */}
-          <div className="lg:col-span-5 relative flex justify-center lg:justify-end">
-            <div className="arch-image relative w-full max-w-[450px] aspect-[4/5] overflow-hidden rounded-t-full shadow-[0_30px_60px_-15px_rgba(0,0,0,0.3)] border-[12px] border-white bg-zinc-200">
-              <img
-                src="https://images.unsplash.com/photo-1564013799919-ab600027ffc6?auto=format&fit=crop&q=80&w=1000"
-                alt="Luxury Mansion"
-                className="w-full h-full object-cover"
-                loading="eager"
-                onError={(e) => { e.target.src = "https://via.placeholder.com/500x700?text=Luxury+Home"; }}
-              />
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    {/* Email Input */}
+                    <div className="relative group">
+                      <input
+                        type="email"
+                        id="email"
+                        onFocus={() => setFocusedInput('email')}
+                        onBlur={() => setFocusedInput(null)}
+                        className="peer w-full p-4 pt-6 bg-white/5 border border-white/10 rounded-xl focus:outline-none focus:border-[#B49A5A]/50 transition-all text-white placeholder-transparent"
+                        placeholder="Email Address"
+                      />
+                      <label
+                        htmlFor="email"
+                        className="absolute left-4 top-2 text-[10px] uppercase tracking-widest text-[#B49A5A] transition-all peer-placeholder-shown:text-gray-500 peer-placeholder-shown:top-5 peer-placeholder-shown:text-xs peer-placeholder-shown:tracking-normal peer-focus:top-2 peer-focus:text-[10px] peer-focus:tracking-widest peer-focus:text-[#B49A5A]"
+                      >
+                        Email Address
+                      </label>
+                    </div>
+
+                    {/* Phone Input */}
+                    <div className="relative group">
+                      <input
+                        type="tel"
+                        id="phone"
+                        onFocus={() => setFocusedInput('phone')}
+                        onBlur={() => setFocusedInput(null)}
+                        className="peer w-full p-4 pt-6 bg-white/5 border border-white/10 rounded-xl focus:outline-none focus:border-[#B49A5A]/50 transition-all text-white placeholder-transparent"
+                        placeholder="Phone Number"
+                      />
+                      <label
+                        htmlFor="phone"
+                        className="absolute left-4 top-2 text-[10px] uppercase tracking-widest text-[#B49A5A] transition-all peer-placeholder-shown:text-gray-500 peer-placeholder-shown:top-5 peer-placeholder-shown:text-xs peer-placeholder-shown:tracking-normal peer-focus:top-2 peer-focus:text-[10px] peer-focus:tracking-widest peer-focus:text-[#B49A5A]"
+                      >
+                        Phone Number
+                      </label>
+                    </div>
+                  </div>
+
+                  {/* Message Input */}
+                  <div className="relative group">
+                    <textarea
+                      id="message"
+                      rows="4"
+                      onFocus={() => setFocusedInput('message')}
+                      onBlur={() => setFocusedInput(null)}
+                      className="peer w-full p-4 pt-8 bg-white/5 border border-white/10 rounded-xl focus:outline-none focus:border-[#B49A5A]/50 transition-all text-white resize-none placeholder-transparent"
+                      placeholder="Tell us about your requirements..."
+                    ></textarea>
+                    <label
+                      htmlFor="message"
+                      className="absolute left-4 top-3 text-[10px] uppercase tracking-widest text-[#B49A5A] transition-all peer-placeholder-shown:text-gray-500 peer-placeholder-shown:top-6 peer-placeholder-shown:text-xs peer-placeholder-shown:tracking-normal peer-focus:top-3 peer-focus:text-[10px] peer-focus:tracking-widest peer-focus:text-[#B49A5A]"
+                    >
+                      Your Requirements
+                    </label>
+                  </div>
+                </div>
+
+                <motion.button
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
+                  className="w-full md:w-auto bg-[#B49A5A] text-black px-12 py-5 rounded-full flex items-center justify-center gap-3 uppercase tracking-widest text-[11px] font-bold transition-all hover:bg-white group"
+                >
+                  Book a Site Visit<ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
+                </motion.button>
+              </form>
+            </div>
+
+            {/* Right Side: Arch Design Image */}
+            <div className="lg:col-span-5 relative flex justify-center lg:justify-end">
+              <div className="arch-image relative w-full max-w-[450px] aspect-[4/5] overflow-hidden rounded-t-[10rem] shadow-[0_0_80px_rgba(180,154,90,0.1)] border border-white/10 bg-[#0a0a0a]">
+                <img
+                  src={r7}
+                  alt="Luxury Architecture"
+                  className="w-full h-full object-cover opacity-80 mix-blend-lighten"
+                  loading="eager"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent" />
+              </div>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* 2. MIDDLE SECTION: Quick Info Bar */}
-      <section className="bg-white py-24 px-6 border-t border-zinc-100">
-        <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-16">
-          <div className="flex flex-col items-center text-center space-y-5 group">
-            <div className="w-20 h-20 rounded-full bg-[#f4f7f4] flex items-center justify-center text-[#4A5D4E] group-hover:bg-[#4A5D4E] group-hover:text-white transition-all duration-500 shadow-sm">
-              <MapPin size={32} />
-            </div>
-            <div className="space-y-2">
-              <h3 className="text-2xl font-medium tracking-tight">Location</h3>
-              <p className="text-zinc-500 font-light leading-relaxed">123 Luxury Boulevard, <br /> Skyline Tower, Mumbai 400001</p>
-            </div>
+        {/* Info Grid */}
+        <section className="py-24 px-6 relative z-10 border-t border-white/5 bg-[#0a0a0a]">
+          <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-12">
+            {[
+              { icon: MapPin, title: "Location", lines: ["Shamli, Uttar Pradesh", "Defence Garden Township"] },
+              { icon: Phone, title: "Direct Line", lines: ["Sales: +91 98765 43210", "Support: +91 98765 43211"] },
+              { icon: Clock, title: "Working Hours", lines: ["Monday - Saturday", "09:00 AM - 08:00 PM"] }
+            ].map((info, i) => (
+              <div key={i} className="flex flex-col items-center text-center space-y-6 group">
+                <div className="w-20 h-20 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-[#B49A5A] group-hover:bg-[#B49A5A] group-hover:text-black transition-all duration-500">
+                  <info.icon size={28} strokeWidth={1.5} />
+                </div>
+                <div className="space-y-3">
+                  <h3 className="text-xl font-serif font-bold text-white">{info.title}</h3>
+                  <p className="text-gray-400 font-light leading-relaxed">
+                    {info.lines[0]}<br />{info.lines[1]}
+                  </p>
+                </div>
+              </div>
+            ))}
           </div>
+        </section>
 
-          <div className="flex flex-col items-center text-center space-y-5 group">
-            <div className="w-20 h-20 rounded-full bg-[#f4f7f4] flex items-center justify-center text-[#4A5D4E] group-hover:bg-[#4A5D4E] group-hover:text-white transition-all duration-500 shadow-sm">
-              <Phone size={32} />
-            </div>
-            <div className="space-y-2">
-              <h3 className="text-2xl font-medium tracking-tight">Direct Line</h3>
-              <p className="text-zinc-500 font-light leading-relaxed">Sales: +91 98765 43210 <br /> Support: +91 22 4500 9000</p>
-            </div>
+        {/* FULL WIDTH MAP */}
+        <section className="w-full h-[550px] relative bg-[#0a0a0a] border-t border-white/5">
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d111537.95471415053!2d77.23438180415396!3d29.450371490214613!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390c29ed6d3ca009%3A0xc0fb106b3a3ab806!2sShamli%2C%20Uttar%20Pradesh!5e0!3m2!1sen!2sin!4v1715000000000!5m2!1sen!2sin"
+            width="100%"
+            height="100%"
+            style={{ border: 0, filter: 'grayscale(100%) invert(90%) hue-rotate(180deg) opacity(80%)' }}
+            allowFullScreen=""
+            loading="lazy"
+            title="Location Map"
+          ></iframe>
+          <div className="absolute inset-0 pointer-events-none shadow-[inset_0_0_100px_rgba(0,0,0,1)]" />
+        </section>
+
+        {/* Dark Footer */}
+        <footer className="py-16 bg-[#0a0a0a] text-center border-t border-white/5">
+          <div className="flex justify-center gap-10 mb-8">
+            <Instagram size={20} className="text-gray-500 hover:text-[#B49A5A] cursor-pointer transition-all hover:-translate-y-1" />
+            <Linkedin size={20} className="text-gray-500 hover:text-[#B49A5A] cursor-pointer transition-all hover:-translate-y-1" />
+            <Facebook size={20} className="text-gray-500 hover:text-[#B49A5A] cursor-pointer transition-all hover:-translate-y-1" />
           </div>
-
-          <div className="flex flex-col items-center text-center space-y-5 group">
-            <div className="w-20 h-20 rounded-full bg-[#f4f7f4] flex items-center justify-center text-[#4A5D4E] group-hover:bg-[#4A5D4E] group-hover:text-white transition-all duration-500 shadow-sm">
-              <Clock size={32} />
-            </div>
-            <div className="space-y-2">
-              <h3 className="text-2xl font-medium tracking-tight">Working Hours</h3>
-              <p className="text-zinc-500 font-light leading-relaxed">Monday - Saturday <br /> 09:00 AM - 08:00 PM</p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* 3. FULL WIDTH GOOGLE MAP */}
-      <section className="w-full h-[550px] relative bg-zinc-200">
-        <iframe
-          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3770.796941589332!2d72.833501315!3d18.9405021!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be7d1e848143615%3A0x7d808e04b4916a2a!2sMumbai%2C%20Maharashtra!5e0!3m2!1sen!2sin!4v1625656565656!5m2!1sen!2sin"
-          width="100%"
-          height="100%"
-          style={{ border: 0, filter: 'grayscale(100%) contrast(1.1)' }}
-          allowFullScreen=""
-          loading="lazy"
-          title="Estate Elite Office"
-        ></iframe>
-        <div className="absolute inset-0 pointer-events-none shadow-[inset_0_0_100px_rgba(0,0,0,0.05)]" />
-      </section>
-
-      {/* 4. FOOTER */}
-      <footer className="py-16 bg-white text-center">
-        <div className="flex justify-center gap-10 mb-8">
-          <Instagram size={22} className="text-zinc-400 hover:text-[#4A5D4E] cursor-pointer transition-all hover:-translate-y-1" />
-          <Linkedin size={22} className="text-zinc-400 hover:text-[#4A5D4E] cursor-pointer transition-all hover:-translate-y-1" />
-          <Facebook size={22} className="text-zinc-400 hover:text-[#4A5D4E] cursor-pointer transition-all hover:-translate-y-1" />
-        </div>
-        <div className="w-24 h-[1px] bg-zinc-200 mx-auto mb-8" />
-        <p className="text-[11px] text-zinc-400 uppercase tracking-[0.5em] font-medium">
-          © 2026 The River Green Estates • Designed for Modern Living
-        </p>
-      </footer>
-
+          <div className="w-12 h-[1px] bg-[#B49A5A] mx-auto mb-8 opacity-50" />
+          <p className="text-[9px] text-gray-500 uppercase tracking-widest font-bold">
+            © 2026 Defence Garden Estates • Designed for Modern Living
+          </p>
+        </footer>
+      </div>
     </div>
   );
 }

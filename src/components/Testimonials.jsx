@@ -52,7 +52,7 @@ const TestimonialSection = () => {
             <p
               className="text-[#0D180C] text-[16px] sm:text-[20px] md:text-[22px] leading-[1.5] sm:leading-[1.6] mb-8 sm:mb-12 max-w-[600px]"
             >
-              “Great communities are built with vision, trust, and attention to every detail. At The River Green, we design spaces that bring people closer to nature while offering the comfort of modern living.”
+              “Great communities are built with vision, trust, and attention to every detail. At Defence Garden, we design spaces that bring people closer to nature while offering the comfort of modern living.”
 
             </p>
 
