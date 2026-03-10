@@ -78,7 +78,7 @@ const TestimonialSection = () => {
           >
             {/* Badge */}
             <div className="absolute top-4 right-4 bg-[#5C4A3D]/90 backdrop-blur-sm text-[#F9F8F3] px-3.5 py-1.5 rounded-md text-[11px] font-medium tracking-wide z-30 font-sans shadow-sm">
-              Secondary Home
+              Secondary Homee
             </div>
 
             {/* Image */}
